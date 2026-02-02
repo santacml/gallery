@@ -5530,7 +5530,8 @@ textarea.input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default .navbar-nav>.active>a {
-  color: #6ec54d;
+  /* color: #6ec54d; */
+   color: #760824;
   background-color: transparent;
 }
 

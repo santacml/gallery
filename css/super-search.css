@@ -8,7 +8,8 @@ MIT Licensed
     text-shadow: 2px 2px #000;
 }
 .super-search-btn:hover {
-	color: #6ec54d;
+	/* color: #6ec54d; */
+   	color: #760824;
     transition: color .3s;
     text-shadow: none;
 }
