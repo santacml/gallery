@@ -1,7 +1,7 @@
 # Site settings
-title: PHOTORAMA
+title: BIRDS & BUILDINGS
 email: ""
-description: "Photo Journal"
+description: "A photo gallery"
 url: "https://santacml.github.io"
 baseurl: "/gallery"
 # facebook_username: ""
