@@ -20,6 +20,19 @@ h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
+
+/* Red outline for main title */
+h2.big {
+  -webkit-text-stroke: 1px #760824;
+  text-stroke: 1px #760824;
+}
+
+/* Red outline for description */
+.position-absolute .entry-summary p {
+  -webkit-text-stroke: 1px #760824;
+  text-stroke: 1px #760824;
+}
+
 a {
   color: #760824;
   transition: color .4s;
