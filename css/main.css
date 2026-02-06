@@ -21,15 +21,14 @@ h6 {
   font-weight: 800;
 }
 
-/* Red outline for main title */
+/* Black shadow outline for main title */
 h2.big {
-  -webkit-text-stroke: 1px #760824;
-  text-stroke: 1px #760824;
+  text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
 }
 
-/* Soft outline for description */
+/* Black shadow outline for description */
 .position-absolute .entry-summary p {
-  text-shadow: 1px 1px 2px #760824, -1px -1px 2px #760824, 1px -1px 2px #760824, -1px 1px 2px #760824;
+  text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
 }
 
 /* Keep title/description above slideshow */
@@ -82,7 +81,7 @@ hr.small {
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px #760824, -1px -1px 2px #760824, 1px -1px 2px #760824, -1px 1px 2px #760824;
+  text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom {
