@@ -15,8 +15,11 @@
 		   			speed:     1000, 
 					timeout:   5000,
 					pager:   	 '#gallerythumbs', 
-					slideResize: false,
-					containerResize: false,
+					slideResize: true,
+					containerResize: true,
+					width: '100%',
+					height: '100%',
+					fit: 1,
 					cleartypeNoBg : true,
 					pagerAnchorBuilder: function(idx, slide) { 
 					   return '<li><a href="#"><img src="' + jQuery(slide).find('img').attr('src') + '" alt="" /></a></li>'; 

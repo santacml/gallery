@@ -5,7 +5,7 @@ subtitle: ""
 description: "A photo gallery"
 active: home
 images:
- - image_path: /img/slider/DSC04126 (Large).JPG
+ - image_path: /img/\/DSC04126 (Large).JPG
    gallery-folder: /img/slider/
  - image_path: /img/slider/DSC04523 (Large).JPG
    gallery-folder: /img/slider/
@@ -61,11 +61,9 @@ images:
 						</div><br />
 			</div>
 			
-			<div class="gallery fullscreen-gallery kenburns-gallery">
+			<div class="gallery fullscreen-gallery">
 
-				<canvas id="kenburns"></canvas>
-				
-{% for image in page.images %}  	
+				{% for image in page.images %}  	
 
 				<figure class="gallery-item">
 					<header class='gallery-icon'>
