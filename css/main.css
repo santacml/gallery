@@ -81,7 +81,13 @@ hr.small {
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 1px;
+}
+/* Black text shadow only for unselected nav items */
+.navbar-custom .nav li:not(.active) a {
   text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
+}
+.navbar-custom .nav li.active a {
+  text-shadow: none;
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom {
