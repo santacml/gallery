@@ -1,6 +1,6 @@
 ---
 layout: projects
-title: "PROJECTS"
+title: "Projects"
 description: ""
 images:
   - image_path: /projects/postcard-one/DSC04893.JPG
