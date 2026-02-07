@@ -240,6 +240,7 @@ body.fullscreen footer .copyright { display: none; }
     right: 0;
     margin: 0 !important;
     padding: 0;
+    width: 100%;
   }
   body.fullscreen .navbar-custom .container-fluid {
     padding: 0;
@@ -257,16 +258,26 @@ body.fullscreen footer .copyright { display: none; }
   body.fullscreen .navbar-custom .navbar-collapse .nav {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 0;
     float: none;
+    min-height: 50px;
   }
   body.fullscreen .navbar-custom .nav li {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
   body.fullscreen .navbar-custom .nav li a {
     padding: 15px 10px;
     font-size: 12px;
+    display: flex;
+    align-items: center;
   }
+}
+
+/* Fix scrollbar on mobile home */
+body.fullscreen {
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 768px) {
