@@ -64,13 +64,46 @@
 
 			$masonry_gallery.each( function(index, element) {
 				var $masonry_items = $(element).find('.gallery-item');
-			
-				// set masonry layout
-				$(element).isotope({
-					masonry: { columnWidth: $(element).find('.gallery-item')[0] },
-					itemSelector: '.gallery-item'
+				var $images = $(element).find('img');
+				var loadedImages = 0;
+				var totalImages = $images.length;
+				
+				// Function to initialize or re-layout isotope
+				function initIsotope() {
+					if (!$(element).data('isotope')) {
+						// First time init
+						$(element).isotope({
+							masonry: { columnWidth: $(element).find('.gallery-item')[0] },
+							itemSelector: '.gallery-item'
+						});
+					} else {
+						// Re-layout after images load
+						$(element).isotope('layout');
+					}
+				}
+				
+				// Initialize isotope immediately
+				initIsotope();
+				
+				// Re-layout when each image loads
+				$images.each(function() {
+					if (this.complete) {
+						loadedImages++;
+						if (loadedImages === totalImages) {
+							initIsotope();
+						}
+					} else {
+						$(this).on('load', function() {
+							loadedImages++;
+							initIsotope();
+						});
+					}
 				});
-				$(element).isotope('layout');
+				
+				// Also re-layout after a short delay as fallback
+				setTimeout(function() {
+					$(element).isotope('layout');
+				}, 500);
 					
 				// filtering
 				jQuery('#gallery-filter li a').on('click', function(){
