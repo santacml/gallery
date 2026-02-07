@@ -137,7 +137,7 @@ body #content > .wrapper { padding: 3em 4.5% 0; }
 
 /* FULLSCREEN MODE (Home Page)
 --------------------------------------------------------- */
-body.fullscreen { max-height: 100vh; max-height: 100dvh; overflow: hidden !important; background: #000; }
+body.fullscreen { max-height: 100%; overflow-y: hidden; overflow-x: hidden; background: #000; }
 body.fullscreen #content { height: 100vh; height: 100dvh; overflow: hidden; }
 body.fullscreen #content > .wrapper { padding: 0; }
 
@@ -240,7 +240,6 @@ body.fullscreen footer .copyright { display: none; }
     right: 0;
     margin: 0 !important;
     padding: 0;
-    width: 100%;
   }
   body.fullscreen .navbar-custom .container-fluid {
     padding: 0;
@@ -250,37 +249,25 @@ body.fullscreen footer .copyright { display: none; }
     display: none;
   }
   body.fullscreen .navbar-custom .navbar-collapse {
-    display: flex !important;
-    justify-content: center;
+    display: block !important;
     background: transparent;
     padding: 0;
     border: none;
-    width: 100%;
   }
   body.fullscreen .navbar-custom .navbar-collapse .nav {
-    display: flex !important;
+    display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    float: none !important;
-    height: 50px;
+    margin: 0;
+    float: none;
   }
   body.fullscreen .navbar-custom .nav li {
-    display: flex !important;
-    align-items: center;
-    height: 100%;
+    display: inline-block;
   }
   body.fullscreen .navbar-custom .nav li a {
-    padding: 0 10px;
+    padding: 15px 10px;
     font-size: 12px;
-    display: flex !important;
-    align-items: center;
-    height: 50px;
-    line-height: 50px;
   }
 }
-
-/* Remove duplicate - scrollbar fix already in fullscreen rule above */
 
 @media only screen and (min-width: 768px) {
   .navbar-custom {
