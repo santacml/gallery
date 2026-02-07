@@ -69,8 +69,7 @@
 				$(element).isotope({
 					masonry: { columnWidth: $(element).find('.gallery-item')[0] },
 					itemSelector: '.gallery-item',
-					percentPosition: true,
-					isFitWidth: true
+					percentPosition: true
 				});
 				$(element).isotope('layout');
 					

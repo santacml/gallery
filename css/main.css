@@ -124,7 +124,7 @@ h6 .small, h6 .big, .small h6, .big h6 { line-height: 1; }
 /* LAYOUT / CONTENT STRUCTURE
 --------------------------------------------------------- */
 body #content { position: relative; }
-body #content > .wrapper { padding: 3em 4.5% 0; }
+body #content > .wrapper { padding: 3em 4.5% 0; max-width: 1200px; margin: 0 auto; }
 
 /* Position absolute for overlays */
 .position-absolute { 

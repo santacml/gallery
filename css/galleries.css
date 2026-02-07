@@ -36,8 +36,8 @@
 #grid-changer ul li a:hover { border-color: #EA8E00; color: #EA8E00; }
 #grid-changer svg { fill: #222; }
 
-.masonry-gallery.gallery { z-index: 0; margin: 0 auto 1em auto; }
-.masonry-gallery .gallery-item { margin: 0 1% 1.3em 1%; background: #530720; width: 47%; }
+.masonry-gallery.gallery { z-index: 0; width: 100%; margin: 0 0 1em 0; }
+.masonry-gallery .gallery-item { margin: 0 2% 1.3em 0; background: #530720; width: 47%; }
 .masonry-gallery .gallery-item img { opacity: 1; -webkit-transition: opacity 0.35s, -webkit-transform 0.35s; transition: opacity 0.35s, transform 0.35s; }
 .masonry-gallery .gallery-item:hover img { opacity: 0.85; -webkit-transform: scale3d(0.95,0.95,1); transform: scale3d(0.95,0.95,1); }
 .masonry-gallery .gallery-item.col-2 { width: 47%; }
