@@ -233,6 +233,29 @@ body.fullscreen footer .copyright { display: none; }
   .navbar-custom .nav li a {
     padding: 10px 15px;
   }
+  /* Show full nav on mobile home page only */
+  body.fullscreen .navbar-custom .navbar-toggle {
+    display: none;
+  }
+  body.fullscreen .navbar-custom .navbar-collapse {
+    display: block !important;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+  body.fullscreen .navbar-custom .navbar-collapse .nav {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    float: none;
+  }
+  body.fullscreen .navbar-custom .nav li {
+    display: inline-block;
+  }
+  body.fullscreen .navbar-custom .nav li a {
+    padding: 15px 10px;
+    font-size: 12px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
