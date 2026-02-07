@@ -350,3 +350,43 @@ img.mfp-img {
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; } }
+
+/* Custom toolbar for magnify and download */
+.mfp-toolbar {
+  position: absolute;
+  top: 0;
+  right: 44px;
+  z-index: 1046;
+  display: flex;
+  gap: 4px;
+}
+.mfp-toolbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  opacity: 0.65;
+  text-decoration: none;
+  font-size: 18px;
+  transition: opacity 0.2s;
+}
+.mfp-toolbar a:hover {
+  opacity: 1;
+}
+
+/* Copyright styling */
+.mfp-copyright {
+  font-size: 11px;
+  color: #aaa;
+  font-style: italic;
+}
+.mfp-title-text {
+  color: #F3F3F3;
+}
+
+/* Adjust title area for new layout */
+.mfp-title {
+  line-height: 1.4;
+}

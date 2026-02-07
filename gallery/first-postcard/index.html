@@ -81,11 +81,37 @@ images:
          navigateByImgClick: true,
          preload: [0,1] // Will preload 0 - before current, and 1 after the current image
        },
-image: {
-      titleSrc: function(item) {
-              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
-            }
-        }
+       image: {
+         titleSrc: function(item) {
+           var title = item.el.attr('title') || '';
+           var copyright = item.el.attr('data-caption') || '';
+           return '<span class="mfp-title-text">' + title + '</span>' + 
+                  (copyright ? '<br><span class="mfp-copyright">' + copyright + '</span>' : '');
+         },
+         markup: '<div class="mfp-figure">'+
+                   '<div class="mfp-close"></div>'+
+                   '<figure>'+
+                     '<div class="mfp-img"></div>'+
+                     '<figcaption>'+
+                       '<div class="mfp-bottom-bar">'+
+                         '<div class="mfp-title"></div>'+
+                         '<div class="mfp-counter"></div>'+
+                       '</div>'+
+                     '</figcaption>'+
+                   '</figure>'+
+                   '<div class="mfp-toolbar">'+
+                     '<a class="mfp-fullview" title="View full size" target="_blank"><i class="fa fa-search-plus"></i></a>'+
+                     '<a class="mfp-download" title="Download" download><i class="fa fa-download"></i></a>'+
+                   '</div>'+
+                 '</div>'
+       },
+       callbacks: {
+         markupParse: function(template, values, item) {
+           var imgSrc = item.el.attr('href');
+           template.find('.mfp-fullview').attr('href', imgSrc);
+           template.find('.mfp-download').attr('href', imgSrc);
+         }
+       }
           // other options
       });
 });
