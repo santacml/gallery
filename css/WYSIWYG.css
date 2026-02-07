@@ -30,23 +30,23 @@ body.fullscreen .position-absolute { color: #dddddd;  bottom: 0; left: 0; width:
 	.vertical-gallery .gallery-caption h3 { font-size: 1.4em; }
 
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Josefin Sans', sans-serif; }
-h1 { font-weight: normal; font-size: 1.7em; margin: 0 0 .5em 0; line-height: 1.4; }
-h2 { font-weight: normal; font-size: 1.5em; margin: 0 0 .7em 0; line-height: 1.2; letter-spacing: .01em;  }
-h3 { font-weight: normal; font-size: 1.25em; margin: 0 0 .5em 0; line-height: 1.4; }
-h4 { font-weight: normal; font-size: 1.15em; margin: 0 0 .5em 0; line-height: 1.4; }
-h5 { font-weight: bold; font-size: 1em; margin: 0 0 .5em 0; line-height: 1.4; }
-h6 { font-weight: bold; font-size: .8em; margin: 0 0 .5em 0; line-height: 1.4; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Josefin Sans', sans-serif; font-weight: 800; }
+h1 { font-size: 1.7em; margin: 0 0 .5em 0; line-height: 1.4; }
+h2 { font-size: 1.5em; margin: 0 0 .7em 0; line-height: 1.2; letter-spacing: .01em;  }
+h3 { font-size: 1.25em; margin: 0 0 .5em 0; line-height: 1.4; }
+h4 { font-size: 1.15em; margin: 0 0 .5em 0; line-height: 1.4; }
+h5 { font-size: 1em; margin: 0 0 .5em 0; line-height: 1.4; }
+h6 { font-size: .8em; margin: 0 0 .5em 0; line-height: 1.4; }
 p { padding: 0 0 1.5em 0; line-height: 1.6; }
 ul, ol { padding: 0 0 1.5em 1.5em; line-height: 1.6; list-style: disc; margin: 0; }
 ol { list-style: decimal; }
 strong, input, button, .button { font-weight: bold; }
 nav ul { list-style: none; }
 em { font-style: italic; } 
-a { color: #EA8E00; text-decoration: none; 
+a { color: #760824; text-decoration: none; 
 -webkit-transition: all .2s ease; -moz-transition: all .2s ease; -ms-transition: all .2s ease; -o-transition: all .2s ease; transition: all .2s ease; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { text-decoration: none; }
-a:hover { text-decoration: none; color: #222;  } 
+a:hover { text-decoration: none; color: #fff;  } 
 img { border: 0; margin-top: 5px; margin-bottom: 2em; max-width: 100%; height: auto; }
 p img, h2 img { vertical-align: middle; }
 ul ul, ol ol { padding-bottom: 0; }
