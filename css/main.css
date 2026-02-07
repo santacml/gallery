@@ -16,9 +16,9 @@ body {
   background-color: #000;
 }
 p {
-  padding: 0 0 1.5em 0;
+  padding: 0;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 1em 0;
 }
 p a {
   text-decoration: none;
@@ -26,8 +26,8 @@ p a {
 
 /* HEADINGS */
 h1, h2, h3, h4, h5, h6 { 
-  font-family: 'Josefin Sans', sans-serif; 
-  font-weight: 700; 
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+  font-weight: 800; 
 }
 h1 { font-size: 1.7em; margin: 0 0 .5em 0; line-height: 1.4; }
 h2 { font-size: 1.5em; margin: 0 0 .7em 0; line-height: 1.2; letter-spacing: .01em; }
