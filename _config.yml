@@ -34,7 +34,7 @@ comments :
 # Internal nav
 nav:
   - HOME: "https://santacml.github.io/gallery/"
-  - GALLERY: "https://santacml.github.io/gallery/gallery/"  
+  - PROJECTS: "https://santacml.github.io/gallery/projects/"  
   # - JOURNAL: "https://santacml.github.io/gallery/journal/"
   - ABOUT: "https://santacml.github.io/gallery/about/"
 
