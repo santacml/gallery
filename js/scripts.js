@@ -68,7 +68,9 @@
 				// set masonry layout
 				$(element).isotope({
 					masonry: { columnWidth: $(element).find('.gallery-item')[0] },
-					itemSelector: '.gallery-item'
+					itemSelector: '.gallery-item',
+					percentPosition: true,
+					isFitWidth: true
 				});
 				$(element).isotope('layout');
 					
