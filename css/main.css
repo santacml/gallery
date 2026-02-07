@@ -517,3 +517,20 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
 }
+/* Back to projects link */
+.back-to-projects {
+  display: inline-block;
+  color: #999;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5em;
+  transition: color 0.2s;
+}
+.back-to-projects:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.back-to-projects i {
+  margin-right: 6px;
+}
