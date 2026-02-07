@@ -199,6 +199,29 @@ hr.small {
   -o-background-size: cover;
   margin-bottom: 50px;
 }
+
+/* Minimal header variant - thin colored strip */
+.intro-header.minimal {
+  background-image: none !important;
+  background-color: #111;
+  min-height: auto;
+}
+.intro-header.minimal .site-heading,
+.intro-header.minimal .post-heading,
+.intro-header.minimal .page-heading {
+  padding: 60px 0 30px;
+}
+@media only screen and (min-width: 768px) {
+  .intro-header.minimal .site-heading,
+  .intro-header.minimal .post-heading,
+  .intro-header.minimal .page-heading {
+    padding: 70px 0 35px;
+  }
+}
+.intro-header.minimal hr.small {
+  display: none;
+}
+
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
