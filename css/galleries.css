@@ -134,10 +134,6 @@ img.mfp-img { padding: 0; }
 .mfp-container button.mfp-arrow-left { background: transparent url("../assets/left-arrow.svg") no-repeat center center; }
 .mfp-container button.mfp-arrow-left::before, .mfp-container button.mfp-arrow-left::after { display: none; }
 
-
-     /*galleries adapted*/
-	.masonry-gallery .gallery-item { width: 30% !important; }
-		
 @media screen and (max-height: 480px) {
 	/*header smaller space*/
 	#header { padding-top: 2em; }
