@@ -161,6 +161,63 @@ color:#dddddd; target="_blank" title="Email">
 <!-- include custom script -->
 <script src="{{ site.baseurl }}/js/scripts.js"></script>
 
+<!-- Drag-to-pan for fullscreen gallery images -->
+<script>
+(function() {
+  var isDragging = false;
+  var startX, startY, startPosX, startPosY;
+  var posX = 50, posY = 50; // percentage position (50 = center)
+  
+  var imgs = document.querySelectorAll('.fullscreen-gallery .gallery-icon img');
+  
+  imgs.forEach(function(img) {
+    // Mouse events
+    img.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startPosX = posX;
+      startPosY = posY;
+      e.preventDefault();
+    });
+    
+    // Touch events
+    img.addEventListener('touchstart', function(e) {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      startPosX = posX;
+      startPosY = posY;
+    }, { passive: true });
+  });
+  
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    var deltaX = (e.clientX - startX) / 5;
+    var deltaY = (e.clientY - startY) / 5;
+    posX = Math.max(0, Math.min(100, startPosX - deltaX));
+    posY = Math.max(0, Math.min(100, startPosY - deltaY));
+    imgs.forEach(function(img) {
+      img.style.objectPosition = posX + '% ' + posY + '%';
+    });
+  });
+  
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    var deltaX = (e.touches[0].clientX - startX) / 5;
+    var deltaY = (e.touches[0].clientY - startY) / 5;
+    posX = Math.max(0, Math.min(100, startPosX - deltaX));
+    posY = Math.max(0, Math.min(100, startPosY - deltaY));
+    imgs.forEach(function(img) {
+      img.style.objectPosition = posX + '% ' + posY + '%';
+    });
+  }, { passive: true });
+  
+  document.addEventListener('mouseup', function() { isDragging = false; });
+  document.addEventListener('touchend', function() { isDragging = false; });
+})();
+</script>
+
 
        </body>
     </html>
