@@ -495,3 +495,25 @@ body {
  color: black;
 }
 
+/* Back to top button */
+.back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+  line-height: 44px;
+  border-radius: 4px;
+  z-index: 999;
+  opacity: 0.7;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.back-to-top:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}

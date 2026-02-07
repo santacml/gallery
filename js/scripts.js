@@ -12,7 +12,7 @@
 					slideExpr: '.gallery-item',
 					fx:        'fade', 
 		   			speed:     1000, 
-					timeout:   5000,
+					timeout:   6000,
 					cleartypeNoBg : true
 				});
 			}

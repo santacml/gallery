@@ -48,7 +48,7 @@ images:
 					<header class='gallery-icon'>
 
 <a href="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" class="popup"  title="{{ image.caption }}" data-caption="{{ image.copyright }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" loading="lazy"></a>
 						
 					</header>	
 					<figcaption class='gallery-caption'>
@@ -78,7 +78,27 @@ images:
 	  gallery:{
          enabled:true,
          navigateByImgClick: true,
-         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+         preload: [1,2] // Preload 1 before and 2 after current image
+       },
+       callbacks: {
+         open: function() {
+           // Keyboard navigation
+           $(document).on('keydown.mfpNav', function(e) {
+             if (e.keyCode === 37) { // Left arrow
+               $.magnificPopup.instance.prev();
+             } else if (e.keyCode === 39) { // Right arrow
+               $.magnificPopup.instance.next();
+             }
+           });
+         },
+         close: function() {
+           $(document).off('keydown.mfpNav');
+         },
+         markupParse: function(template, values, item) {
+           var imgSrc = item.el.attr('href');
+           template.find('.mfp-fullview').attr('href', imgSrc);
+           template.find('.mfp-download').attr('href', imgSrc);
+         }
        },
        image: {
          titleSrc: function(item) {
@@ -105,16 +125,26 @@ images:
                      '<a class="mfp-download" title="Download" download><i class="fa fa-download"></i></a>'+
                    '</div>'+
                  '</div>'
-       },
-       callbacks: {
-         markupParse: function(template, values, item) {
-           var imgSrc = item.el.attr('href');
-           template.find('.mfp-fullview').attr('href', imgSrc);
-           template.find('.mfp-download').attr('href', imgSrc);
-         }
        }
           // other options
       });
+
+        // Back to top button
+        var backToTop = $('<a href="#" class="back-to-top" title="Back to top"><i class="fa fa-chevron-up"></i></a>');
+        $('body').append(backToTop);
+        
+        $(window).scroll(function() {
+          if ($(this).scrollTop() > 300) {
+            backToTop.fadeIn();
+          } else {
+            backToTop.fadeOut();
+          }
+        });
+        
+        backToTop.click(function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop: 0}, 400);
+        });
 });
     </script>
 
