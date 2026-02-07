@@ -31,6 +31,15 @@ figure.effect-selena h3 {
 	transform: translate3d(0,0,0);
 }
 
+figure.effect-selena .gallery-caption .entry-summary {
+	opacity: 1;
+}
+
+figure.effect-selena .gallery-caption h3 {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
 figure.effect-selena p {
 	color: #fff;
 	text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;

@@ -6,7 +6,8 @@
 --------------------------------------------------------- */
 html { 
   font-family: 'Josefin Sans', sans-serif; 
-  font-size: 62.5%; 
+  font-size: 62.5%;
+  overflow-x: hidden;
 }
 body {
   font-family: 'Josefin Sans', sans-serif;
@@ -14,6 +15,7 @@ body {
   font-weight: 400;
   color: #eee;
   background-color: #000;
+  overflow-x: hidden;
 }
 p {
   padding: 0;
