@@ -1,8 +1,7 @@
 {
   "name": "gallery",
-  "version": "1.0.0",
-  "description": "Theme by [Start Bootstrap](http://startbootstrap.com/).",
-  "main": "Gruntfile.js",
+  "version": "2.0.0",
+  "description": "Photo gallery website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,13 +9,10 @@
     "type": "git",
     "url": "https://github.com/santacml/gallery.git"
   },
-  "author": "Anna Prigkipaki",
+  "author": "Michael Santacroce",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/santacml/gallery/issues"
   },
-  "homepage": "http://santacml.github.io/gallery",
-  "dependencies": {
-    "searchkit": "^0.7.0"
-  }
+  "homepage": "https://santacml.github.io/gallery"
 }

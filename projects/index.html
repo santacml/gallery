@@ -1,0 +1,76 @@
+---
+layout: page
+title: "PROJECTS"
+description: ""
+active: projects
+header-img: "img/gallery-bg.jpg"
+images:
+ - image_path: /projects/postcard-one/DSC04893.JPG
+   project-folder: /projects/postcard-one/
+   gallery-name: Postcard One
+   gallery-date: January 2026
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+    <link rel="stylesheet" href="{{ "/css/selena.css" | prepend: site.baseurl }}">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W09TQLC7M1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W09TQLC7M1');
+</script>
+
+
+    <body class="gallery">
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	
+			<!-- <h2>{{page.title}}</h2> -->
+			
+			<!-- Gallery __-->
+			<div class="gallery masonry-gallery">
+				
+{% for image in page.images %}  	
+
+	               <figure class="gallery-item">
+                         <figure class="effect-selena">
+					<header class='gallery-icon'>
+		       
+<a href="{{ site.url }}{{ site.baseurl }}{{ image.project-folder }}">
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" loading="lazy"></a>
+
+					</header>	
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary">
+							<h3>{{image.gallery-name}}</h3>
+						</div>
+					</figcaption>
+                       </figure>
+				</figure>
+							
+{% endfor %}		
+				
+			</div>
+			
+		</div><!-- END .wrapper -->
+	</section>
+
+
+<br>
+<!-- <h6><p>Image Source: <a href="https://unsplash.com/photos/YOT6kS8YtEA/">Unsplash</a></p></h6> -->
+
+<!-- jQuery -->    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+
+</body></html>

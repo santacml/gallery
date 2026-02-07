@@ -1,0 +1,125 @@
+---
+layout: page
+title: "Postcard One"
+description: "January 2026"
+active: gallery
+header-img: "img/gallery-bg.jpg"
+album-title: "Postcard One"
+images:
+ - image_path: /gallery/archive/g01/DSC04126.JPG
+   caption: Surprise!
+   copyright: © michael santacroce
+ - image_path: /gallery/archive/g01/DSC04523.JPG
+   caption: American Crow in Madison Valley
+   copyright: © michael santacroce
+ - image_path: /gallery/archive/g01/DSC04893.JPG
+   caption: Northern Flicker @ Drainage Park
+   copyright: © michael santacroce
+---
+
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W09TQLC7M1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W09TQLC7M1');
+</script>
+
+    <body>
+ 
+	<section id="content" role="main">
+		<div class="wrapper">
+	<br><br>
+			<!-- <h2>{{page.album-title}}</h2> -->
+
+
+			<!-- Gallery __-->
+			<div class="gallery masonry-gallery">
+		
+{% for image in page.images %}  		
+
+				<figure class="gallery-item">
+					<header class='gallery-icon'>
+
+<a href="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" class="popup"  title="{{ image.caption }}" data-caption="{{ image.copyright }}">
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+						
+					</header>	
+					<figcaption class='gallery-caption'>
+						<div class="entry-summary" id="{{ image.caption }}">
+							<h3>{{image.caption}}</h3>
+							<p>{{image.copyright}}</p>
+						</div>
+					</figcaption>
+				</figure>
+				
+{% endfor %}
+
+			</div>
+
+		</div><!-- END .wrapper -->
+	</section>
+
+<!-- jQuery -->    
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+         type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+       image: {
+         titleSrc: function(item) {
+           var title = item.el.attr('title') || '';
+           var copyright = item.el.attr('data-caption') || '';
+           return '<span class="mfp-title-text">' + title + '</span>' + 
+                  (copyright ? '<br><span class="mfp-copyright">' + copyright + '</span>' : '');
+         },
+         markup: '<div class="mfp-figure">'+
+                   '<div class="mfp-close"></div>'+
+                   '<figure>'+
+                     '<div class="mfp-img"></div>'+
+                     '<figcaption>'+
+                       '<div class="mfp-bottom-bar">'+
+                         '<div class="mfp-title"></div>'+
+                         '<div class="mfp-counter"></div>'+
+                       '</div>'+
+                     '</figcaption>'+
+                   '</figure>'+
+                   '<div class="mfp-toolbar">'+
+                     '<a class="mfp-fullview" title="View full size" target="_blank"><i class="fa fa-search-plus"></i></a>'+
+                     '<a class="mfp-download" title="Download" download><i class="fa fa-download"></i></a>'+
+                   '</div>'+
+                 '</div>'
+       },
+       callbacks: {
+         markupParse: function(template, values, item) {
+           var imgSrc = item.el.attr('href');
+           template.find('.mfp-fullview').attr('href', imgSrc);
+           template.find('.mfp-download').attr('href', imgSrc);
+         }
+       }
+          // other options
+      });
+});
+    </script>
+
+<!-- include Masonry -->
+<script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
+<!-- include custom script -->
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+    
+</body></html>
