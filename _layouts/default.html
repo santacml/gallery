@@ -3,27 +3,13 @@
 
 {% include head.html %}
 
-{% if page.url == "/404.html" %}
-<script>
-  setTimeout(function() {
-    window.location.href = "{{ site.baseurl }}/projects/";
-  }, 5000);
-</script>
-{% endif %}
-
 <body>
 
     {% include nav.html %}
 
     {{ content }}
 
-    <!-- {% include search.html %} -->
-
-    <!-- {% include newsletter.html %} -->
-
     {% include footer.html %}
-
-   <!-- {% include Scroll_to_Top.html %}   -->
 
 </body>
 
