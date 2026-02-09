@@ -228,6 +228,7 @@ body.fullscreen footer .copyright { display: none; }
   background: transparent;
 }
 @media only screen and (max-width: 767px) {
+  /* HAMBURGER MENU STYLES - commented out, keeping in case wanted later
   .navbar-custom .navbar-collapse {
     background-color: rgba(0, 0, 0, 0.9);
     padding: 10px 15px;
@@ -236,37 +237,39 @@ body.fullscreen footer .copyright { display: none; }
   .navbar-custom .nav li a {
     padding: 10px 15px;
   }
-  /* Show full nav on mobile home page only */
-  body.fullscreen .navbar-custom {
+  */
+  
+  /* Show full nav on mobile - all pages */
+  .navbar-custom {
     background: rgba(0, 0, 0, 0.8);
     left: 0;
     right: 0;
     margin: 0 !important;
     padding: 0;
   }
-  body.fullscreen .navbar-custom .container-fluid {
+  .navbar-custom .container-fluid {
     padding: 0;
     margin: 0;
   }
-  body.fullscreen .navbar-custom .navbar-toggle {
+  .navbar-custom .navbar-toggle {
     display: none;
   }
-  body.fullscreen .navbar-custom .navbar-collapse {
+  .navbar-custom .navbar-collapse {
     display: block !important;
     background: transparent;
     padding: 0;
     border: none;
   }
-  body.fullscreen .navbar-custom .navbar-collapse .nav {
+  .navbar-custom .navbar-collapse .nav {
     display: flex;
     justify-content: center;
     margin: 0;
     float: none;
   }
-  body.fullscreen .navbar-custom .nav li {
+  .navbar-custom .nav li {
     display: inline-block;
   }
-  body.fullscreen .navbar-custom .nav li a {
+  .navbar-custom .nav li a {
     padding: 15px 10px;
     font-size: 12px;
   }
