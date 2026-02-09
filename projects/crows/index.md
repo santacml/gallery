@@ -2,6 +2,7 @@
 layout: project
 title: "Crows"
 description: ""
+blurb: In 2023, I took a serious stab at a series of pictures focused solely on crows. These photos could all be massively improved, firstly by swapping out the the odd, cheap, antique lens I was using. Still, this project was a landmark turning point in photography for me.
 images:
   - path: /projects/crows/Large_DSC07352.JPG
     xl_path: /projects/crows/XL_DSC07352.JPG

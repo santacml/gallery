@@ -33,6 +33,10 @@ layout: default
         <br>
         <a href="{{ site.baseurl }}/projects/" class="back-to-projects"><i class="fa fa-arrow-left"></i> Projects</a>
 
+        {% if page.blurb %}
+        <p class="project-blurb">{{ page.blurb }}</p>
+        {% endif %}
+
         <!-- Gallery -->
         <div class="gallery masonry-gallery">
         
