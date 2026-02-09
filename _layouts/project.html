@@ -39,7 +39,7 @@ layout: default
         {% for image in page.images %}
             <figure class="gallery-item">
                 <header class='gallery-icon'>
-                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="{{ image.copyright }}">
+                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="{{ image.copyright }}" data-xl="{{ site.url }}{{ site.baseurl }}{{ image.xl_path | default: image.path }}">
                         <img src="{{ site.url }}{{ site.baseurl }}{{ image.path }}" loading="lazy">
                     </a>
                 </header>	
@@ -52,6 +52,8 @@ layout: default
         {% endfor %}
 
         </div>
+        
+        <p class="full-res-notice">For full resolution images, contact Michael Santacroce</p>
     </div><!-- END .wrapper -->
 </section>
 
@@ -81,9 +83,9 @@ $(document).ready(function($) {
                 $(document).off('keydown.mfpNav');
             },
             markupParse: function(template, values, item) {
-                var imgSrc = item.el.attr('href');
-                template.find('.mfp-fullview').attr('href', imgSrc);
-                template.find('.mfp-download').attr('href', imgSrc);
+                var xlSrc = item.el.attr('data-xl') || item.el.attr('href');
+                template.find('.mfp-fullview').attr('href', xlSrc);
+                template.find('.mfp-download').attr('href', xlSrc);
             }
         },
         image: {

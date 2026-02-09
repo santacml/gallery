@@ -749,3 +749,13 @@ body {
 .back-to-projects i {
   margin-right: 6px;
 }
+
+/* FULL RES NOTICE
+--------------------------------------------------------- */
+.full-res-notice {
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  margin-top: 2em;
+  padding: 1em 0;
+}
