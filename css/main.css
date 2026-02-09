@@ -2,6 +2,13 @@
    MAIN STYLES - Merged from main.css + WYSIWYG.css
    ========================================================================== */
 
+/* CSS VARIABLES
+--------------------------------------------------------- */
+:root {
+  /* --accent-color: #760824; */
+  --accent-color: #3A025B;
+}
+
 /* BASE TYPOGRAPHY
 --------------------------------------------------------- */
 html { 
@@ -48,7 +55,7 @@ h2.big {
 
 /* LINKS */
 a { 
-  color: #760824; 
+  color: var(--accent-color); 
   text-decoration: none; 
   transition: all .2s ease;
 }
@@ -280,14 +287,14 @@ body.fullscreen footer .copyright { display: none; }
   }
   .navbar-custom .navbar-brand:hover,
   .navbar-custom .navbar-brand:focus {
-    color: #760824;
+    color: var(--accent-color);
   }
   .navbar-custom .nav li a {
     color: white;
     padding: 20px;
   }
   .navbar-custom .nav li a:hover {
-    color: #760824;
+    color: var(--accent-color);
   }
 }
 @media only screen and (min-width: 1170px) {
@@ -315,13 +322,13 @@ body.fullscreen footer .copyright { display: none; }
     color: #ffffff;
   }
   .navbar-custom.is-fixed .navbar-brand:hover {
-    color: #760824;
+    color: var(--accent-color);
   }
   .navbar-custom.is-fixed .nav li a:hover {
-    color: #760824;
+    color: var(--accent-color);
   }
   .navbar-custom.is-fixed .nav li a:active {
-    color: #760824;
+    color: var(--accent-color);
   }
   .navbar-custom.is-visible {
     -webkit-transform: translate3d(0, 100%, 0);
@@ -450,7 +457,7 @@ body.fullscreen footer .copyright { display: none; }
 .post-preview > a:hover,
 .post-preview > a:focus {
   text-decoration: none;
-  color: #760824;
+  color: var(--accent-color);
 }
 .post-preview > a > .post-title {
   font-size: 30px;
@@ -474,7 +481,7 @@ body.fullscreen footer .copyright { display: none; }
 }
 .post-preview > .post-meta > a:hover,
 .post-preview > .post-meta > a:focus {
-  color: #760824;
+  color: var(--accent-color);
   text-decoration: underline;
 }
 @media only screen and (min-width: 768px) {
@@ -520,7 +527,7 @@ table th { background: rgba(0,0,0,.05); text-align: center; padding: 15px; font-
 table td { text-align: center; padding: 1em; vertical-align: middle; border-top: 1px solid rgba(0,0,0,0.05); font-size: .95em; }
 table p { padding: 0; }
 table sup { vertical-align: text-top; font-size: .55em; display: inline-block; margin: 2px 5px 0 -10px; }
-table p.table-top { display: inline-block; background: #760824; color: #F7F6F5; text-transform: uppercase; padding: 7px 1em 5px 1em; font-size: .6em; line-height: 1; position: relative; top: -16px; margin-bottom: 1em; font-weight: bold; letter-spacing: .05em; }
+table p.table-top { display: inline-block; background: var(--accent-color); color: #F7F6F5; text-transform: uppercase; padding: 7px 1em 5px 1em; font-size: .6em; line-height: 1; position: relative; top: -16px; margin-bottom: 1em; font-weight: bold; letter-spacing: .05em; }
 
 /* SPECIAL LISTS
 --------------------------------------------------------- */
@@ -616,7 +623,7 @@ ul.soc-icons li a:hover i {
   opacity: 1;
 }
 .floating-label-form-group-with-focus label {
-  color: #760824;
+  color: var(--accent-color);
 }
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
@@ -639,8 +646,8 @@ form .row:first-child .floating-label-form-group {
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #760824;
-  border: 1px solid #760824;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   color: white;
 }
 
@@ -685,12 +692,12 @@ form .row:first-child .floating-label-form-group {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #760824;
+  background: var(--accent-color);
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background: #760824;
+  background: var(--accent-color);
 }
 img::selection {
   color: white;

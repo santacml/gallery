@@ -5525,13 +5525,13 @@ textarea.input-group-sm>.input-group-btn>.btn {
 
 .navbar-default .navbar-nav>li>a:hover {
    /* color: #0085a1; */
-   color: #760824;
+   color: var(--accent-color);
    background-color: transparent;
 }
 
 .navbar-default .navbar-nav>.active>a {
   /* color: #6ec54d; */
-   color: #760824;
+   color: var(--accent-color);
   background-color: transparent;
 }
 
