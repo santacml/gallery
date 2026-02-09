@@ -2,6 +2,7 @@
 layout: projects
 title: "Projects"
 description: ""
+active: projects
 images:
   - image_path: /projects/postcard-one/Large_DSC04893.JPG
     project-folder: /projects/postcard-one/

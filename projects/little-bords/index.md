@@ -2,6 +2,7 @@
 layout: project
 title: "Little Birds"
 description: ""
+active: projects
 images:
   - path: /projects/little-bords/Large_DSC09837.JPG
     xl_path: /projects/little-bords/XL_DSC09837.JPG
