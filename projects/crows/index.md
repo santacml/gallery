@@ -16,6 +16,10 @@ images:
     xl_path: /projects/crows/XL_DSC06693.JPG
     caption: 
     copyright: © michael santacroce
+  - path: /projects/crows/Large_DSC07191.JPG
+    xl_path: /projects/crows/XL_DSC07191.JPG
+    caption: 
+    copyright: © michael santacroce
   - path: /projects/crows/Large_DSC07520.JPG
     xl_path: /projects/crows/XL_DSC07520.JPG
     caption: 
@@ -78,10 +82,6 @@ images:
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC06898.jpg
     xl_path: /projects/crows/XL_DSC06898.jpg
-    caption: 
-    copyright: © michael santacroce
-  - path: /projects/crows/Large_DSC07191.JPG
-    xl_path: /projects/crows/XL_DSC07191.JPG
     caption: 
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC07532.JPG

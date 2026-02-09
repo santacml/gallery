@@ -4,7 +4,7 @@
 /*-----------------*/
 
 figure.effect-selena {
-	background: #530720;
+	background: var(--accent-color);
 }
 
 figure.effect-selena img {
