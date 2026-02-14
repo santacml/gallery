@@ -3,7 +3,7 @@ layout: project
 title: "Little Bords"
 description: ""
 active: projects
-blurb: These little bords are always flitting around. They're tricky to capture a real photo of!
+blurb: Smol
 images:
   - path: /projects/little-bords/Large_DSC06274.JPG
     caption: Song Sparrow
