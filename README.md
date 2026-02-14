@@ -1,3 +1,4 @@
 TODO:
 - edit crows to be better
-- more photos
+- more projects
+- delete unused photos

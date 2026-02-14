@@ -8,9 +8,6 @@ images:
   - path: /projects/cincy-2020/DSC07451.JPG
     caption: 
     crop: .5
-  - path: /projects/cincy-2020/DSC07858.JPG
-    caption:  
-    crop: .65
   - path: /projects/cincy-2020/DSC07759.JPG
     caption:  
     crop: .5
@@ -22,8 +19,9 @@ images:
   #   caption: 
   - path: /projects/cincy-2020/DSC06994.JPG
     caption: 
-  - path: /projects/cincy-2020/DSC07119.JPG
-    caption: 
+  - path: /projects/cincy-2020/DSC07858.JPG
+    caption:  
+    crop: .65
   - path: /projects/cincy-2020/DSC07274.JPG
     caption: 
     crop: .5
@@ -39,6 +37,8 @@ images:
   - path: /projects/cincy-2020/DSC07517.JPG
     caption: 
     crop: .5 
+  - path: /projects/cincy-2020/DSC07119.JPG
+    caption: 
   - path: /projects/cincy-2020/DSC07525.JPG
     caption: 
     crop: .5 
