@@ -58,7 +58,6 @@ layout: default
             {% if prev_project %}
             <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow project-nav-prev" title="{{ prev_project.gallery-name }}">
                 <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
-                <span class="project-nav-label">previous</span>
             </a>
             {% else %}
             <span class="project-nav-placeholder"></span>
@@ -73,7 +72,6 @@ layout: default
             {% if next_project %}
             <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow project-nav-next" title="{{ next_project.gallery-name }}">
                 <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
-                <span class="project-nav-label">next</span>
             </a>
             {% else %}
             <span class="project-nav-placeholder"></span>
@@ -103,54 +101,40 @@ layout: default
 }
 .project-nav-arrow {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
     text-decoration: none;
     opacity: 0.5;
     transition: opacity 0.25s ease;
     flex-shrink: 0;
-    min-width: 70px;
+    min-width: 50px;
 }
 .project-nav-arrow:hover {
     opacity: 1;
     text-decoration: none;
 }
 .project-nav-placeholder {
-    min-width: 70px;
+    min-width: 50px;
     flex-shrink: 0;
 }
 .project-nav-arrow img {
     width: 45px;
     height: auto;
 }
-.project-nav-label {
-    font-size: 1.0rem;
-    color: #999;
-    text-transform: lowercase;
-    letter-spacing: 0.5px;
-    text-align: center;
-}
-.project-nav-arrow:hover .project-nav-label {
-    color: #fff;
-}
 
 @media (max-width: 768px) {
     .project-blurb-row {
-        padding: 0 10px;
-        gap: 15px;
+        padding: 0 5px;
+        gap: 8px;
     }
     .project-nav-arrow img {
-        width: 36px;
-    }
-    .project-nav-label {
-        font-size: 0.85rem;
+        width: 29px;
     }
     .project-nav-placeholder {
-        min-width: 50px;
+        min-width: 29px;
     }
     .project-nav-arrow {
-        min-width: 50px;
+        min-width: 29px;
     }
 }
 </style>
