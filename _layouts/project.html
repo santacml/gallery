@@ -55,10 +55,12 @@ layout: default
     {% if prev_project %}
     <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow project-nav-prev" title="{{ prev_project.gallery-name }}">
         <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
+        <span class="project-nav-label">previous</span>
     </a>
     {% endif %}
     {% if next_project %}
     <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow project-nav-next" title="{{ next_project.gallery-name }}">
+        <span class="project-nav-label">next</span>
         <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
     </a>
     {% endif %}
@@ -66,45 +68,53 @@ layout: default
 
 <style>
 .project-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 10px;
+    padding: 0 20px;
 }
 .project-nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: auto;
-    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    opacity: 0.5;
     transition: opacity 0.25s ease;
-    padding: 10px;
 }
 .project-nav-arrow:hover {
     opacity: 1;
+    text-decoration: none;
 }
 .project-nav-prev {
-    left: 10px;
+    margin-right: auto;
 }
 .project-nav-next {
-    right: 10px;
+    margin-left: auto;
 }
 .project-nav-arrow img {
-    width: 40px;
+    width: 30px;
     height: auto;
 }
+.project-nav-label {
+    font-size: 0.85rem;
+    color: #999;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+}
+.project-nav-arrow:hover .project-nav-label {
+    color: #fff;
+}
 @media (max-width: 768px) {
+    .project-nav {
+        padding: 0 10px;
+    }
     .project-nav-arrow img {
-        width: 28px;
+        width: 24px;
     }
-    .project-nav-prev {
-        left: 4px;
-    }
-    .project-nav-next {
-        right: 4px;
+    .project-nav-label {
+        font-size: 0.75rem;
     }
 }
 </style>

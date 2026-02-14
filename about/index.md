@@ -6,13 +6,13 @@ active: about
 header-img: "img/about-bg.jpg"
 ---
 
-Hello! I am Michael Santacroce. I love taking photos - mostly of birds, but otherwise of buildings, landscapes, or moody urban scenes.
+Hello! I am Michael Santacroce. I love taking photos - mostly of birds, but also moody urban scenes or various parts of nature.
 
-I've taken perhaps too many photos, however, I don't have a good way to share them. Instead, I've:
-- Started sending postcards out with some of my favorite bird-only photos
-- Created this website to house images that have already been in postcards or images that won't be in a future card (lord forbid non-avian, or too postcard-adjacent)
+I've taken an absurd number of photos, however, I found myself without a good way to share them. To start sharing more, I've:
+- Started a postcard series highlighting my favorite bird-only photos
+- Created this website to showcase images that have already been in postcards or images that won't be in future cards (lord forbid non-avian, or too postcard-adjacent)
 
-The spiciest bird candids will be reserved for postcards and only uploaded after they're sent out, so stay tuned for more updates!
+My spiciest bird photos are being saved for future postcards and will only be uploaded later, so stay tuned for more updates!
 
 Website will forever be under construction and was originally forked from [here](https://sunbliss.github.io/photorama/).
 
