@@ -50,30 +50,70 @@ layout: default
     </div>
 </header>
 
-<!-- Project Navigation Arrows -->
-<nav class="project-nav">
-    {% if prev_project %}
-    <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow project-nav-prev" title="{{ prev_project.gallery-name }}">
-        <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
-        <span class="project-nav-label">previous</span>
-    </a>
-    {% endif %}
-    {% if next_project %}
-    <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow project-nav-next" title="{{ next_project.gallery-name }}">
-        <span class="project-nav-label">next</span>
-        <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
-    </a>
-    {% endif %}
-</nav>
+<!-- Project Navigation Arrows + Blurb -->
+<section id="content" role="main">
+    <div class="wrapper">
+
+        <div class="project-blurb-row">
+            {% if prev_project %}
+            <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow project-nav-prev" title="{{ prev_project.gallery-name }}">
+                <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
+                <span class="project-nav-label">previous</span>
+            </a>
+            {% else %}
+            <span class="project-nav-arrow project-nav-placeholder"></span>
+            {% endif %}
+
+            <div class="project-blurb-center">
+                {% if page.blurb %}
+                <p class="project-blurb">{{ page.blurb }}</p>
+                {% endif %}
+
+                <!-- Mobile-only nav below blurb -->
+                <nav class="project-nav-mobile">
+                    {% if prev_project %}
+                    <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow" title="{{ prev_project.gallery-name }}">
+                        <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
+                        <span class="project-nav-label">previous</span>
+                    </a>
+                    {% endif %}
+                    {% if next_project %}
+                    <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow" title="{{ next_project.gallery-name }}">
+                        <span class="project-nav-label">next</span>
+                        <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+
+            {% if next_project %}
+            <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow project-nav-next" title="{{ next_project.gallery-name }}">
+                <span class="project-nav-label">next</span>
+                <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
+            </a>
+            {% else %}
+            <span class="project-nav-arrow project-nav-placeholder"></span>
+            {% endif %}
+        </div>
 
 <style>
-.project-nav {
+/* Desktop: blurb flanked by arrows */
+.project-blurb-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto 10px;
+    max-width: 1100px;
+    margin: 0 auto 20px;
     padding: 0 20px;
+    gap: 20px;
+}
+.project-blurb-center {
+    flex: 1;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.project-blurb-center .project-blurb {
+    margin: 0;
 }
 .project-nav-arrow {
     display: flex;
@@ -82,16 +122,14 @@ layout: default
     text-decoration: none;
     opacity: 0.5;
     transition: opacity 0.25s ease;
+    flex-shrink: 0;
 }
 .project-nav-arrow:hover {
     opacity: 1;
     text-decoration: none;
 }
-.project-nav-prev {
-    margin-right: auto;
-}
-.project-nav-next {
-    margin-left: auto;
+.project-nav-placeholder {
+    width: 100px; /* reserve space so blurb stays centered */
 }
 .project-nav-arrow img {
     width: 30px;
@@ -106,25 +144,37 @@ layout: default
 .project-nav-arrow:hover .project-nav-label {
     color: #fff;
 }
+
+/* Hide mobile nav on desktop */
+.project-nav-mobile {
+    display: none;
+}
+
 @media (max-width: 768px) {
-    .project-nav {
-        padding: 0 10px;
+    /* Hide desktop side arrows */
+    .project-blurb-row > .project-nav-arrow,
+    .project-blurb-row > .project-nav-placeholder {
+        display: none;
     }
-    .project-nav-arrow img {
+    .project-blurb-row {
+        padding: 0 15px;
+    }
+    /* Show mobile nav below blurb */
+    .project-nav-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+        padding: 0;
+    }
+    .project-nav-mobile .project-nav-arrow img {
         width: 24px;
     }
-    .project-nav-label {
+    .project-nav-mobile .project-nav-label {
         font-size: 0.75rem;
     }
 }
 </style>
-
-<section id="content" role="main">
-    <div class="wrapper">
-
-        {% if page.blurb %}
-        <p class="project-blurb">{{ page.blurb }}</p>
-        {% endif %}
 
         <!-- Gallery -->
         <div class="gallery masonry-gallery">
