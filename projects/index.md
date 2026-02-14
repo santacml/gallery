@@ -11,7 +11,7 @@ images:
   - image_path: /projects/crows/Large_DSC07159.jpg
     project-folder: /projects/crows/
     gallery-name: Crows
-  - image_path: /projects/film/000019560009.jpb
+  - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film
   - image_path: /projects/little-bords/Large_DSC06274.JPG

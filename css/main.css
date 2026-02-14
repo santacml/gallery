@@ -382,6 +382,10 @@ body.fullscreen footer .copyright { display: none; }
 }
 /* On mobile: use minimal header as a spacer, hide text, match home bg */
 @media only screen and (max-width: 767px) {
+  .intro-header {
+    background-color: #000 !important;
+    margin-bottom: 0;
+  }
   .intro-header.minimal {
     background-color: #000 !important;
     margin-bottom: 0;
@@ -390,7 +394,7 @@ body.fullscreen footer .copyright { display: none; }
   .intro-header.minimal .post-heading,
   .intro-header.minimal .page-heading {
     visibility: hidden;
-    padding: 40px 0 0;
+    padding: 24px 0 0;
   }
 }
 .intro-header.minimal .site-heading,
