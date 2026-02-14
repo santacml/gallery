@@ -13,6 +13,28 @@ layout: default
   gtag('config', 'G-W09TQLC7M1');
 </script>
 
+<!-- Determine prev/next projects from the projects index page ordering -->
+{% assign prev_project = nil %}
+{% assign next_project = nil %}
+{% for p in site.pages %}
+  {% if p.layout == "projects" %}
+    {% assign project_list = p.images %}
+    {% for proj in project_list %}
+      {% if page.url == proj.project-folder %}
+        {% assign current_index = forloop.index0 %}
+        {% assign prev_i = current_index | minus: 1 %}
+        {% assign next_i = current_index | plus: 1 %}
+        {% if prev_i >= 0 %}
+          {% assign prev_project = project_list[prev_i] %}
+        {% endif %}
+        {% if next_i < project_list.size %}
+          {% assign next_project = project_list[next_i] %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 <!-- Project Header -->
 <header class="intro-header minimal">
     <div class="container">
@@ -27,6 +49,65 @@ layout: default
         </div>
     </div>
 </header>
+
+<!-- Project Navigation Arrows -->
+<nav class="project-nav">
+    {% if prev_project %}
+    <a href="{{ site.baseurl }}{{ prev_project.project-folder }}" class="project-nav-arrow project-nav-prev" title="{{ prev_project.gallery-name }}">
+        <img src="{{ site.baseurl }}/assets/left-arrow.svg" alt="Previous project">
+    </a>
+    {% endif %}
+    {% if next_project %}
+    <a href="{{ site.baseurl }}{{ next_project.project-folder }}" class="project-nav-arrow project-nav-next" title="{{ next_project.gallery-name }}">
+        <img src="{{ site.baseurl }}/assets/right-arrow.svg" alt="Next project">
+    </a>
+    {% endif %}
+</nav>
+
+<style>
+.project-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+.project-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    opacity: 0.4;
+    transition: opacity 0.25s ease;
+    padding: 10px;
+}
+.project-nav-arrow:hover {
+    opacity: 1;
+}
+.project-nav-prev {
+    left: 10px;
+}
+.project-nav-next {
+    right: 10px;
+}
+.project-nav-arrow img {
+    width: 40px;
+    height: auto;
+}
+@media (max-width: 768px) {
+    .project-nav-arrow img {
+        width: 28px;
+    }
+    .project-nav-prev {
+        left: 4px;
+    }
+    .project-nav-next {
+        right: 4px;
+    }
+}
+</style>
 
 <section id="content" role="main">
     <div class="wrapper">
