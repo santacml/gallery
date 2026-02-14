@@ -43,7 +43,7 @@ layout: default
         {% for image in page.images %}
             <figure class="gallery-item">
                 <header class='gallery-icon'>
-                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="{{ image.copyright }}" data-xl="{{ site.url }}{{ site.baseurl }}{{ image.xl_path | default: image.path }}">
+                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="© michael santacroce" data-xl="{{ site.url }}{{ site.baseurl }}{{ image.xl_path | default: image.path }}">
                         <img src="{{ site.url }}{{ site.baseurl }}{{ image.path }}" loading="lazy">
                     </a>
                 </header>	
