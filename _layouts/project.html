@@ -47,8 +47,8 @@ layout: default
                 {% assign computed_xl = image.path | replace: 'Large_', 'XL_' %}
             {% endif %}
             <figure class="gallery-item">
-                <header class='gallery-icon'>
-                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="© michael santacroce" data-xl="{{ site.url }}{{ site.baseurl }}{{ computed_xl }}">
+                <header class='gallery-icon'{% if image.crop %} style="overflow: hidden;"{% endif %}>
+                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="© michael santacroce" data-xl="{{ site.url }}{{ site.baseurl }}{{ computed_xl }}"{% if image.crop %} style="transform: scale({{ image.crop | plus: 1.0 }}); transform-origin: center center;"{% endif %}>
                         <img src="{{ site.url }}{{ site.baseurl }}{{ image.path }}" loading="lazy">
                     </a>
                 </header>	

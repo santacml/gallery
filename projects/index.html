@@ -41,9 +41,9 @@ images:
 
 	               <figure class="gallery-item">
                          <figure class="effect-selena">
-					<header class='gallery-icon'>
+					<header class='gallery-icon'{% if image.crop %} style="overflow: hidden;"{% endif %}>
 		       
-<a href="{{ site.url }}{{ site.baseurl }}{{ image.project-folder }}">
+<a href="{{ site.url }}{{ site.baseurl }}{{ image.project-folder }}"{% if image.crop %} style="transform: scale({{ image.crop | plus: 1.0 }}); transform-origin: center center;"{% endif %}>
 <img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" loading="lazy"></a>
 
 					</header>	
