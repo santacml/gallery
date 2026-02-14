@@ -65,7 +65,7 @@ layout: default
 
             <div class="project-blurb-center">
                 {% if page.blurb %}
-                <p class="project-blurb">{{ page.blurb }}</p>
+                <div class="project-blurb">{{ page.blurb | markdownify }}</div>
                 {% endif %}
             </div>
 
