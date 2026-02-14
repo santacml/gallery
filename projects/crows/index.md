@@ -5,8 +5,8 @@ description: ""
 active: projects
 blurb: In 2023, I took a stab at a series of pictures focused solely on crows. At this time, I was using an odd, cheap, antique lens which results in grainy, washed-out photos. Still, this project was a  turning point in photography for me and I'm proud of the work! 
 images:
-  - path: /projects/crows/Large_DSC07352.JPG
-    xl_path: /projects/crows/XL_DSC07352.JPG
+  - path: /projects/crows/Large_DSC07159.jpg
+    xl_path: /projects/crows/XL_DSC07159.jpg
     caption: American Crow
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC08222.JPG
@@ -29,12 +29,12 @@ images:
     xl_path: /projects/crows/XL_DSC01690.JPG
     caption: American Crow
     copyright: © michael santacroce
-  - path: /projects/crows/Large_DSC07159.jpg
-    xl_path: /projects/crows/XL_DSC07159.jpg
-    caption: American Crow
-    copyright: © michael santacroce
   - path: /projects/crows/Large_DSC08267.JPG
     xl_path: /projects/crows/XL_DSC08267.JPG
+    caption: American Crow
+    copyright: © michael santacroce
+  - path: /projects/crows/Large_DSC07340.JPG
+    xl_path: /projects/crows/XL_DSC07340.JPG
     caption: American Crow
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC07438.JPG
@@ -61,6 +61,10 @@ images:
     xl_path: /projects/crows/XL_DSC06681.jpg
     caption: American Crow
     copyright: © michael santacroce
+  - path: /projects/crows/Large_DSC07352.JPG
+    xl_path: /projects/crows/XL_DSC07352.JPG
+    caption: American Crow
+    copyright: © michael santacroce
   - path: /projects/crows/Large_DSC07366.JPG
     xl_path: /projects/crows/XL_DSC07366.JPG
     caption: American Crow
@@ -75,10 +79,6 @@ images:
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC08208.JPG
     xl_path: /projects/crows/XL_DSC08208.JPG
-    caption: American Crow
-    copyright: © michael santacroce
-  - path: /projects/crows/Large_DSC07340.JPG
-    xl_path: /projects/crows/XL_DSC07340.JPG
     caption: American Crow
     copyright: © michael santacroce
   - path: /projects/crows/Large_DSC06898.jpg
