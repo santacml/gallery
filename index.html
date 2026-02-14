@@ -4,13 +4,7 @@ main-title: "Birds & Buildings"
 subtitle: ""
 description: "A photo gallery"
 active: home
-images:
- - image_path: /projects/postcard-one/Large_DSC04126.JPG
-   gallery-folder: /projects/postcard-one/
- - image_path: /projects/postcard-one/Large_DSC04523.JPG
-   gallery-folder: /projects/postcard-one/
- - image_path: /projects/postcard-one/Large_DSC04893.JPG
-   gallery-folder: /projects/postcard-one/
+first_image: /projects/postcard-one/Large_DSC04126.JPG
 ---
 <!-- main-title: "PHOT&#8226;O&#8226;RAMA" -->
 
@@ -53,19 +47,23 @@ images:
 			
 			<div class="gallery fullscreen-gallery">
 				
-				{% for image in page.images %}  	
-
+				<!-- First image (always shown first) -->
 				<figure class="gallery-item">
 					<header class='gallery-icon'>
-<!-- <a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}"><img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" loading="lazy"></a> -->
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" loading="lazy">
-	
-				</header>	
+<img src="{{ site.url }}{{ site.baseurl }}{{ page.first_image }}" loading="lazy">
+				</header>
 				</figure>
 
-{% endfor %}
-
 				</div>
+
+<!-- Collect all project image paths for random slideshow -->
+<script>
+window._allProjectImages = [
+{% for p in site.pages %}{% if p.layout == 'project' %}{% for image in p.images %}"{{ site.url }}{{ site.baseurl }}{{ image.path }}",
+{% endfor %}{% endif %}{% endfor %}
+];
+window._firstImage = "{{ site.url }}{{ site.baseurl }}{{ page.first_image }}";
+</script>
 			<!-- END WYSIWYG -->
 			
 	

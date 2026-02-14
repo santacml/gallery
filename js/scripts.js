@@ -4,6 +4,27 @@
 	var $fullscreen_gallery = jQuery('.fullscreen-gallery.gallery');
 	if ( $fullscreen_gallery.length > 0 ) {
 
+		// If we have a pool of project images, shuffle and inject them
+		if (window._allProjectImages && window._allProjectImages.length > 0) {
+			var pool = window._allProjectImages.slice();
+			// Remove the first image from the pool so it's not duplicated
+			var firstImg = window._firstImage || '';
+			pool = pool.filter(function(src) { return src !== firstImg; });
+			// Fisher-Yates shuffle
+			for (var i = pool.length - 1; i > 0; i--) {
+				var j = Math.floor(Math.random() * (i + 1));
+				var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+			}
+			// Append shuffled images as new slides
+			pool.forEach(function(src) {
+				$fullscreen_gallery.append(
+					'<figure class="gallery-item"><header class="gallery-icon">' +
+					'<img src="' + src + '" loading="lazy">' +
+					'</header></figure>'
+				);
+			});
+		}
+
 		if ( $fullscreen_gallery.find('.gallery-item').length > 1 ) { // if there are more than 1 image
 			
 			if ( !$fullscreen_gallery.hasClass('kenburns-gallery') ) {	// do not initialize if kenburns
@@ -12,7 +33,7 @@
 					slideExpr: '.gallery-item',
 					fx:        'fade', 
 		   			speed:     1000, 
-					timeout:   6000,
+					timeout:   5000,
 					cleartypeNoBg : true
 				});
 			}
