@@ -25,6 +25,4 @@ images:
     caption: Northern Flicker
   - path: /projects/postcard-one/Large_DSC03868.JPG
     caption: American Robin
-  # - path: /projects/postcard-one/Large_DSC04886.JPG
-  #   caption: Northern Flicker
 ---

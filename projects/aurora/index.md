@@ -9,8 +9,6 @@ images:
     caption: 
   - path: /projects/aurora/Large_DSC01704.JPG
     caption: 
-  # - path: /projects/aurora/Large_DSC01695.JPG
-  #   caption: 
   - path: /projects/aurora/Large_DSC01723.JPG
     caption: 
   - path: /projects/aurora/Large_DSC01865.JPG
@@ -19,8 +17,6 @@ images:
     caption: 
   - path: /projects/aurora/Large_DSC01705.JPG
     caption: 
-  # - path: /projects/aurora/Large_DSC01835.JPG
-  #   caption: 
   - path: /projects/aurora/Large_DSC01858.JPG
     caption: 
   - path: /projects/aurora/Large_DSC01839.JPG
@@ -29,8 +25,4 @@ images:
     caption: 
   - path: /projects/aurora/Large_DSC01870.JPG
     caption: 
-  # - path: /projects/aurora/Large_DSC01873.JPG
-  #   caption: 
-  # - path: /projects/aurora/Large_DSC01875.JPG
-  #   caption: 
 ---

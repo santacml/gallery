@@ -18,10 +18,6 @@ images:
     caption: House Finch(es)
   - path: /projects/little-bords/Large_DSC06322.JPG
     caption: Pacific Wren
-  # - path: /projects/little-bords/Large_DSC02505.JPG
-  #   caption: 
-  #   crop: 0.3
-  #   caption: Gold-Crowned Sparrow
   - path: /projects/little-bords/Large_DSC09791.JPG
     caption: 
     crop: 0.6
