@@ -23,7 +23,7 @@ body {
   font-size: 1.8em;
   font-weight: 400;
   color: #eee;
-  background-color: #000;
+  background-color: #111;
   overflow-x: hidden;
 }
 p {
@@ -377,7 +377,7 @@ body.fullscreen footer .copyright { display: none; }
 /* Minimal header variant - thin colored strip */
 .intro-header.minimal {
   background-image: none !important;
-  background-color: #111;
+  background-color: #000;
   min-height: auto;
 }
 /* On mobile: use minimal header as a spacer, hide text, grey bg for non-home pages */
