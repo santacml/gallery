@@ -1,7 +1,6 @@
 TODO:
-- edit crows 
-
-- add little bords captions
+- edit crows to be better
+- more photos
 
 DONE
 - add crop factor to photos
@@ -10,3 +9,4 @@ DONE
 - fix nav bar on mobile
 - autoload xl path from pattern
 - jpg/jpg loading
+- add little bords captions
