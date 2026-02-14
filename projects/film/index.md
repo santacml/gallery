@@ -3,7 +3,7 @@ layout: project
 title: "Film"
 description: ""
 active: projects
-blurb: The better I am at photography, the worse I am at film. I had an excellent time in 2022-2023 with film, producing some of my all-time favorites. Since then, I've lost the spark - and at $1 per shot, it's just not worth it. Still, I'm proud of these photos.
+blurb: The better I am at photography, the worse I am at film photography. In 2022-2023 with film I produced of my all-time favorite photos with film. Since then, I've lost the spark. C'est la vie.
 images:
   - path: /projects/film/000019560009.jpg
     caption: 
