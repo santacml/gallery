@@ -3,14 +3,14 @@ layout: project
 title: "Cincy 2020"
 description: ""
 active: projects
-blurb: This one requires elaboration, so buckle in!<br><br>You may remember 2020 for one or two reasons. For me, 2020 was the year I had [floroquinolone tendonitis](https://pmc.ncbi.nlm.nih.gov/articles/PMC11858458/) and could barely walk for about 6 months.<br><br>In May of 2020, my then-girlfriend (a floozy) was graduating University and I was determined to attend. After flying, I quarantined in a friend's empty apartment for a few days, during which time I was forced to do nothing to do but fully take in a view of the Ohio river from their balcony. Keep in mind - this was my first time seeing any nature or wildlife or anything other than white walls for many months.<br><br>Immediately, I spotted many birds, and started taking photos.<br><br>These photos are not stellar. My kit and form both needed major improvement. But, this was a transcendent experience for me - and one that set me on a path of bird photography for a long time to come.
+blurb: This one requires elaboration, so buckle in!<br><br>You may remember 2020 for one or two reasons. For me, 2020 was the year I had [floroquinolone tendonitis](https://pmc.ncbi.nlm.nih.gov/articles/PMC11858458/) and could barely walk for about 6 months.<br><br>In May of 2020, my then-girlfriend (a floozy) was graduating University and I was determined to attend. After flying, I quarantined in a friend's empty apartment for a few days, during which time I was forced to do nothing to do but fully take in a view of the Ohio river from their balcony. Keep in mind - this was my first time seeing any nature or wildlife or anything other than white walls for many months.<br><br>Immediately, I spotted many birds, and started taking photos.<br><br>These photos are not stellar. My kit and form both needed major improvement. But, this was a transcendent experience for me! I enjoyed this time immensely and knew I needed to try more bird photography.
 images:
   - path: /projects/cincy-2020/DSC07451.JPG
     caption: 
     crop: .5
   - path: /projects/cincy-2020/DSC07858.JPG
     caption:  
-    crop: .5
+    crop: .65
   - path: /projects/cincy-2020/DSC07759.JPG
     caption:  
     crop: .5
