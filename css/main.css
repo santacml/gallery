@@ -80,7 +80,7 @@ a img:focus {
 }
 
 /* LISTS */
-ul, ol { padding: 0 0 1.5em 1.5em; line-height: 1.6; list-style: disc; margin: 0; }
+ul, ol { line-height: 1.6; list-style: disc; margin: 0; }
 ol { list-style: decimal; }
 ul ul, ol ol { padding-bottom: 0; }
 ul.aligncenter, .aligncenter ul, ol.aligncenter, .aligncenter ol { list-style-position: inside; padding-left: 0; }
@@ -392,12 +392,12 @@ body.fullscreen footer .copyright { display: none; }
   .intro-header.minimal {
     background-color: #111 !important;
     margin-bottom: 0;
+    padding: 28px 0 0;
   }
   .intro-header.minimal .site-heading,
   .intro-header.minimal .post-heading,
   .intro-header.minimal .page-heading {
-    visibility: hidden;
-    padding: 14px 0 0;
+    display: none;
   }
 }
 .intro-header.minimal .site-heading,
