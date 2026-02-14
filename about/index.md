@@ -14,7 +14,7 @@ I've taken hundreds of thousands of photos, however, I don't use social media an
 
 Postcards will be kept for the new hotness and spiciest bird candids. 
 
-However, images too-similar to previous postcards can find their way here!
+However, images too similar to previous postcards can find their way here!
 
 Website will forever be under construction and was originally forked from [here](https://sunbliss.github.io/photorama/).
 
