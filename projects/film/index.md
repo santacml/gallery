@@ -7,11 +7,11 @@ blurb: The better I am at photography, the worse I am at film. I had an excellen
 images:
   - path: /projects/film/000019560009.jpg
     caption: 
-  - path: /projects/film/__9_2078.jpg
+  - path: /projects/film/9_2078.jpg
     caption: 
-  - path: /projects/film/_11_0572.jpg
+  - path: /projects/film/11_0572.jpg
     caption: 
-  - path: /projects/film/_16_2085.jpg
+  - path: /projects/film/16_2085.jpg
     caption: 
   - path: /projects/film/---_0766.jpg
     caption: 
