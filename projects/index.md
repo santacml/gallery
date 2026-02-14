@@ -24,6 +24,6 @@ images:
   - image_path:  /projects/cincy-2020/DSC07451.JPG
     project-folder: /projects/cincy-2020/
     gallery-name: Cincy 2020
-    crop: .5
+    crop: .65
 
 ---
