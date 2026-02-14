@@ -21,4 +21,8 @@ images:
   - image_path:  /projects/aurora/Large_DSC01868.JPG
     project-folder: /projects/aurora/
     gallery-name: Aurora
+  - image_path:  /projects/cincy-2020/DSC07451.JPG
+    project-folder: /projects/cincy-2020/
+    gallery-name: Cincy 2020
+
 ---
