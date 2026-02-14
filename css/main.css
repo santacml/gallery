@@ -80,7 +80,7 @@ a img:focus {
 }
 
 /* LISTS */
-ul, ol { line-height: 1.6; list-style: disc; margin: 0; }
+ul, ol { line-height: 1.6; list-style: disc; margin: 0 0 1em 0; }
 ol { list-style: decimal; }
 ul ul, ol ol { padding-bottom: 0; }
 ul.aligncenter, .aligncenter ul, ol.aligncenter, .aligncenter ol { list-style-position: inside; padding-left: 0; }
