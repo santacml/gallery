@@ -41,9 +41,14 @@ layout: default
         <div class="gallery masonry-gallery">
         
         {% for image in page.images %}
+            {% if image.xl_path %}
+                {% assign computed_xl = image.xl_path %}
+            {% else %}
+                {% assign computed_xl = image.path | replace: 'Large_', 'XL_' %}
+            {% endif %}
             <figure class="gallery-item">
                 <header class='gallery-icon'>
-                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="© michael santacroce" data-xl="{{ site.url }}{{ site.baseurl }}{{ image.xl_path | default: image.path }}">
+                    <a href="{{ site.url }}{{ site.baseurl }}{{ image.path }}" class="popup" title="{{ image.caption }}" data-caption="© michael santacroce" data-xl="{{ site.url }}{{ site.baseurl }}{{ computed_xl }}">
                         <img src="{{ site.url }}{{ site.baseurl }}{{ image.path }}" loading="lazy">
                     </a>
                 </header>	
@@ -68,7 +73,28 @@ layout: default
 <script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
 
 <script type="text/javascript">
+// Toggle .jpg/.JPG/.jpeg/.JPEG extension case
+function altCaseSrc(src) {
+    return src.replace(/\.(jpe?g|png)$/i, function(ext) {
+        return ext === ext.toLowerCase() ? ext.toUpperCase() : ext.toLowerCase();
+    });
+}
+
 $(document).ready(function($) {
+    // If any gallery img fails to load, retry with alternate extension case
+    $('a.popup img').on('error', function() {
+        var $img = $(this);
+        if (!$img.data('retried')) {
+            $img.data('retried', true);
+            var alt = altCaseSrc($img.attr('src'));
+            $img.attr('src', alt);
+            // Also fix the parent link's href and data-xl
+            var $link = $img.closest('a.popup');
+            $link.attr('href', alt);
+            $link.attr('data-xl', altCaseSrc($link.attr('data-xl')));
+        }
+    });
+
     $('a.popup').magnificPopup({
         type: 'image',
         gallery: {
@@ -88,8 +114,20 @@ $(document).ready(function($) {
             },
             markupParse: function(template, values, item) {
                 var xlSrc = item.el.attr('data-xl') || item.el.attr('href');
-                template.find('.mfp-fullview').attr('href', xlSrc);
-                template.find('.mfp-download').attr('href', xlSrc);
+                var fallback = altCaseSrc(xlSrc);
+                var fullview = template.find('.mfp-fullview');
+                var download = template.find('.mfp-download');
+
+                // Set XL path, verify it exists, fall back to alt-case if not
+                fullview.attr('href', xlSrc);
+                download.attr('href', xlSrc);
+
+                var testImg = new Image();
+                testImg.onerror = function() {
+                    fullview.attr('href', fallback);
+                    download.attr('href', fallback);
+                };
+                testImg.src = xlSrc;
             }
         },
         image: {

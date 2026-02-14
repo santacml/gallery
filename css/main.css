@@ -281,6 +281,11 @@ body.fullscreen footer .copyright { display: none; }
     justify-content: center;
     margin: 0;
     float: none;
+    width: 100%;
+  }
+  .navbar-custom .nav.navbar-right {
+    float: none !important;
+    margin-right: 0 !important;
   }
   .navbar-custom .nav li {
     display: inline-block;
