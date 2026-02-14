@@ -11,6 +11,9 @@ images:
   - path: /projects/cincy-2020/DSC07858.JPG
     caption:  
     crop: .5
+  - path: /projects/cincy-2020/DSC07759.JPG
+    caption:  
+    crop: .5
   - path: /projects/cincy-2020/DSC06507.JPG
     caption: 
   # - path: /projects/cincy-2020/DSC06876.JPG
@@ -30,9 +33,9 @@ images:
     caption: 
   - path: /projects/cincy-2020/DSC07436.JPG
     caption: 
-  - path: /projects/cincy-2020/DSC07487.JPG
-    caption: 
-    crop: .5 
+  # - path: /projects/cincy-2020/DSC07487.JPG
+  #   caption: 
+    # crop: .5 
   - path: /projects/cincy-2020/DSC07517.JPG
     caption: 
     crop: .5 
@@ -42,11 +45,8 @@ images:
   - path: /projects/cincy-2020/DSC07576.JPG
     caption: 
     crop: .5 
-  - path: /projects/cincy-2020/DSC07697.JPG
-    caption: 
-  - path: /projects/cincy-2020/DSC07759.JPG
-    caption:  
-    crop: .5
+  # - path: /projects/cincy-2020/DSC07697.JPG
+  #   caption: 
   # - path: /projects/cincy-2020/DSC07794.JPG
   #   caption:  
   #   crop: .7
