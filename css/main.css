@@ -254,7 +254,7 @@ body.fullscreen footer .copyright { display: none; }
     left: 0;
     right: 0;
     margin: 0 !important;
-    padding: 0;
+    padding: 8px 0 0 0;
     min-height: 0;
     border: none;
     box-shadow: none;
@@ -377,6 +377,12 @@ body.fullscreen footer .copyright { display: none; }
   background-image: none !important;
   background-color: #111;
   min-height: auto;
+}
+/* Hide page header text on mobile (projects/about look like home) */
+@media only screen and (max-width: 767px) {
+  .intro-header.minimal {
+    display: none;
+  }
 }
 .intro-header.minimal .site-heading,
 .intro-header.minimal .post-heading,
