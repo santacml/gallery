@@ -380,14 +380,17 @@ body.fullscreen footer .copyright { display: none; }
   background-color: #111;
   min-height: auto;
 }
-/* On mobile: use minimal header as a spacer, hide text, match home bg */
+/* On mobile: use minimal header as a spacer, hide text, grey bg for non-home pages */
 @media only screen and (max-width: 767px) {
+  body:not(.fullscreen) {
+    background-color: #111;
+  }
   .intro-header {
-    background-color: #000 !important;
+    background-color: #111 !important;
     margin-bottom: 0;
   }
   .intro-header.minimal {
-    background-color: #000 !important;
+    background-color: #111 !important;
     margin-bottom: 0;
   }
   .intro-header.minimal .site-heading,

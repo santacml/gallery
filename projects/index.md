@@ -8,12 +8,12 @@ images:
     project-folder: /projects/postcard-one/
     gallery-name: Postcard One
     crop: .2
-  - image_path: /projects/crows/Large_DSC07159.jpg
-    project-folder: /projects/crows/
-    gallery-name: Crows
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film
+  - image_path: /projects/crows/Large_DSC07159.jpg
+    project-folder: /projects/crows/
+    gallery-name: Crows
   - image_path: /projects/little-bords/Large_DSC06274.JPG
     project-folder: /projects/little-bords/
     gallery-name: Little Bords
