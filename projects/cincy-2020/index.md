@@ -13,10 +13,6 @@ images:
     crop: .5
   - path: /projects/cincy-2020/Large_DSC06507.JPG
     caption: 
-  # - path: /projects/cincy-2020/Large_DSC06876.JPG
-  #   caption: 
-  # - path: /projects/cincy-2020/Large_DSC06912.JPG
-  #   caption: 
   - path: /projects/cincy-2020/Large_DSC06994.JPG
     caption: 
   - path: /projects/cincy-2020/Large_DSC07858.JPG
@@ -25,15 +21,10 @@ images:
   - path: /projects/cincy-2020/Large_DSC07274.JPG
     caption: 
     crop: .5
-  # - path: /projects/cincy-2020/Large_DSC07307.JPG
-  #   caption: 
   - path: /projects/cincy-2020/Large_DSC07416.JPG
     caption: 
   - path: /projects/cincy-2020/Large_DSC07436.JPG
     caption: 
-  # - path: /projects/cincy-2020/Large_DSC07487.JPG
-  #   caption: 
-    # crop: .5 
   - path: /projects/cincy-2020/Large_DSC07517.JPG
     caption: 
     crop: .5 
@@ -45,12 +36,4 @@ images:
   - path: /projects/cincy-2020/Large_DSC07576.JPG
     caption: 
     crop: .5 
-  # - path: /projects/cincy-2020/Large_DSC07697.JPG
-  #   caption: 
-  # - path: /projects/cincy-2020/Large_DSC07794.JPG
-  #   caption:  
-  #   crop: .7
-  # - path: /projects/cincy-2020/Large_DSC07816.JPG
-  #   caption:  
-  #   crop: .5
 ---
