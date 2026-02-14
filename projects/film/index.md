@@ -3,7 +3,7 @@ layout: project
 title: "Film"
 description: ""
 active: projects
-blurb: The better I am at photography, the worse I am at film photography. In 2022-2023 with film I produced of my all-time favorite photos with film. Since then, I've lost the spark. C'est la vie.
+blurb: The better I am at photography, the worse I am at film photography. In 2022-2023 with film I produced some of my all-time favorite photos while I explored film. Since then, I've lost the spark. C'est la vie.
 images:
   - path: /projects/film/000019560009.jpg
     caption: 
