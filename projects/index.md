@@ -7,7 +7,7 @@ images:
   - image_path: /projects/postcard-one/Large_DSC04893.JPG
     project-folder: /projects/postcard-one/
     gallery-name: Postcard One
-    crop: .2
+    crop: .3
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film

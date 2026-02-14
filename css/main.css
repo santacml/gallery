@@ -247,8 +247,8 @@ body.fullscreen footer .copyright { display: none; }
   .navbar-custom .container-fluid,
   .navbar-custom .navbar-collapse,
   .navbar-custom .navbar-nav {
-    background: none !important;
-    background-color: transparent !important;
+    background: #000 !important;
+    background-color: #000 !important;
   }
   .navbar-custom {
     position: absolute !important;
@@ -397,7 +397,7 @@ body.fullscreen footer .copyright { display: none; }
   .intro-header.minimal .post-heading,
   .intro-header.minimal .page-heading {
     visibility: hidden;
-    padding: 24px 0 0;
+    padding: 14px 0 0;
   }
 }
 .intro-header.minimal .site-heading,
