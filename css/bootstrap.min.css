@@ -5312,7 +5312,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
   overflow-x: hidden;
   float: right;
   color: white;    
-  background-color: #000;
+  background-color: transparent;
 }
 
 .navbar-nav>li>a {

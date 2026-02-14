@@ -245,7 +245,8 @@ body.fullscreen footer .copyright { display: none; }
   /* Show full nav on mobile - all pages */
   .navbar-custom,
   .navbar-custom .container-fluid,
-  .navbar-custom .navbar-collapse {
+  .navbar-custom .navbar-collapse,
+  .navbar-custom .navbar-nav {
     background: none !important;
     background-color: transparent !important;
   }
