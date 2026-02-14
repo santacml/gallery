@@ -190,13 +190,16 @@ body.fullscreen footer .copyright { display: none; }
 /* NAVBAR
 --------------------------------------------------------- */
 .navbar-custom {
-  background-color: transparent;
+  background: none !important;
+  background-color: transparent !important;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   font-family: 'Josefin Sans', sans-serif;
+  border: none;
+  box-shadow: none;
 }
 .navbar-custom .navbar-brand {
   font-weight: 700;
@@ -240,14 +243,20 @@ body.fullscreen footer .copyright { display: none; }
   */
   
   /* Show full nav on mobile - all pages */
+  .navbar-custom,
+  .navbar-custom .container-fluid,
+  .navbar-custom .navbar-collapse {
+    background: none !important;
+    background-color: transparent !important;
+  }
   .navbar-custom {
-    /* background: rgba(0, 0, 0, 0.8); */
-    background: transparent;
     left: 0;
     right: 0;
     margin: 0 !important;
     padding: 0;
     min-height: 0;
+    border: none;
+    box-shadow: none;
   }
   .navbar-custom .container-fluid {
     padding: 0;
@@ -261,9 +270,9 @@ body.fullscreen footer .copyright { display: none; }
   }
   .navbar-custom .navbar-collapse {
     display: block !important;
-    background: transparent;
     padding: 0;
     border: none;
+    box-shadow: none;
     margin: 0;
   }
   .navbar-custom .navbar-collapse .nav {
@@ -283,8 +292,8 @@ body.fullscreen footer .copyright { display: none; }
 
 @media only screen and (min-width: 768px) {
   .navbar-custom {
-    background: transparent;
-    border-bottom: 1px solid transparent;
+    background: none !important;
+    border-bottom: none;
   }
   .navbar-custom .navbar-brand {
     color: white;
