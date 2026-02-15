@@ -13,7 +13,7 @@ images:
     project-folder: /projects/film/
     gallery-name: Film
 
-  - image_path: /projects/golden-hour/Large_DSC00622.JPG
+  - image_path: /projects/golden-hour/Large_DSC00622.png
     project-folder: /projects/golden-hour/
     gallery-name: Golden Hour
 
