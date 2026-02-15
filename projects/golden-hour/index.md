@@ -9,7 +9,7 @@ images:
     caption: 
   - path: /projects/golden-hour/Large_DSC00829.JPG
     caption: 
-  - path: /projects/golden-hour/Large_DSC00847.ong
+  - path: /projects/golden-hour/Large_DSC00847.png
     caption: 
   - path: /projects/golden-hour/Large_DSC00984.JPG
     caption: 
