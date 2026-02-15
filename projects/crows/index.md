@@ -8,8 +8,6 @@ images:
   - path: /projects/crows/Large_DSC07159.jpg
     xl_path: /projects/crows/XL_DSC07159.JPG # optional, this pattern on default
     caption: American Crow
-  # - path: /projects/crows/Large_DSC08222.JPG
-  #   caption: American Crow
   - path: /projects/crows/Large_DSC06693.JPG
     caption: American Crow
   - path: /projects/crows/Large_DSC07191.JPG
@@ -36,20 +34,12 @@ images:
     caption: American Crow
   - path: /projects/crows/Large_DSC06681.jpg
     caption: American Crow
-  # - path: /projects/crows/Large_DSC07352.JPG
-  #   caption: American Crow
   - path: /projects/crows/Large_DSC07366.JPG
     caption: American Crow
   - path: /projects/crows/Large_DSC08215.jpg
     caption: American Crow
-  # - path: /projects/crows/Large_DSC07498.JPG
-  #   caption: American Crow
-  # - path: /projects/crows/Large_DSC08208.JPG
-  #   caption: American Crow
   - path: /projects/crows/Large_DSC06898.jpg
     caption: American Crow
-  # - path: /projects/crows/Large_DSC07532.JPG
-  #   caption: American Crow
   - path: /projects/crows/Large_DSC07418.JPG
     caption: American Crow
 ---

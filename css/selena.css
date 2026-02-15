@@ -63,3 +63,9 @@ figure.effect-selena:hover p {
 	-webkit-transform: perspective(1000px) rotate3d(1,0,0,0);
 	transform: perspective(1000px) rotate3d(1,0,0,0);
 }
+
+/* Disable green tint/shadow hover effect on mobile */
+@media only screen and (max-width: 767px) {
+	figure.effect-selena { background: transparent; }
+	figure.effect-selena:hover img { -webkit-transform: none; transform: none; }
+}

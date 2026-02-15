@@ -167,4 +167,11 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
 		height: auto;
 		object-fit: contain;
 	}
-	  
+}
+
+/* Disable green tint/shadow hover effect on mobile */
+@media only screen and (max-width: 767px) {
+	.masonry-gallery .gallery-item { background: transparent; }
+	.masonry-gallery .gallery-item:hover img { opacity: 1; -webkit-transform: none; transform: none; }
+	.gallery-item:hover .gallery-caption .entry-summary { opacity: 0; }
+  
