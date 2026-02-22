@@ -38,10 +38,6 @@ figure.effect-selena .gallery-caption .entry-summary {
 figure.effect-selena .gallery-caption h3 {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	text-decoration: underline;
-	text-decoration-thickness: 1px;
-	text-underline-offset: 0.25em;
-	text-decoration-color: rgba(255,255,255,0.5);
 }
 
 figure.effect-selena p {

@@ -2,6 +2,7 @@
 layout: projects
 title: "Projects"
 description: ""
+blurb: "Select from a project below!"
 active: projects
 images:
   - image_path: /projects/postcard-one/Large_DSC04893.JPG

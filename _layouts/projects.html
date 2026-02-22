@@ -30,6 +30,9 @@ layout: default
 
 <section id="content" role="main">
     <div class="wrapper">
+        {% if page.blurb %}
+        <p class="project-blurb">{{ page.blurb }}</p>
+        {% endif %}
         <!-- Gallery -->
         <div class="gallery masonry-gallery">
             
