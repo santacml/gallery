@@ -184,4 +184,7 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
 	#gallerythumbs:hover li,
 	#gallerythumbs:hover li:hover { opacity: 1; }
 	#gallerypuntiks a:hover { border-color: #999; }
+
+	/* Keep selena caption visible (override gallery-item hover reset above) */
+	figure.effect-selena .gallery-caption .entry-summary { opacity: 1 !important; }
 }
