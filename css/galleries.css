@@ -169,9 +169,19 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
 	}
 }
 
-/* Disable green tint/shadow hover effect on mobile */
-@media only screen and (max-width: 767px) {
+/* Disable image/text hover effects on mobile */
+@media (hover: none), (pointer: coarse) {
 	.masonry-gallery .gallery-item { background: transparent; }
-	.masonry-gallery .gallery-item:hover img { opacity: 1; -webkit-transform: none; transform: none; }
-	.gallery-item:hover .gallery-caption .entry-summary { opacity: 0; }
-  
+	.masonry-gallery .gallery-item:hover img { opacity: 1 !important; -webkit-transform: none !important; transform: none !important; }
+	.gallery-item:hover .gallery-caption .entry-summary { opacity: 0 !important; }
+	.gallery-item:hover .gallery-caption h3,
+	.gallery-item:hover .gallery-caption p { -webkit-transform: none !important; transform: none !important; }
+
+	#gallery-filter ul li a:hover::after { width: 0; -webkit-transform: scale(0,1); transform: scale(0,1); }
+	#grid-changer ul li a:hover { border-color: #999; color: #ccc; }
+	#gallerynav a:hover { color: #F7F6F5; }
+	#gallerynav a:hover svg { fill: #F7F6F5; }
+	#gallerythumbs:hover li,
+	#gallerythumbs:hover li:hover { opacity: 1; }
+	#gallerypuntiks a:hover { border-color: #999; }
+}
