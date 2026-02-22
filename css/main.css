@@ -9,6 +9,7 @@
   /* --accent-color: #3A025B; */
    
   --accent-color: #7DAD8A;
+  --page-bg-color: #1f242b;
 }
 
 /* BASE TYPOGRAPHY
@@ -23,7 +24,7 @@ body {
   font-size: 1.8em;
   font-weight: 400;
   color: #eee;
-  background-color: #111;
+  background-color: var(--page-bg-color);
   overflow-x: hidden;
 }
 p {
@@ -401,14 +402,14 @@ body.fullscreen footer .copyright { display: none; }
 /* On mobile: use minimal header as a spacer, hide text, grey bg for non-home pages */
 @media only screen and (max-width: 767px) {
   body:not(.fullscreen) {
-    background-color: #111;
+    background-color: var(--page-bg-color);
   }
   .intro-header {
-    background-color: #111 !important;
+    background-color: var(--page-bg-color) !important;
     margin-bottom: 0;
   }
   .intro-header.minimal {
-    background-color: #111 !important;
+    background-color: var(--page-bg-color) !important;
     margin-bottom: 15px;
     padding: 28px 0 0;
   }
