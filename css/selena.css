@@ -8,7 +8,7 @@ figure.effect-selena {
 }
 
 figure.effect-selena img {
-     cursor: default;
+     cursor: pointer;
 	opacity: 1;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
@@ -38,6 +38,14 @@ figure.effect-selena .gallery-caption .entry-summary {
 figure.effect-selena .gallery-caption h3 {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+}
+
+figure.effect-selena .gallery-caption h3::after {
+	content: ' \2192';
+	display: inline-block;
+	margin-left: 0.3em;
+	opacity: 0.7;
+	font-weight: 400;
 }
 
 figure.effect-selena p {
