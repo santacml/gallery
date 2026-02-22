@@ -38,14 +38,10 @@ figure.effect-selena .gallery-caption .entry-summary {
 figure.effect-selena .gallery-caption h3 {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-}
-
-figure.effect-selena .gallery-caption h3::after {
-	content: ' \2192';
-	display: inline-block;
-	margin-left: 0.3em;
-	opacity: 0.7;
-	font-weight: 400;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.25em;
+	text-decoration-color: rgba(255,255,255,0.5);
 }
 
 figure.effect-selena p {
@@ -77,5 +73,6 @@ figure.effect-selena:hover p {
 	figure.effect-selena { background: transparent; }
 	figure.effect-selena:hover img { -webkit-transform: none !important; transform: none !important; }
 	figure.effect-selena:hover p { opacity: 0 !important; -webkit-transform: perspective(1000px) rotate3d(1,0,0,90deg) !important; transform: perspective(1000px) rotate3d(1,0,0,90deg) !important; }
-	figure.effect-selena .gallery-caption .entry-summary { opacity: 1 !important; }
+	figure.effect-selena .gallery-caption .entry-summary,
+	.gallery-item:hover figure.effect-selena .gallery-caption .entry-summary { opacity: 1 !important; }
 }

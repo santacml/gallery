@@ -173,7 +173,7 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
 @media (hover: none), (pointer: coarse) {
 	.masonry-gallery .gallery-item { background: transparent; }
 	.masonry-gallery .gallery-item:hover img { opacity: 1 !important; -webkit-transform: none !important; transform: none !important; }
-	.gallery-item:hover .gallery-caption .entry-summary { opacity: 0 !important; }
+	.gallery-item:not(:has(.effect-selena)):hover .gallery-caption .entry-summary { opacity: 0 !important; }
 	.gallery-item:hover .gallery-caption h3,
 	.gallery-item:hover .gallery-caption p { -webkit-transform: none !important; transform: none !important; }
 
