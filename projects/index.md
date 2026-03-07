@@ -10,7 +10,7 @@ images:
     gallery-name: Postcard One
     crop: .3
 
-  - image_path: /projects/film/000019560009.jpg
+  - image_path: /projects/film/---_1208.jpg
     project-folder: /projects/film/
     gallery-name: Film
 
@@ -27,7 +27,7 @@ images:
     gallery-name: Little Bords
     crop: .3
 
-  - image_path:  /projects/aurora/Large_DSC01868.JPG
+  - image_path:  /projects/aurora/Large_DSC01870.JPG
     project-folder: /projects/aurora/
     gallery-name: Aurora
 

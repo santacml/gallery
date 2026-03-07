@@ -47,7 +47,6 @@ layout: default
                     <figcaption class='gallery-caption'>
                         <div class="entry-summary">
                             <h3>{{ image.gallery-name }}</h3>
-                            <p class="explore-cta">Explore &rarr;</p>
                         </div>
                     </figcaption>
                 </figure>
@@ -65,3 +64,52 @@ layout: default
 <script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
 <!-- include custom script -->
 <script src="{{ site.baseurl }}/js/scripts.js"></script>
+
+<!-- Mobile: apply hover effect to most-centered project image on scroll -->
+<script>
+(function() {
+    var isMobile = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!isMobile) return;
+
+    var items = document.querySelectorAll('.masonry-gallery figure.effect-selena');
+    if (!items.length) return;
+
+    function updateActive() {
+        var viewMid = window.innerHeight / 2;
+        var closest = null;
+        var closestDist = Infinity;
+
+        items.forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            var elMid = rect.top + rect.height / 2;
+            var dist = Math.abs(elMid - viewMid);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = el;
+            }
+        });
+
+        items.forEach(function(el) {
+            if (el === closest) {
+                el.classList.add('scroll-active');
+            } else {
+                el.classList.remove('scroll-active');
+            }
+        });
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                updateActive();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Run once on load
+    updateActive();
+})();
+</script>
