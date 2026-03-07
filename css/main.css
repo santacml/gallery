@@ -10,7 +10,7 @@
    
   --accent-color: #7DAD8A;
   /* --page-bg-color: #1f242b; */
-  --page-bg-color: #2f2f2f;
+  --page-bg-color: #1a1a1a;
 }
 
 /* BASE TYPOGRAPHY
@@ -166,7 +166,7 @@ body #content > .wrapper { padding: 3em 4.5% 0; }
 
 /* FULLSCREEN MODE (Home Page)
 --------------------------------------------------------- */
-body.fullscreen { max-height: 100%; overflow-y: hidden; overflow-x: hidden; background: #000; }
+body.fullscreen { max-height: 100%; overflow-y: hidden; overflow-x: hidden; background: var(--page-bg-color); }
 body.fullscreen #content { height: 100vh; height: 100dvh; overflow: hidden; }
 body.fullscreen #content > .wrapper { padding: 0; }
 

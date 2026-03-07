@@ -3,7 +3,7 @@ layout: project
 title: "Aurora"
 description: "May 11, 2024"
 active: projects
-blurb: All photographers must eventually answer the siren song of Aurora chasing. I got my chance in the summer of 2024, with a once-in-X-years solar storm!
+blurb: All photographers must eventually answer the siren song of Aurora chasing. I got my chance in the summer of 2024!!
 images:
   - path: /projects/aurora/Large_DSC01868.JPG
     caption: 

@@ -7,6 +7,15 @@ figure.effect-selena {
 	background: var(--accent-color);
 }
 
+figure.effect-selena .explore-cta {
+	font-family: 'Josefin Sans', sans-serif;
+	font-style: normal;
+	font-size: .75em;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	opacity: 0;
+}
+
 figure.effect-selena img {
      cursor: pointer;
 	opacity: 1;

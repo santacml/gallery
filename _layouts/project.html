@@ -216,18 +216,26 @@ $(document).ready(function($) {
             },
             markupParse: function(template, values, item) {
                 var xlSrc = item.el.attr('data-xl') || item.el.attr('href');
-                var fallback = altCaseSrc(xlSrc);
+                var largeSrc = item.el.attr('href');
                 var fullview = template.find('.mfp-fullview');
                 var download = template.find('.mfp-download');
 
-                // Set XL path, verify it exists, fall back to alt-case if not
+                // Try XL path first, then alt-case XL, then fall back to Large
                 fullview.attr('href', xlSrc);
                 download.attr('href', xlSrc);
 
                 var testImg = new Image();
                 testImg.onerror = function() {
-                    fullview.attr('href', fallback);
-                    download.attr('href', fallback);
+                    var altXl = altCaseSrc(xlSrc);
+                    var testImg2 = new Image();
+                    testImg2.onerror = function() {
+                        // XL not found in either case — fall back to Large
+                        fullview.attr('href', largeSrc);
+                        download.attr('href', largeSrc);
+                    };
+                    testImg2.src = altXl;
+                    fullview.attr('href', altXl);
+                    download.attr('href', altXl);
                 };
                 testImg.src = xlSrc;
             }

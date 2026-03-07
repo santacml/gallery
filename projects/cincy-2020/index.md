@@ -28,8 +28,8 @@ images:
   - path: /projects/cincy-2020/Large_DSC07517.JPG
     caption: 
     crop: .5 
-  - path: /projects/cincy-2020/Large_DSC07119.JPG
-    caption: 
+  # - path: /projects/cincy-2020/Large_DSC07119.JPG
+  #   caption: 
   - path: /projects/cincy-2020/Large_DSC07525.JPG
     caption: 
     crop: .5 
