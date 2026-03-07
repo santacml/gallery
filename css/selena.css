@@ -72,15 +72,6 @@ figure.effect-selena:hover p {
 	figure.effect-selena .gallery-caption .entry-summary,
 	.gallery-item:hover figure.effect-selena .gallery-caption .entry-summary { opacity: 1 !important; }
 
-	/* Scroll-activated hover effect on mobile */
-	.masonry-gallery figure.effect-selena.scroll-active {
-		background: var(--accent-color);
-	}
-	.masonry-gallery figure.effect-selena.scroll-active img {
-		-webkit-transform: scale3d(0.95,0.95,1);
-		transform: scale3d(0.95,0.95,1);
-	}
-
 	/* Projects page: large centered text overlay on mobile */
 	.masonry-gallery .gallery-caption {
 		position: absolute;
