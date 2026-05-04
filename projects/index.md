@@ -10,9 +10,17 @@ images:
     gallery-name: Postcard One
     crop: .3
 
+  - image_path: /projects/postcard-two/Large_DSC00348.JPG
+    project-folder: /projects/postcard-two/
+    gallery-name: Postcard Two
+
   - image_path: /projects/film/---_1208.jpg
     project-folder: /projects/film/
     gallery-name: Film
+
+  - image_path: /projects/film-2/AA009.jpg
+    project-folder: /projects/film-2/
+    gallery-name: Film 2
 
   - image_path: /projects/golden-hour/Large_DSC00622.png
     project-folder: /projects/golden-hour/
