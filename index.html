@@ -59,7 +59,7 @@ first_image: /projects/postcard-one/Large_DSC04126.JPG
 <!-- Collect all project image paths for random slideshow -->
 <script>
 window._allProjectImages = [
-{% for p in site.pages %}{% if p.layout == 'project' %}{% for image in p.images %}"{{ site.url }}{{ site.baseurl }}{{ image.path }}",
+{% for p in site.pages %}{% if p.layout == 'project' %}{% for image in p.images %}{% if image.xl_path %}"{{ site.url }}{{ site.baseurl }}{{ image.xl_path }}"{% else %}"{{ site.url }}{{ site.baseurl }}{{ image.path }}"{% endif %},
 {% endfor %}{% endif %}{% endfor %}
 ];
 window._firstImage = "{{ site.url }}{{ site.baseurl }}{{ page.first_image }}";
