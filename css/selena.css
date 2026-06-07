@@ -4,6 +4,7 @@
 /*-----------------*/
 
 figure.effect-selena {
+	position: relative;
 	background: var(--accent-color);
 }
 
