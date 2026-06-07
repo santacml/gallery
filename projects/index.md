@@ -17,10 +17,7 @@ images:
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film
-
-  - image_path: /projects/film-two/AA033.jpg
-    project-folder: /projects/film-two/
-    gallery-name: Film Two
+    updated: true
 
   - image_path: /projects/golden-hour/Large_DSC00622.png
     project-folder: /projects/golden-hour/
