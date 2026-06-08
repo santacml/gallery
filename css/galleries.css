@@ -194,7 +194,7 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
 /* Recently Updated Badge */
 .updated-badge {
   position: absolute;
-  top: 20%;
+  top: 20px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
