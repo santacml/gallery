@@ -200,14 +200,14 @@ img.mfp-img { padding: 0; -webkit-tap-highlight-color: transparent; }
   z-index: 20;
   background: var(--accent-color);
   color: #fff;
-  font-size: 0.85em;
+  font-size: 1.1em;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 8px 18px;
-  border-radius: 3px;
+  padding: 12px 28px;
+  border-radius: 4px;
   line-height: 1;
   pointer-events: none;
   opacity: 1;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
 }
