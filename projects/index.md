@@ -18,6 +18,7 @@ images:
   - image_path: /projects/postcard-three/Large_DSC03756.JPG
     project-folder: /projects/postcard-three/
     gallery-name: Postcard Three
+    updated: true
     
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
@@ -31,6 +32,7 @@ images:
   - image_path: /projects/golden-hour/Large_DSC00622.png
     project-folder: /projects/golden-hour/
     gallery-name: Golden Hour
+    updated: true
 
   - image_path: /projects/crows/Large_DSC07159.jpg
     project-folder: /projects/crows/

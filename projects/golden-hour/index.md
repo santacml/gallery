@@ -23,4 +23,10 @@ images:
     caption: 
   - path: /projects/golden-hour/Large_DSC07159.JPG
     caption: 
+  - path: /projects/golden-hour/Large_DSC07678.JPG
+    caption: 
+  - path: /projects/golden-hour/Large_DSC07680.JPG
+    caption: 
+  - path: /projects/golden-hour/Large_DSC07689.JPG
+    caption: 
 ---
