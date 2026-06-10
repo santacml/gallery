@@ -14,12 +14,16 @@ images:
   - image_path: /projects/postcard-two/Large_DSC00350.JPG
     project-folder: /projects/postcard-two/
     gallery-name: Postcard Two
+
+  - image_path: /projects/postcard-three/Large_DSC03756.JPG
+    project-folder: /projects/postcard-three/
+    gallery-name: Postcard Three
     
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film
 
-  - image_path: /projects/film-revival/
+  - image_path: /projects/film-revival/AA033.jpg
     project-folder: /projects/film-revival/
     gallery-name: Film Revival
     updated: true
