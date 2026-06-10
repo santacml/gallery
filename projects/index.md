@@ -18,6 +18,10 @@ images:
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
     gallery-name: Film
+
+  - image_path: /projects/film-revival/
+    project-folder: /projects/film-revival/
+    gallery-name: Film Revival
     updated: true
 
   - image_path: /projects/golden-hour/Large_DSC00622.png
