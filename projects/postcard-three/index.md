@@ -17,8 +17,6 @@ images:
     caption: 
   - path: /projects/postcard-three/Large_DSC01338.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC04433.JPG
-    caption: 
   - path: /projects/postcard-three/Large_DSC04436.JPG
     caption: 
   - path: /projects/postcard-three/Large_DSC04439.JPG
