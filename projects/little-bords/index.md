@@ -41,10 +41,6 @@ images:
     caption: 
     crop: 0.3
     caption: Black-Capped Chickadee
-  # - path: /projects/little-bords/Large_DSC09453.JPG
-  #   caption: 
-  #   crop: 0.5
-  #   caption: Gold-Crowned Sparrow
   - path: /projects/little-bords/Large_DSC02290.JPG
     caption: House Finch
     crop: 0.6

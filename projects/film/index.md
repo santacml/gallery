@@ -41,10 +41,4 @@ images:
     caption: 
   - path: /projects/film/19A_0342.jpg
     caption: 
-  - path: /projects/film/AA009.jpg
-    caption: 
-  - path: /projects/film/AA021.jpg
-    caption: 
-  - path: /projects/film/AA033.jpg
-    caption: 
 ---
