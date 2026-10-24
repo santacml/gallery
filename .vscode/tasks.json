@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Preview photography prototype",
+			"type": "shell",
+			"command": "d:/Repos/experiment/.conda/python.exe",
+			"args": [
+				"prototype/preview.py"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

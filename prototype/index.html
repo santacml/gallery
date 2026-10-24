@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Birds, buildings, and the things in between. Photographs by Michael Santacroce.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f2f0e9">
+  <title>Birds & Buildings</title>
+  <link rel="stylesheet" href="./style.css?v=restore-approved-4">
+  <script src="./app.js?v=restore-approved-4" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to photographs</a>
+  <header class="site-header">
+    <a class="wordmark" href="#/" aria-label="Birds and Buildings home">birds <span>&</span> buildings<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#/projects" data-nav="projects">Projects <span aria-hidden="true">↗</span></a>
+      <a href="#/wander" data-nav="wander">Wander <span aria-hidden="true">↗</span></a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to charcoal theme" title="Switch theme">◐</button>
+  </header>
+  <main id="main" tabindex="-1"><p class="loading" role="status" aria-label="Loading photographs">…</p></main>
+  <dialog class="viewer" aria-label="Photograph viewer">
+    <div class="viewer-top"><span id="viewer-project" class="sr-only"></span><button type="button" id="viewer-close" aria-label="Close photograph"><span aria-hidden="true">×</span></button></div>
+    <button class="viewer-arrow viewer-prev" id="viewer-prev" type="button" aria-label="Previous photograph">←</button>
+    <div class="viewer-stage"><img id="viewer-image" alt=""><p id="viewer-error" hidden>That photograph couldn’t load. Try the original below.</p></div>
+    <button class="viewer-arrow viewer-next" id="viewer-next" type="button" aria-label="Next photograph">→</button>
+    <div class="viewer-bottom"><div><p id="viewer-caption"></p><a id="viewer-series" href="#/projects"></a></div><span id="viewer-counter" aria-live="polite"></span><a id="viewer-original" target="_blank" rel="noopener" aria-label="Open original image">↗</a></div>
+  </dialog>
+  <div class="sr-only" id="announcements" aria-live="polite"></div>
+</body>
+</html>

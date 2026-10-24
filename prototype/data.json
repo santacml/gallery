@@ -1,0 +1,43 @@
+---
+layout: null
+---
+{
+  "baseurl": {{ site.baseurl | jsonify }},
+  "projects": [
+  {% assign project_pages = site.pages | where: 'layout', 'project' | sort: 'url' %}
+  {% for project in project_pages %}
+    {% assign cover = '' %}{% assign updated = false %}
+    {% for index_page in site.pages %}{% if index_page.layout == 'projects' %}{% for entry in index_page.images %}{% if entry.project-folder == project.url %}{% assign cover = entry.image_path %}{% assign updated = entry.updated %}{% endif %}{% endfor %}{% endif %}{% endfor %}
+    {% capture listed_paths %}|{% for image in project.images %}{{ image.path }}|{% endfor %}{% endcapture %}
+    {
+      "id": {{ project.url | split: '/' | last | jsonify }},
+      "title": {{ project.title | jsonify }},
+      "description": {{ project.description | default: '' | jsonify }},
+      "blurb": {{ project.blurb | default: '' | jsonify }},
+      "tags": {{ project.discovery_tags | default: '' | jsonify }},
+      "cover": {{ cover | jsonify }},
+      "updated": {% if updated %}true{% else %}false{% endif %},
+      "images": [
+      {% for image in project.images %}
+        {"path": {{ image.path | jsonify }}, "caption": {{ image.caption | default: '' | jsonify }}, "xl": {{ image.xl_path | default: '' | jsonify }}}{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      {% assign has_images = project.images.size %}
+      {% for file in site.static_files %}
+        {% assign parent = file.path | remove: file.name %}
+        {% assign extension = file.extname | downcase %}
+        {% assign prefix = file.name | slice: 0, 3 | downcase %}
+        {% capture path_token %}|{{ file.path }}|{% endcapture %}
+        {% if parent == project.url and prefix != 'xl_' %}
+          {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.webp' or extension == '.avif' %}
+            {% unless listed_paths contains path_token %}
+              {% if has_images > 0 %},{% endif %}{"path": {{ file.path | jsonify }}, "caption": "", "xl": "", "unlisted": true}
+              {% assign has_images = has_images | plus: 1 %}
+            {% endunless %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ]
+}

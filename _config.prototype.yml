@@ -1,0 +1,5 @@
+# Optional Jekyll overlay only; the existing _config.yml is unchanged.
+# Build using both config files to include underscore-prefixed film scans.
+include:
+  - projects/film-revival/_13_0922.jpg
+  - projects/film-revival/_24_0933.jpg
