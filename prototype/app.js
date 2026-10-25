@@ -18,7 +18,7 @@
   const esc = (value = '') => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
   const url = path => base + path;
   const imageURL = (photo, thumb = false) => url(thumb && photo.thumbnail ? photo.thumbnail : photo.path);
-  const projectURL = project => '#/project/' + encodeURIComponent(project.id);
+  const projectURL = project => url('/projects/' + encodeURIComponent(project.id) + '/');
   const shuffle = list => {
     const copy = [...list];
     for (let i = copy.length - 1; i > 0; i--) {
@@ -185,11 +185,35 @@
     main.innerHTML = '<div class="page"><header class="page-intro"><h1>Not found</h1><a href="#/projects">Projects ↗</a></header></div>';
   }
   function currentRoute() {
-    const [path,query = ''] = (location.hash.slice(1) || '/').split('?');
+    const project = location.pathname.slice(base.length).match(/^\/projects\/([^/]+)\/?$/);
+    const fallback = project ? '/project/' + project[1] : '/';
+    const [path,query = location.search.slice(1)] = (location.hash.startsWith('#/') ? location.hash.slice(1) : fallback).split('?');
     return { path: path === '/projects' ? '/' : path, params: new URLSearchParams(query) };
   }
+  document.addEventListener('click', event => {
+    const anchor = event.target.closest('a');
+    if (!anchor || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || anchor.target || anchor.hasAttribute('download')) return;
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+    const target = new URL(href,location.href);
+    if (target.origin !== location.origin) return;
+    const project = target.pathname.slice(base.length).match(/^\/projects\/([^/]+)\/?$/);
+    if (href.startsWith('#/') || (target.pathname === url('/') && target.hash.startsWith('#/'))) {
+      event.preventDefault();
+      history.pushState(null,'',url('/') + target.hash);
+      route();
+    } else if (project) {
+      event.preventDefault();
+      history.pushState(null,'',target.pathname + target.search);
+      route();
+    }
+  });
   function route() {
     const {path,params} = currentRoute();
+    if (path.startsWith('/project/') && location.hash.startsWith('#/')) {
+      const query = params.toString();
+      history.replaceState(null,'',url('/projects/' + path.slice(9) + '/') + (query ? '?' + query : ''));
+    }
     if (renderedRoute !== path) {
       if (renderedRoute) scrollPositions.set(renderedRoute,window.scrollY);
       wanderObserver?.disconnect();
@@ -216,7 +240,8 @@
   }
   function setPhotoURL(photo) {
     const {path} = currentRoute();
-    history.replaceState(null,'', '#' + path + (photo ? '?photo=' + encodeURIComponent(photo.id) : ''));
+    const query = photo ? '?photo=' + encodeURIComponent(photo.id) : '';
+    history.replaceState(null,'',path.startsWith('/project/') ? url('/projects/' + path.slice(9) + '/') + query : url('/') + '#' + path + query);
   }
   function openViewer(photo, updateURL = true) {
     const {path} = currentRoute();
@@ -320,6 +345,7 @@
   try { setTheme(localStorage.getItem('field-notes-theme') || 'paper'); } catch (_) { setTheme('paper'); }
   $('.theme-toggle').addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'paper' ? 'charcoal' : 'paper'));
   window.addEventListener('hashchange',route);
+  window.addEventListener('popstate',route);
   window.addEventListener('resize', () => {
     const grid = $('#wander-grid');
     if (grid && grid.querySelectorAll('.photo-column').length !== trailColumns()) grid.innerHTML = trailMarkup(wanderPhotos());

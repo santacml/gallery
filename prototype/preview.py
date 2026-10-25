@@ -133,7 +133,12 @@ class Handler(SimpleHTTPRequestHandler):
                 target = '/not-found'
             else:
                 match = re.fullmatch(r'/projects/([^/]+)/?', path)
-                target = '/project/' + match[1] if match and (ROOT / 'projects' / match[1] / 'index.md').is_file() else None
+                if match and (ROOT / 'projects' / match[1] / 'index.md').is_file():
+                    shell = (ROOT / 'index.html').read_text(encoding='utf-8')
+                    shell = shell.replace('./prototype/', baseurl + '/prototype/')
+                    self.send_body(shell.encode('utf-8'), 'text/html; charset=utf-8')
+                    return
+                target = None
             if target is not None:
                 self.send_response(302)
                 self.send_header('Location', baseurl + '/#' + target)

@@ -1,13 +1,49 @@
 {% assign destination = '/' | relative_url | append: '#' | append: include.route %}
+{% assign canonical = destination | absolute_url %}
+{% if page.layout == 'project' %}
+  {% assign canonical = page.url | relative_url | absolute_url %}
+  {% assign cover = page.images.first.path %}
+  {% for entry in site.pages %}
+    {% if entry.layout == 'projects' %}
+      {% for project in entry.images %}
+        {% if project.project-folder == page.url %}{% assign cover = project.image_path %}{% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  {% assign share_title = page.title | append: ' — Birds & Buildings' %}
+  {% assign share_description = page.blurb | default: page.description | strip_html | normalize_whitespace | strip %}
+  {% if share_description == '' %}{% assign share_description = page.title | append: ' — photographs by Michael Santacroce.' %}{% endif %}
+{% endif %}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url={{ destination | escape }}">
-  <meta name="robots" content="noindex">
+  {% unless page.layout == 'project' %}<meta http-equiv="refresh" content="0; url={{ destination | escape }}">{% endunless %}
+  {% if page.layout == 'project' %}
+  <meta name="description" content="{{ share_description | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Birds &amp; Buildings">
+  <meta property="og:title" content="{{ share_title | escape }}">
+  <meta property="og:description" content="{{ share_description | escape }}">
+  <meta property="og:url" content="{{ canonical | escape }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ share_title | escape }}">
+  <meta name="twitter:description" content="{{ share_description | escape }}">
+  {% if cover %}
+  <meta property="og:image" content="{{ cover | relative_url | absolute_url | escape }}">
+  <meta property="og:image:alt" content="Photograph from {{ page.title | escape }}">
+  <meta name="twitter:image" content="{{ cover | relative_url | absolute_url | escape }}">
+  <meta name="twitter:image:alt" content="Photograph from {{ page.title | escape }}">
+  {% endif %}
+  {% else %}<meta name="robots" content="noindex">{% endif %}
   <title>{{ page.title | default: site.title | escape }}</title>
-  <link rel="canonical" href="{{ destination | absolute_url | escape }}">
+  <link rel="canonical" href="{{ canonical | escape }}">
+  {% if page.layout == 'project' %}
+  <meta name="theme-color" content="#f2f0e9">
+  <link rel="stylesheet" href="{{ '/prototype/style.css' | relative_url }}?v=clean-projects-25">
+  <script src="{{ '/prototype/app.js' | relative_url }}?v=clean-projects-25" defer></script>
+  {% endif %}
 </head>
-<body><a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a></body>
+<body>{% if page.layout == 'project' %}{% include 'gallery-body.html' %}{% else %}<a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a>{% endif %}</body>
 </html>

@@ -86,8 +86,10 @@ class CatalogTests(unittest.TestCase):
 class DeploymentTests(unittest.TestCase):
     def environment(self, baseurl):
         environment = liquid.Environment()
+        environment.loader = liquid.DictLoader({'gallery-body.html': (preview.ROOT / '_includes/gallery-body.html').read_text(encoding='utf-8')})
         environment.add_filter('jsonify', lambda value: json.dumps(value, ensure_ascii=False))
         environment.add_filter('markdownify', preview.markdown.markdown)
+        environment.add_filter('normalize_whitespace', lambda value: ' '.join(str(value).split()))
         environment.add_filter('relative_url', lambda value: baseurl + '/' + value.lstrip('/'))
         environment.add_filter('absolute_url', lambda value: 'https://santacml.github.io' + value)
         return environment
@@ -136,6 +138,29 @@ class DeploymentTests(unittest.TestCase):
                 self.assertIn(f'content="0; url={base}/#{route}"', output)
                 self.assertIn(f'href="{base}/#{route}"', output)
 
+    def test_project_share_metadata_has_real_urls_and_authored_covers(self):
+        root = preview.ROOT
+        template = (root / '_includes/gallery-redirect.html').read_text(encoding='utf-8')
+        index = preview.frontmatter(root / 'projects/index.md')
+        for base in ['', '/gallery']:
+            for path in sorted((root / 'projects').glob('*/index.md')):
+                page = preview.frontmatter(path)
+                page['url'] = '/projects/' + path.parent.name + '/'
+                project = next((p for p in index['images'] if p['project-folder'] == page['url']), {})
+                cover = project.get('image_path', page['images'][0]['path'])
+                output = self.environment(base).from_string(template).render(
+                    site={'title': 'Birds & Buildings', 'pages': [index]},
+                    page=page, include={'route': '/project/' + path.parent.name},
+                )
+                self.assertIn('property="og:title"', output)
+                self.assertIn('name="twitter:card" content="summary_large_image"', output)
+                self.assertIn(f'property="og:image" content="https://santacml.github.io{base}{cover}"', output)
+                self.assertIn(f'property="og:url" content="https://santacml.github.io{base}{page["url"]}"', output)
+                self.assertIn(f'rel="canonical" href="https://santacml.github.io{base}{page["url"]}"', output)
+                self.assertNotIn('name="robots" content="noindex"', output)
+                self.assertNotIn('http-equiv="refresh"', output)
+                self.assertIn('class="viewer"', output)
+
 
 class HTTPTests(unittest.TestCase):
     @classmethod
@@ -172,9 +197,14 @@ class HTTPTests(unittest.TestCase):
 
     def test_old_urls_redirect_and_photo_paths_still_work(self):
         for base in ['', '/gallery']:
-            for old, new in [('projects/', '/projects'), ('projects/film-revival/', '/project/film-revival'), ('about/', '/')]:
+            for old, new in [('projects/', '/projects'), ('about/', '/')]:
                 with urlopen(self.origin + base + '/' + old) as response:
                     self.assertEqual(response.url, self.origin + base + '/#' + new)
+            with urlopen(self.origin + base + '/projects/film-revival/') as response:
+                self.assertEqual(response.url, self.origin + base + '/projects/film-revival/')
+                html = response.read().decode('utf-8')
+                self.assertIn(base + '/prototype/app.js', html)
+                self.assertNotIn('http-equiv="refresh"', html)
             with urlopen(self.origin + base + '/projects/film-revival/_13_0922.jpg') as response:
                 self.assertEqual(response.status, 200)
                 self.assertEqual(response.headers.get_content_type(), 'image/jpeg')
