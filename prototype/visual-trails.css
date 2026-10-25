@@ -1,0 +1,16 @@
+/* Preview-only discovery controls. Existing photo dimensions stay untouched. */
+.viewer-actions { display:flex; align-items:center; gap:10px; margin-left:auto; flex-shrink:0; }
+.visual-trail-toggle { flex-shrink:0; padding:8px; font-size:22px; line-height:1; color:#c8d2bf; }
+.visual-trail-toggle svg { display:block; width:22px; height:22px; }
+.visual-trail-toggle[hidden],.visual-trail-panel[hidden] { display:none; }
+.visual-trail-toggle[aria-expanded="true"] { color:#fff; }
+.visual-trail-panel { position:absolute; z-index:4; bottom:95px; left:50%; transform:translateX(-50%); width:min(540px,calc(100% - 40px)); display:flex; align-items:center; justify-content:center; gap:12px; padding:14px; background:#131613f5; border:1px solid #3b4439; border-radius:4px; }
+.visual-trail-photo { display:block; flex:1; min-width:0; height:92px; padding:0; }
+.visual-trail-photo img { width:100%; height:100%; object-fit:contain; }
+.visual-trail-photo:hover img { opacity:.8; }
+.visual-trail-back { flex:0 0 28px; min-height:44px; padding:0; font-size:22px; }
+.visual-trail-end { padding:20px; color:#a9b2a4; }
+@media(max-width:600px) {
+  .visual-trail-panel { bottom:140px; gap:8px; padding:10px; width:calc(100% - 28px); }
+  .visual-trail-photo { height:72px; }
+}

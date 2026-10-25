@@ -3,12 +3,20 @@
 	"tasks": [
 		{
 			"label": "Preview photography prototype",
+			"dependsOn": "Prepare visual discovery",
 			"type": "shell",
 			"command": "d:/Repos/experiment/.conda/python.exe",
 			"args": [
 				"prototype/preview.py"
 			],
 			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Prepare visual discovery",
+			"type": "shell",
+			"command": "d:/Repos/experiment/.conda/python.exe",
+			"args": ["prototype/visual_fingerprints.py"],
 			"problemMatcher": []
 		}
 	]

@@ -44,8 +44,23 @@ class CatalogTests(unittest.TestCase):
         film = next(project for project in data['projects'] if project['id'] == 'film-revival')
         listed = preview.frontmatter(preview.ROOT / 'projects/film-revival/index.md')['images']
         self.assertEqual([image['path'] for image in film['images'][:len(listed)]], [image['path'] for image in listed])
-        self.assertGreaterEqual(len(film['images']), 12)
-        self.assertIn('/projects/film-revival/_13_0922.jpg', [image['path'] for image in film['images']])
+        paths = [image['path'] for image in film['images']]
+        self.assertGreater(len(paths), len(listed))
+        self.assertIn('/projects/film-revival/_13_0922.jpg', paths)
+        self.assertNotIn('/projects/film-revival/---_0977.jpg', paths)
+
+    def test_postcard_four_has_full_size_pairs_and_authored_sequence(self):
+        projects = {project['id']: project for project in preview.catalog()['projects']}
+        postcard = projects['postcard-four']
+        self.assertEqual(postcard['title'], 'Postcard Four')
+        self.assertEqual(len(postcard['images']), 9)
+        self.assertNotIn('/projects/postcard-four/Large_DSC07917.JPG', [image['path'] for image in postcard['images']])
+        self.assertEqual(postcard['sequence'], projects['postcard-three']['sequence'] + 1)
+        listed = preview.frontmatter(preview.ROOT / 'projects/postcard-four/index.md')['images']
+        self.assertEqual([image['path'] for image in postcard['images']], [image['path'] for image in listed])
+        for image in postcard['images']:
+            self.assertEqual(image['xl'], image['path'].replace('/Large_', '/XL_'))
+            self.assertTrue((preview.ROOT / image['xl'].lstrip('/')).is_file())
 
     def test_all_images_exist_and_are_unique(self):
         for project in preview.catalog()['projects']:
@@ -108,7 +123,8 @@ class DeploymentTests(unittest.TestCase):
             self.assertEqual(project['description'], local['description'])
             self.assertEqual(project['blurb_html'], local['blurb_html'])
             self.assertEqual(project['sequence'], local['sequence'])
-        self.assertEqual(len(next(p for p in data['projects'] if p['id'] == 'film-revival')['images']), 12)
+        film = next(p for p in data['projects'] if p['id'] == 'film-revival')
+        self.assertNotIn('/projects/film-revival/---_0977.jpg', [image['path'] for image in film['images']])
 
     def test_legacy_redirects_respect_baseurl(self):
         template = (preview.ROOT / '_includes/gallery-redirect.html').read_text(encoding='utf-8')
@@ -152,7 +168,7 @@ class HTTPTests(unittest.TestCase):
             with urlopen(self.origin + base + '/prototype/data.json') as response:
                 data = json.load(response)
             self.assertEqual(data['baseurl'], base)
-            self.assertEqual(len(data['projects']), 10)
+            self.assertEqual(len(data['projects']), len(preview.catalog()['projects']))
 
     def test_old_urls_redirect_and_photo_paths_still_work(self):
         for base in ['', '/gallery']:

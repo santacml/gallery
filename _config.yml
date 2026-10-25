@@ -59,7 +59,7 @@ categories_path: "/journal/category/"
 tags_path: "/journal/tag/"
 gems: 
  - jekyll-paginate
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","prototype/preview.py","prototype/test_preview.py","prototype/requirements.txt","prototype/requirements-test.txt","prototype/README.md","prototype/__pycache__"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","prototype/preview.py","prototype/test_preview.py","prototype/visual_fingerprints.py","prototype/test_visual_fingerprints.py","prototype/requirements.txt","prototype/requirements-test.txt","prototype/README.md","prototype/__pycache__"]
 # Jekyll's nested-directory reader matches these includes by filename.
 include:
  - _13_0922.jpg

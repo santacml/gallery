@@ -49,7 +49,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .project-card { min-width:0; }
 .project-card .cover { display:block; background:var(--soft); overflow:hidden; }
 .project-card img { aspect-ratio:1.48; object-fit:cover; transition:opacity .25s; }
-.gallery-page .project-card img { object-fit:contain; }
+.gallery-page .project-card img { aspect-ratio:auto; height:auto; object-fit:contain; }
 .project-card a:hover img { opacity:.85; }
 .project-card:nth-child(4n+2) { margin-top:0; }
 .project-card .card-info { display:flex; justify-content:space-between; gap:20px; padding:15px 0 0; align-items:baseline; }
@@ -91,8 +91,8 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .series-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; align-items:start; }
 .series-gallery .photo-card { margin:0; }
 .series-gallery .photo-card img { object-fit:contain; }
-.series-gallery.packed-gallery { display:block; position:relative; }
-.packed-gallery > .photo-card { position:absolute; margin:0; }
+.series-gallery.packed-gallery,.gallery-page .project-grid.packed-gallery { display:block; position:relative; }
+.packed-gallery > .photo-card,.gallery-page .packed-gallery > .project-card { position:absolute; margin:0; }
 .end-note { font-size:11px; color:var(--muted); text-align:center; margin:65px 0; }
 .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:80px; }
 .related-grid .project-card { margin-top:0; }
@@ -113,9 +113,9 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .viewer { position:fixed; inset:0; margin:0; max-width:none; max-height:none; width:100%; height:100%; padding:0; border:0; background:#131613; color:#eeeFE9; }
 .viewer::backdrop { background:#131613; }
 .viewer[open] { display:grid; grid-template-rows:70px minmax(0,1fr) 95px; }
-.viewer-top,.viewer-bottom { display:flex; justify-content:space-between; align-items:center; padding:0 35px; gap:20px; font-size:12px; }
+.viewer-top,.viewer-bottom { display:flex; justify-content:space-between; align-items:center; padding:0 35px; gap:20px; font-size:14px; }
 .viewer-top { color:#a9b2a4; }
-.viewer-top button { font-size:12px; padding:10px 0 10px 20px; }
+.viewer-top button { font-size:14px; padding:10px 0 10px 20px; }
 .viewer-top button span { font-size:23px; margin-left:18px; }
 .viewer-stage { min-height:0; min-width:0; padding:0 85px; display:flex; justify-content:center; align-items:center; position:relative; }
 .viewer-stage img { height:100%; width:100%; object-fit:contain; }
@@ -123,8 +123,8 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .viewer-arrow { position:absolute; top:46%; padding:20px; font-size:26px; z-index:2; }
 .viewer-prev { left:10px; }.viewer-next { right:10px; }
 .viewer-bottom p { margin-bottom:3px; }
-.viewer-bottom a { color:#a9b2a4; font-size:11px; }
-#viewer-counter { color:#a9b2a4; font-size:11px; }
+.viewer-bottom a { color:#a9b2a4; font-size:14px; }
+#viewer-counter { color:#a9b2a4; font-size:13px; }
 @media(min-width:1500px) { .home-intro { padding-top:75px; }.project-grid { gap:65px 45px; } }
 @media(max-width:900px) { .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.site-header { gap:20px; }.wordmark { font-size:21px; }nav { gap:20px; }.project-heading-row { gap:35px; }.site-footer { flex-wrap:wrap; }.about { gap:40px; }.intro-note { max-width:210px; } }
 @media(max-width:600px) {
@@ -194,13 +194,18 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .load-more { border:0; border-radius:0; font-size:24px; margin:25px auto 35px; }
 @media(max-width:600px) {
   .home-projects { margin-top:24px; }
-  .project-grid { gap:16px; }
+  .project-grid { grid-template-columns:1fr; gap:24px; }
   .photo-card { margin-bottom:16px; }
   .photo-column { gap:16px; }
   .photo-column > .photo-card { margin:0; }
   .project-heading { padding:12px 0 23px; }
-  .project-heading h1 { font-size:15px; }
-  .photo-grid { gap:16px; }
+  .project-heading h1 { font-size:17px; }
+  .series-gallery { grid-template-columns:1fr; }
+  .photo-grid { grid-template-columns:1fr; gap:16px; }
+  nav,.project-name,.shuffle,.text-link { font-size:14px; }
+  .project-description { font-size:14px; }
+  .project-date { font-size:13px; }
+  .viewer-bottom a { font-size:14px; }
   .related-grid { grid-template-columns:1fr; gap:20px; }
   .related-grid .cover { flex-basis:88px; }
   .about h1 { font-size:23px; }

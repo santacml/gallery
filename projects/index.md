@@ -19,6 +19,11 @@ images:
     project-folder: /projects/postcard-three/
     gallery-name: Postcard Three
     updated: true
+
+  - image_path: /projects/postcard-four/Large_DSC01213.JPG
+    project-folder: /projects/postcard-four/
+    gallery-name: Postcard Four
+    updated: true
     
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/

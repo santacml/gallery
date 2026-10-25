@@ -51,12 +51,13 @@
   function projectIndex() {
     const filtered = projects.filter(project => state.projectFilter === 'all' || project.tags.includes(state.projectFilter));
     main.innerHTML = `<div class="page gallery-page"><h1 class="sr-only">Projects</h1><div class="project-grid">${filtered.map(projectCard).join('') || '<p class="empty">No projects.</p>'}</div></div>`;
+    layoutSeries();
   }
   function wanderPhotos() {
     const byID = new Map(photos.map(photo => [photo.id,photo]));
     return state.order.map(id => byID.get(id)).filter(photo => photo && (state.filter === 'all' || photo.project.tags.includes(state.filter)));
   }
-  function trailColumns() { return window.innerWidth <= 900 ? 2 : 3; }
+  function trailColumns() { return window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3; }
   function galleryMetrics(grid, count) {
     const gap = parseFloat(getComputedStyle(grid).columnGap);
     return { gap, width: (grid.clientWidth - gap * (count - 1)) / count };
@@ -110,14 +111,15 @@
     $('#wander-grid').innerHTML = pool.length ? trailMarkup(pool) : '<p class="empty">No photos.</p>';
   }
   function layoutSeries() {
-    const grid = main.querySelector('.series-gallery');
+    const grid = main.querySelector('.series-gallery,.gallery-page .project-grid');
     if (!grid) return;
-    const {width,gap} = galleryMetrics(grid,2);
-    const heights = [0,0];
+    const count = window.innerWidth <= 600 ? 1 : 2;
+    const {width,gap} = galleryMetrics(grid,count);
+    const heights = Array(count).fill(0);
     // DOM and viewer sequence stay unchanged; only physical placement changes.
     grid.classList.add('packed-gallery');
     Array.from(grid.children).forEach(card => {
-      const target = heights[0] <= heights[1] ? 0 : 1;
+      const target = heights.indexOf(Math.min(...heights));
       card.style.width = width + 'px';
       card.style.left = target * (width + gap) + 'px';
       card.style.top = heights[target] + 'px';
@@ -203,6 +205,7 @@
     $('#viewer-counter').textContent = '';
     $('#viewer-prev').disabled = viewerIndex === 0;
     $('#viewer-next').disabled = viewerIndex === viewerPhotos.length - 1;
+    document.dispatchEvent(new CustomEvent('gallery:photo', {detail:{photo,photos}}));
     if (viewerPhotos[viewerIndex + 1]) { const preload = new Image(); preload.src = imageURL(viewerPhotos[viewerIndex + 1]); }
   }
   function step(direction) {
@@ -246,6 +249,11 @@
     }
   });
   $('#viewer-close').addEventListener('click', () => hideViewer());
+  // Optional preview experiments can open a photo without changing gallery routes.
+  document.addEventListener('gallery:open-photo', event => {
+    const photo = photos.find(item => item.id === event.detail?.path);
+    if (photo) openViewer(photo);
+  });
   dialog.addEventListener('click', event => {
     if (event.target.closest('button,a')) return;
     const image = $('#viewer-image');
@@ -297,7 +305,7 @@
   // Covers without explicit dimensions (Jekyll catalog) get packed again when
   // their intrinsic dimensions arrive. Local preview reserves these upfront.
   main.addEventListener('load', event => {
-    if (event.target.matches('.series-gallery img')) layoutSeries();
+    if (event.target.matches('.series-gallery img,.gallery-page .project-grid img')) layoutSeries();
   },true);
   $('.skip-link').addEventListener('click', event => {
     event.preventDefault(); main.focus(); main.scrollIntoView();

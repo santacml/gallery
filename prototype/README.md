@@ -1,3 +1,26 @@
+# Visual discovery and mobile galleries
+
+The main site and prototype share visual discovery. In the photo viewer,
+the stacked-photo icon beside the magnifier reveals three automatically connected photographs. Color palette,
+light, coarse composition and orientation are compared offline using Pillow.
+One suggestion crosses projects; the trail avoids visited photos and detected
+near-duplicates. The tray's ← retraces your trail. Closing the viewer still works
+by clicking the black background.
+
+The existing preview task prepares the index automatically, processing only new
+or changed photos. The current 149-photo index is about 85 KB; a cached refresh
+takes about 0.6 seconds with no image decoding. No API, model, or browser image
+analysis is used. The generated public index is deployed as a static asset.
+The ignored fingerprint cache is local. Regenerate via the preparation
+task after adding images; `--check` validates without writing/decoding.
+
+Projects covers now retain natural proportions (including full-height portraits)
+and pack into two desktop columns without row holes. At widths up to 600px,
+Projects, individual galleries, home project cards and Wander use one column.
+Phone navigation/project labels/Shuffle are 14px; project headings 17px and prose
+14px. Desktop text sizes, page padding, viewer photo dimensions and compact
+related-project links remain unchanged.
+
 # Main-site promotion
 
 The approved design now also powers the root homepage. Shared frontend assets
