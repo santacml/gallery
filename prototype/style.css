@@ -73,7 +73,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .filter:hover:not([aria-pressed="true"]) { background:var(--soft); color:var(--ink); }
 .shuffle { font-size:12px; white-space:nowrap; padding:7px 0 7px 15px; }
 .photo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; align-items:start; }
-.photo-column { min-width:0; }
+.photo-column { min-width:0; display:flex; flex-direction:column; gap:28px; }
 .photo-card { break-inside:avoid; margin-bottom:32px; }
 .photo-card button { display:block; width:100%; padding:0; background:var(--soft); overflow:hidden; }
 .photo-card img { min-height:130px; }
@@ -90,6 +90,8 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .series-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; align-items:start; }
 .series-gallery .photo-card { margin:0; }
 .series-gallery .photo-card img { object-fit:contain; }
+.series-gallery.packed-gallery { display:block; position:relative; }
+.packed-gallery > .photo-card { position:absolute; margin:0; }
 .end-note { font-size:11px; color:var(--muted); text-align:center; margin:65px 0; }
 .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:80px; }
 .related-grid .project-card { margin-top:0; }
@@ -145,8 +147,10 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .hero-photo img { height:auto; min-height:0; max-height:none; object-fit:contain; }
 .hero-photo { background:transparent; }
 .home-projects { margin-top:32px; }
-.project-grid { gap:30px 24px; }
+.project-grid { gap:24px; }
 .photo-card { margin-bottom:24px; }
+.photo-column > .photo-card { margin:0; }
+.photo-column img { height:auto; }
 .home-page,.gallery-page,.wander-page,.series-gallery { padding-bottom:30px; }
 .project-name { margin-top:10px; font-size:12px; font-weight:400; color:var(--muted); letter-spacing:0; }
 .project-name a:hover { color:var(--ink); }
@@ -155,18 +159,70 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .shuffle { padding:8px 0 8px 18px; }
 .project-heading { display:flex; align-items:center; gap:20px; padding:22px 0 30px; }
 .project-heading h1 { font-size:16px; font-weight:400; letter-spacing:0; margin:0; }
-.project-heading .breadcrumb { margin:0; padding:8px 0; }
-.related-grid { margin-top:40px; margin-bottom:35px; }
+.project-heading .breadcrumb {
+  margin:0;
+  padding:8px;
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  font-weight:600;
+  line-height:1;
+  color:var(--ink);
+}
+.related-grid {
+  margin-top:40px;
+  margin-bottom:35px;
+  border-top:1px solid var(--line);
+  padding-top:24px;
+}
+.related-grid .project-card { display:flex; align-items:center; gap:16px; }
+.related-grid .cover { flex:0 0 112px; }
+.related-grid .project-card img { aspect-ratio:1.5; object-fit:cover; }
+.related-grid .project-name { margin:0; }
+.project-description { max-width:620px; margin:24px 0 48px; font-size:13px; line-height:1.85; color:var(--muted); overflow-wrap:anywhere; }
+.project-date { margin-bottom:14px; font-size:12px; }
+.project-prose p + p { margin-top:16px; }
+.project-prose a { text-decoration:underline; text-underline-offset:3px; }
+.project-prose a:hover { color:var(--ink); }
 .about h1 { font-size:24px; letter-spacing:-.025em; }
 .viewer-top { justify-content:flex-end; }
 .viewer-bottom { padding-bottom:12px; }
 .load-more { border:0; border-radius:0; font-size:24px; margin:25px auto 35px; }
 @media(max-width:600px) {
   .home-projects { margin-top:24px; }
-  .project-grid { gap:24px 16px; }
+  .project-grid { gap:16px; }
   .photo-card { margin-bottom:16px; }
+  .photo-column { gap:16px; }
+  .photo-column > .photo-card { margin:0; }
   .project-heading { padding:12px 0 23px; }
   .project-heading h1 { font-size:15px; }
   .photo-grid { gap:16px; }
+  .related-grid { grid-template-columns:1fr; gap:20px; }
+  .related-grid .cover { flex-basis:88px; }
   .about h1 { font-size:23px; }
 }
+
+/* Compact magnifier; the accessible label and tooltip describe its action. */
+#viewer-original {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:28px;
+  min-height:28px;
+  max-width:none;
+  flex-shrink:0;
+  padding:5px;
+  border:0;
+  border-radius:4px;
+  background:transparent;
+  color:#eef0e8;
+  font-size:13px;
+  line-height:1.4;
+  white-space:nowrap;
+}
+#viewer-original svg { width:18px; height:18px; flex-shrink:0; }
+#viewer-original:hover { background:#252e23; }
+#viewer-original:focus-visible { outline:2px solid #d2dfc7; outline-offset:4px; }

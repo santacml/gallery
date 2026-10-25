@@ -1,0 +1,13 @@
+{% assign destination = '/' | relative_url | append: '#' | append: include.route %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url={{ destination | escape }}">
+  <meta name="robots" content="noindex">
+  <title>{{ page.title | default: site.title | escape }}</title>
+  <link rel="canonical" href="{{ destination | absolute_url | escape }}">
+</head>
+<body><a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a></body>
+</html>

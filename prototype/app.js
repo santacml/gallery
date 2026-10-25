@@ -1,6 +1,7 @@
-/* Standalone design study. No selectors, scripts, or styles from the live site. */
+/* Shared photo-first gallery for the main site and design preview. */
 (() => {
   'use strict';
+  const catalogURL = new URL('data.json', document.currentScript.src);
   const $ = (selector) => document.querySelector(selector);
   const main = $('#main');
   const dialog = $('.viewer');
@@ -34,7 +35,8 @@
   }
   function projectCard(project, index) {
     const cover = project.images.find(image => image.path.toLowerCase() === project.cover.toLowerCase()) || project.images[0];
-    return `<article class="project-card"><a class="cover" href="${projectURL(project)}" aria-label="${esc(project.title)}">${imageMarkup(cover)}</a><h3 class="project-name"><a href="${projectURL(project)}">${esc(project.title)} <span aria-hidden="true">↗</span></a></h3></article>`;
+    const destination = project.destination || projectURL(project);
+    return `<article class="project-card"><a class="cover" href="${destination}" aria-label="${esc(project.title)}">${imageMarkup(cover)}</a><h3 class="project-name"><a href="${destination}">${esc(project.title)} <span aria-hidden="true">↗</span></a></h3></article>`;
   }
   function photoCard(photo, index, series = false) {
     return `<figure class="photo-card"><button class="photo-open" data-photo="${esc(photo.id)}" aria-label="View ${esc(photo.caption || 'photograph ' + (index + 1))} from ${esc(photo.project.title)}">${imageMarkup(photo, series && index === 0)}</button></figure>`;
@@ -55,21 +57,91 @@
     return state.order.map(id => byID.get(id)).filter(photo => photo && (state.filter === 'all' || photo.project.tags.includes(state.filter)));
   }
   function trailColumns() { return window.innerWidth <= 900 ? 2 : 3; }
+  function galleryMetrics(grid, count) {
+    const gap = parseFloat(getComputedStyle(grid).columnGap);
+    return { gap, width: (grid.clientWidth - gap * (count - 1)) / count };
+  }
+  function photoRatio(photo) {
+    return photo.width > 0 && photo.height > 0 ? photo.height / photo.width : 2 / 3;
+  }
+  // Balance count as well as height. Only new items are assigned: existing
+  // photographs never move when another Wander batch is appended.
+  function balancedPhotos(items, count, width, gap, initial = Array(count).fill(0)) {
+    const columns = Array.from({length:count}, () => []);
+    const heights = [...initial];
+    const capacity = Math.ceil(items.length / count);
+    const entries = items.map((photo,index) => ({photo,index,height:Math.max(130,width * photoRatio(photo)) + gap}));
+    const anchored = initial.every(height => height === 0) ? Math.min(count,items.length) : 0;
+    const pending = [...entries.slice(0,anchored),...entries.slice(anchored).sort((a,b) => b.height - a.height || a.index - b.index)];
+    pending.forEach(entry => {
+      const choices = heights.map((height,index) => ({height,index})).filter(choice => columns[choice.index].length < capacity);
+      const target = entry.index < anchored ? entry.index : choices.reduce((best,choice) => choice.height < best.height ? choice : best).index;
+      columns[target].push(entry);
+      heights[target] += entry.height;
+    });
+    // Small pair exchanges refine the ending without changing column counts.
+    // Preserve the first row, then preserve source order within each column.
+    for (let pass = 0; pass < 12; pass++) {
+      let best = null, improvement = 0;
+      for (let a = 0; a < count; a++) for (let b = a + 1; b < count; b++) {
+        columns[a].forEach((left,i) => columns[b].forEach((right,j) => {
+          if (left.index < anchored || right.index < anchored) return;
+          const delta = right.height - left.height;
+          const gain = heights[a] ** 2 + heights[b] ** 2 - (heights[a] + delta) ** 2 - (heights[b] - delta) ** 2;
+          if (gain > improvement + 0.01) { improvement = gain; best = {a,b,i,j,delta}; }
+        }));
+      }
+      if (!best) break;
+      const {a,b,i,j,delta} = best;
+      [columns[a][i],columns[b][j]] = [columns[b][j],columns[a][i]];
+      heights[a] += delta; heights[b] -= delta;
+    }
+    return columns.map(column => column.sort((a,b) => a.index - b.index));
+  }
   function trailMarkup(pool) {
-    const columns = Array.from({length:trailColumns()}, () => []);
-    pool.slice(0,state.limit).forEach((photo,index) => columns[index % columns.length].push(photoCard(photo,index)));
-    return columns.map(column => `<div class="photo-column">${column.join('')}</div>`).join('');
+    const count = trailColumns();
+    const {width,gap} = galleryMetrics($('#wander-grid'),count);
+    return balancedPhotos(pool.slice(0,state.limit),count,width,gap)
+      .map(column => `<div class="photo-column">${column.map(({photo,index}) => photoCard(photo,index)).join('')}</div>`).join('');
   }
   function wander() {
     const pool = wanderPhotos();
-    main.innerHTML = `<div class="page wander-page"><h1 class="sr-only">Wander</h1><div class="toolbar"><button class="shuffle" data-shuffle>↻ &nbsp; Shuffle</button></div><div class="photo-grid" id="wander-grid">${pool.length ? trailMarkup(pool) : '<p class="empty">No photos.</p>'}</div>${pool.length > state.limit ? '<button class="load-more" data-more aria-label="Load more photographs">↓</button>' : ''}</div>`;
+    main.innerHTML = `<div class="page wander-page"><h1 class="sr-only">Wander</h1><div class="toolbar"><button class="shuffle" data-shuffle><span aria-hidden="true">↻</span> &nbsp; Shuffle</button></div><div class="photo-grid" id="wander-grid"></div>${pool.length > state.limit ? '<button class="load-more" data-more aria-label="Load more photographs">↓</button>' : ''}</div>`;
+    $('#wander-grid').innerHTML = pool.length ? trailMarkup(pool) : '<p class="empty">No photos.</p>';
+  }
+  function layoutSeries() {
+    const grid = main.querySelector('.series-gallery');
+    if (!grid) return;
+    const {width,gap} = galleryMetrics(grid,2);
+    const heights = [0,0];
+    // DOM and viewer sequence stay unchanged; only physical placement changes.
+    grid.classList.add('packed-gallery');
+    Array.from(grid.children).forEach(card => {
+      const target = heights[0] <= heights[1] ? 0 : 1;
+      card.style.width = width + 'px';
+      card.style.left = target * (width + gap) + 'px';
+      card.style.top = heights[target] + 'px';
+      heights[target] += card.getBoundingClientRect().height + gap;
+    });
+    grid.style.height = Math.max(0,...heights) - gap + 'px';
   }
   function projectPage(id) {
     const project = projects.find(p => p.id === id);
     if (!project) return notFound();
-    const related = projects.find(p => p.id !== id && p.tags.some(tag => project.tags.includes(tag))) || projects.find(p => p.id !== id);
-    const contrast = projects.find(p => p.id !== id && p.id !== related?.id && !p.tags.some(tag => project.tags.includes(tag))) || projects.find(p => p.id !== id && p.id !== related?.id);
-    main.innerHTML = `<div class="page"><header class="project-heading"><a class="breadcrumb" href="#/projects" aria-label="All projects">←</a><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div><div class="related-grid" aria-label="Other projects">${related ? projectCard(related,0) : ''}${contrast ? projectCard(contrast,1) : ''}</div></div>`;
+    // Follow the authored projects-index order, never point back into the trail.
+    // New, unindexed projects follow the existing sequence alphabetically.
+    const sequence = [...projects].sort((a,b) => (a.sequence ?? Number.MAX_SAFE_INTEGER) - (b.sequence ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title));
+    const following = sequence.slice(sequence.findIndex(p => p.id === id) + 1);
+    const exits = [
+      {...sequence[0], title:'Projects', destination:'#/projects'},
+      {...sequence[sequence.length - 1], title:'Wander', destination:'#/wander'}
+    ];
+    const nextLinks = [...following.slice(0,2), ...exits].slice(0,2);
+    // HTML is generated from the site's own authored Markdown, never user input.
+    const story = project.blurb_html || (project.blurb ? `<p>${esc(project.blurb)}</p>` : '');
+    const description = project.description || story ? `<section class="project-description" aria-label="Project description">${project.description ? `<p class="project-date">${esc(project.description)}</p>` : ''}${story ? `<div class="project-prose">${story}</div>` : ''}</section>` : '';
+    main.innerHTML = `<div class="page"><header class="project-heading"><a class="breadcrumb" href="#/projects" aria-label="All projects">←</a><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
+    layoutSeries();
   }
   function notFound() {
     main.innerHTML = '<div class="page"><header class="page-intro"><h1>Not found</h1><a href="#/projects">Projects ↗</a></header></div>';
@@ -162,9 +234,10 @@
       const pool = wanderPhotos(), before = state.limit;
       state.limit += 18; saveState();
       const columns = $('#wander-grid').querySelectorAll('.photo-column');
-      pool.slice(before,state.limit).forEach((photo,index) => {
-        const position = before + index;
-        columns[position % columns.length].insertAdjacentHTML('beforeend',photoCard(photo,position));
+      const {width,gap} = galleryMetrics($('#wander-grid'),columns.length);
+      const heights = Array.from(columns,column => column.getBoundingClientRect().height + gap);
+      balancedPhotos(pool.slice(before,state.limit),columns.length,width,gap,heights).forEach((batch,index) => {
+        columns[index].insertAdjacentHTML('beforeend',batch.map(({photo,index:offset}) => photoCard(photo,before + offset)).join(''));
       });
       if (pool.length <= state.limit) button.remove();
       else button.textContent = '↓';
@@ -203,11 +276,17 @@
   window.addEventListener('resize', () => {
     const grid = $('#wander-grid');
     if (grid && grid.querySelectorAll('.photo-column').length !== trailColumns()) grid.innerHTML = trailMarkup(wanderPhotos());
+    layoutSeries();
   });
+  // Covers without explicit dimensions (Jekyll catalog) get packed again when
+  // their intrinsic dimensions arrive. Local preview reserves these upfront.
+  main.addEventListener('load', event => {
+    if (event.target.matches('.series-gallery img')) layoutSeries();
+  },true);
   $('.skip-link').addEventListener('click', event => {
     event.preventDefault(); main.focus(); main.scrollIntoView();
   });
-  fetch('./data.json').then(response => {
+  fetch(catalogURL).then(response => {
     if (!response.ok) throw new Error('Catalog unavailable');
     return response.json();
   }).then(data => {

@@ -6,14 +6,16 @@ layout: null
   "projects": [
   {% assign project_pages = site.pages | where: 'layout', 'project' | sort: 'url' %}
   {% for project in project_pages %}
-    {% assign cover = '' %}{% assign updated = false %}
-    {% for index_page in site.pages %}{% if index_page.layout == 'projects' %}{% for entry in index_page.images %}{% if entry.project-folder == project.url %}{% assign cover = entry.image_path %}{% assign updated = entry.updated %}{% endif %}{% endfor %}{% endif %}{% endfor %}
+    {% assign cover = '' %}{% assign updated = false %}{% assign sequence = 999999 %}
+    {% for index_page in site.pages %}{% if index_page.layout == 'projects' %}{% for entry in index_page.images %}{% if entry.project-folder == project.url %}{% assign cover = entry.image_path %}{% assign updated = entry.updated %}{% assign sequence = forloop.index0 %}{% endif %}{% endfor %}{% endif %}{% endfor %}
     {% capture listed_paths %}|{% for image in project.images %}{{ image.path }}|{% endfor %}{% endcapture %}
     {
-      "id": {{ project.url | split: '/' | last | jsonify }},
+      "id": {{ project.url | remove_first: '/projects/' | remove: '/' | jsonify }},
       "title": {{ project.title | jsonify }},
+      "sequence": {{ sequence | jsonify }},
       "description": {{ project.description | default: '' | jsonify }},
       "blurb": {{ project.blurb | default: '' | jsonify }},
+      "blurb_html": {{ project.blurb | default: '' | markdownify | jsonify }},
       "tags": {{ project.discovery_tags | default: '' | jsonify }},
       "cover": {{ cover | jsonify }},
       "updated": {% if updated %}true{% else %}false{% endif %},

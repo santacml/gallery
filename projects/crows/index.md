@@ -6,7 +6,7 @@ active: projects
 blurb: In 2023, I took a stab at a series of pictures focused solely on crows. At this time, I was using an odd, cheap, antique lens which results in grainy, washed-out photos. Still, this project was a  turning point in photography for me and I'm proud of the work! 
 images:
   - path: /projects/crows/Large_DSC07159.jpg
-    xl_path: /projects/crows/XL_DSC07159.JPG # optional, this pattern on default
+    xl_path: /projects/crows/XL_DSC07159.jpg # Match the original filename on case-sensitive hosting.
     caption: American Crow
   - path: /projects/crows/Large_DSC06693.JPG
     caption: American Crow

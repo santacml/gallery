@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: gallery-redirect
 title: "About"
 description: ""
 active: about

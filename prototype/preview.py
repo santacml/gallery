@@ -15,6 +15,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import yaml
+import markdown
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +34,7 @@ def frontmatter(path: Path) -> dict:
 def catalog() -> dict:
     index = frontmatter(ROOT / 'projects' / 'index.md')
     covers = {p['project-folder']: p for p in index.get('images', [])}
+    sequence = {p['project-folder']: i for i, p in enumerate(index.get('images', []))}
     projects = []
     for metadata in sorted((ROOT / 'projects').glob('*/index.md')):
         data = frontmatter(metadata)
@@ -75,7 +77,9 @@ def catalog() -> dict:
             })
         projects.append({
             'id': metadata.parent.name, 'title': data.get('title', metadata.parent.name),
+            'sequence': sequence.get(folder, 999999),
             'description': data.get('description') or '', 'blurb': data.get('blurb') or '',
+            'blurb_html': markdown.markdown(data.get('blurb') or ''),
             'cover': cover.get('image_path', ''), 'updated': bool(cover.get('updated')),
             'tags': data.get('discovery_tags', []), 'images': prepared,
         })
@@ -90,12 +94,18 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = unquote(urlsplit(self.path).path)
-        if path == '/':
+        if path == '/gallery':
             self.send_response(302)
-            self.send_header('Location', '/prototype/')
+            self.send_header('Location', '/gallery/')
             self.end_headers()
-        elif path == '/prototype/data.json':
-            body = json.dumps(catalog(), ensure_ascii=False).encode('utf-8')
+            return
+        # Mirror GitHub Pages' /gallery baseurl as well as local root hosting.
+        baseurl = '/gallery' if path.startswith('/gallery/') else ''
+        path = path[len(baseurl):]
+        if path == '/prototype/data.json':
+            data = catalog()
+            data['baseurl'] = baseurl
+            body = json.dumps(data, ensure_ascii=False).encode('utf-8')
             self.send_body(body, 'application/json; charset=utf-8')
         elif path.startswith('/prototype/thumb/projects/'):
             source = (ROOT / path.removeprefix('/prototype/thumb/')).resolve()
@@ -115,7 +125,25 @@ class Handler(SimpleHTTPRequestHandler):
             except (OSError, ValueError):
                 self.send_error(404)
         else:
-            super().do_GET()
+            if path.rstrip('/') == '/projects':
+                target = '/projects'
+            elif path.rstrip('/') == '/about':
+                target = '/'
+            elif path == '/404.html':
+                target = '/not-found'
+            else:
+                match = re.fullmatch(r'/projects/([^/]+)/?', path)
+                target = '/project/' + match[1] if match and (ROOT / 'projects' / match[1] / 'index.md').is_file() else None
+            if target is not None:
+                self.send_response(302)
+                self.send_header('Location', baseurl + '/#' + target)
+                self.end_headers()
+                return
+            self.path = path
+            try:
+                super().do_GET()
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+                pass  # Browsing away can cancel an in-flight original image.
 
     def send_body(self, body: bytes, content_type: str, cache: bool = False):
         self.send_response(200)
@@ -134,8 +162,8 @@ if __name__ == '__main__':
     parser.add_argument('--port', type=int, default=4173)
     args = parser.parse_args()
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
-    print(f'Prototype ready: http://127.0.0.1:{args.port}/prototype/', flush=True)
-    print('Original site files and photographs are unchanged. Ctrl+C stops preview.', flush=True)
+    print(f'Gallery ready: http://127.0.0.1:{args.port}/', flush=True)
+    print('Also previews the /gallery/ deployment baseurl. Photographs are never modified. Ctrl+C stops preview.', flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

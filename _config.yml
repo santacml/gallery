@@ -34,9 +34,9 @@ comments :
 # Internal nav
 nav:
   - HOME: "https://santacml.github.io/gallery/"
-  - PROJECTS: "https://santacml.github.io/gallery/projects/"  
+  - PROJECTS: "https://santacml.github.io/gallery/#/projects"
+  - WANDER: "https://santacml.github.io/gallery/#/wander"
   # - JOURNAL: "https://santacml.github.io/gallery/journal/"
-  - ABOUT: "https://santacml.github.io/gallery/about/"
 
 # All translation keys
 translations:
@@ -44,8 +44,8 @@ translations:
   permalink: "/404.html"
 
 # Server
-destination:      	 ./_site
-port:             	 4000
+destination: ./_site
+port: 4000
 
 
 # Build settings
@@ -59,7 +59,11 @@ categories_path: "/journal/category/"
 tags_path: "/journal/tag/"
 gems: 
  - jekyll-paginate
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","prototype/preview.py","prototype/test_preview.py","prototype/requirements.txt","prototype/requirements-test.txt","prototype/README.md","prototype/__pycache__"]
+# Jekyll normally ignores leading underscores, including these film scans.
+include:
+ - projects/film-revival/_13_0922.jpg
+ - projects/film-revival/_24_0933.jpg
 
 # SiteMap
 sitemap:

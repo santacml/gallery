@@ -1,204 +1,32 @@
----
-layout: home
-main-title: "Birds & Buildings"
-subtitle: ""
-description: "Amongst other things"
-active: home
-first_image: /projects/postcard-one/Large_DSC04126.JPG
----
-<!-- main-title: "PHOT&#8226;O&#8226;RAMA" -->
-
-
-<html class="no-js" lang="en">
+<!doctype html>
+<html lang="en" data-theme="paper">
 <head>
-	<meta content="charset=utf-8">
-
-<!-- CSS -->
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="{{ site.baseurl }}/css/galleries.css" media="screen" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Birds, buildings, and the things in between. Photographs by Michael Santacroce.">
+  <meta name="theme-color" content="#f2f0e9">
+  <title>Birds & Buildings</title>
+  <link rel="stylesheet" href="./prototype/style.css?v=main-site-11">
+  <script src="./prototype/app.js?v=project-order-12" defer></script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W09TQLC7M1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W09TQLC7M1');
-</script>
-
-<body class="fullscreen">
-
-<!-- MAIN CONTENT SECTION  _____________________________________________-->
-	<section id="content" role="main">
-		<div class="wrapper">
-
-			<!-- WYSIWYG -->
-
-		<div class="position-absolute">
-				<h2 class="big no-margin"><strong>{{ page.main-title }}</strong></h2>
-				<h2>{{ page.subtitle }}</h2> 
-                     <div class="entry-summary">
-							<p>{{ page.description }}</p>
-						</div><br />
-			</div>
-			
-			<div class="gallery fullscreen-gallery">
-				
-				<!-- First image (always shown first) -->
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-<img src="{{ site.url }}{{ site.baseurl }}{{ page.first_image }}" loading="lazy">
-				</header>
-				</figure>
-
-				</div>
-
-<!-- Collect all project image paths for random slideshow -->
-<script>
-window._allProjectImages = [
-{% for p in site.pages %}{% if p.layout == 'project' %}{% for image in p.images %}{% if image.xl_path %}"{{ site.url }}{{ site.baseurl }}{{ image.xl_path }}"{% else %}"{{ site.url }}{{ site.baseurl }}{{ image.path }}"{% endif %},
-{% endfor %}{% endif %}{% endfor %}
-];
-window._firstImage = "{{ site.url }}{{ site.baseurl }}{{ page.first_image }}";
-</script>
-			<!-- END WYSIWYG -->
-			
-	
-		</div><!-- END .wrapper -->
-		
-	</section>
-
-<div id="footer" role="contentinfo">
-		<ul class="soc-icons">
-
-                 {% if site.facebook_username %}
-			<li>
-   <a href="https://facebook.com/{{ site.facebook_username }}" style="
-color:#dddddd; target="_blank" title="Facebook">
-                       <i class="fa fa-facebook"></i>
-                     </span>
-</a></li>
-    {% endif %}
- {% if site.twitter_username %}
-			<li>
-   <a href="https://twitter.com/{{ site.twitter_username }}" style="
-color:#dddddd; target="_blank" title="Twitter">
-                       <i class="fa fa-twitter"></i>
-                     </span>
-</a></li>
-    {% endif %}
-                {% if site.instagram_username %}
-			<li>
-   <a href="https://instagram.com/{{ site.instagram_username }}" style="
-color:#dddddd; target="_blank" title="Instagram">
-                       <i class="fa fa-instagram"></i>
-                     </span>
-</a></li>
-    {% endif %}
-                    {% if site.flickr_username %}
-						<li>
-   <a href="https://flickr.com/photos/{{ site.flickr_username }}" style="
-color:#dddddd; target="_blank" title="Flickr">
-              <i class="fa fa-flickr"></i>
-                     </span>
- </a></li>	
-     {% endif %}
-                    {% if site.deviantart_username %}
-			<li>
-   <a href="http://{{ site.deviantart_username }}.deviantart.com" style="
-color:#dddddd; target="_blank" title="DeviantArt">
-<i class="fa fa-deviantart"></i> </span>
-</a></li>	
-    {% endif %}
-                    {% if site.github_username %}
-                <li>
-   <a href="https://github.com/{{ site.github_username }}" style="
-color:#dddddd; target="_blank" title="Github">
-              <i class="fa fa-github"></i>
-                     </span>
-                   {% endif %}
-<li>
-    <!-- <a href="mailto:{{ site.email }}" style="
-color:#dddddd; target="_blank" title="Email">
-              <i class="fa fa-envelope-o"></i></span>
-          </a>  -->
-      </li>
-	
-					
-		</ul>	
-	</div>
-
-  
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<!-- include gallery cycle plugin -->
-<script src="{{ site.baseurl }}/js/jquery.cycle.min.js"></script>
-<!-- include custom script -->
-<script src="{{ site.baseurl }}/js/scripts.js"></script>
-
-<!-- Drag-to-pan for fullscreen gallery images -->
-<script>
-(function() {
-  var isDragging = false;
-  var startX, startY, startPosX, startPosY;
-  var posX = 50, posY = 50; // percentage position (50 = center)
-  
-  var imgs = document.querySelectorAll('.fullscreen-gallery .gallery-icon img');
-  
-  imgs.forEach(function(img) {
-    // Mouse events
-    img.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      startPosX = posX;
-      startPosY = posY;
-      e.preventDefault();
-    });
-    
-    // Touch events
-    img.addEventListener('touchstart', function(e) {
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      startPosX = posX;
-      startPosY = posY;
-    }, { passive: true });
-  });
-  
-  document.addEventListener('mousemove', function(e) {
-    if (!isDragging) return;
-    var deltaX = (e.clientX - startX) / 5;
-    var deltaY = (e.clientY - startY) / 5;
-    posX = Math.max(0, Math.min(100, startPosX - deltaX));
-    posY = Math.max(0, Math.min(100, startPosY - deltaY));
-    imgs.forEach(function(img) {
-      img.style.objectPosition = posX + '% ' + posY + '%';
-    });
-  });
-  
-  document.addEventListener('touchmove', function(e) {
-    if (!isDragging) return;
-    var deltaX = (e.touches[0].clientX - startX) / 5;
-    var deltaY = (e.touches[0].clientY - startY) / 5;
-    posX = Math.max(0, Math.min(100, startPosX - deltaX));
-    posY = Math.max(0, Math.min(100, startPosY - deltaY));
-    imgs.forEach(function(img) {
-      img.style.objectPosition = posX + '% ' + posY + '%';
-    });
-  }, { passive: true });
-  
-  document.addEventListener('mouseup', function() { isDragging = false; });
-  document.addEventListener('touchend', function() { isDragging = false; });
-})();
-</script>
-
-
-       </body>
-    </html>
-
+<body>
+  <a class="skip-link" href="#main">Skip to photographs</a>
+  <header class="site-header">
+    <a class="wordmark" href="#/" aria-label="Birds and Buildings home">birds <span>&</span> buildings<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#/projects" data-nav="projects">Projects <span aria-hidden="true">↗</span></a>
+      <a href="#/wander" data-nav="wander">Wander <span aria-hidden="true">↗</span></a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to charcoal theme" title="Switch theme">◐</button>
+  </header>
+  <main id="main" tabindex="-1"><p class="loading" role="status" aria-label="Loading photographs">…</p></main>
+  <dialog class="viewer" aria-label="Photograph viewer">
+    <div class="viewer-top"><span id="viewer-project" class="sr-only"></span><button type="button" id="viewer-close" aria-label="Close photograph"><span aria-hidden="true">×</span></button></div>
+    <button class="viewer-arrow viewer-prev" id="viewer-prev" type="button" aria-label="Previous photograph">←</button>
+    <div class="viewer-stage"><img id="viewer-image" alt=""><p id="viewer-error" hidden>That photograph couldn’t load. Try the original below.</p></div>
+    <button class="viewer-arrow viewer-next" id="viewer-next" type="button" aria-label="Next photograph">→</button>
+    <div class="viewer-bottom"><div><p id="viewer-caption"></p><a id="viewer-series" href="#/projects"></a></div><span id="viewer-counter" aria-live="polite"></span><a id="viewer-original" target="_blank" rel="noopener" aria-label="Open full-size photograph in a new tab" title="Open full size in a new tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5.5 5.5M10 7v6M7 10h6"/></svg></a></div>
+  </dialog>
+  <div class="sr-only" id="announcements" aria-live="polite"></div>
+</body>
+</html>

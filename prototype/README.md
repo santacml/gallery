@@ -1,4 +1,37 @@
+# Main-site promotion
+
+The approved design now also powers the root homepage. Shared frontend assets
+remain here to avoid maintaining two versions. The catalog is resolved relative
+to the script, so both the main entry point and this prototype work under the
+GitHub Pages baseurl. Earlier isolation notes below describe the prototype phase.
+
+Project dates and authored Markdown blurbs are displayed after the photographs,
+before the related-project links. Legacy project/index URLs redirect into the new
+gallery. The primary config now includes the two underscore-prefixed Film Revival
+scans, so publishing no longer requires the optional config overlay.
+
+Preview the main site at http://127.0.0.1:4173/ or the deployment-path equivalent
+at http://127.0.0.1:4173/gallery/. GitHub Pages publishes the main site from
+`gh-pages`; the previous site is preserved by the `original-site` backup tag.
+
 # Isolated photography prototype
+
+## Spacing-only repair
+
+Rollback checkpoint before this repair: `7475b71`.
+
+- Project photographs pack into the existing two column widths, eliminating
+  row-height holes without cropping. DOM and image-viewer order are preserved.
+- Wander batches balance image counts and proportional heights, including
+  portrait/landscape differences. Existing images stay put on Load more.
+- Each grid uses matching horizontal and vertical gutters: projects 24px,
+  Wander 28px, and 16px on phones. Typography, icons, colors, and column counts
+  are unchanged from the checkpoint.
+- Geometry checked for all ten projects at 1440px and 390px using isolated
+  iframes, not shared-browser device emulation. Twelve shuffled batches per
+  size checked for even counts and unique photos; append stability verified.
+- Perfectly level column bottoms cannot be guaranteed without cropping,
+  resizing, or relaxing even image counts. The layout minimizes that remainder.
 
 ## Photo-first revision
 
