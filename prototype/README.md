@@ -1,6 +1,21 @@
-# Visual discovery and mobile galleries
+# Navigation, Wander and mobile galleries
 
-The main site and prototype share visual discovery. In the photo viewer,
+Projects is the homepage. The wordmark is static, with explicit Projects and
+Wander navigation links. Wander creates a fresh randomized order on every visit
+and Shuffle, taking one randomly chosen photo per available project per round
+to avoid project streaks. It no longer restores old session orders or prepends
+new photos in a clump. An IntersectionObserver loads batches of 18 near the
+bottom, without moving existing cards or keyboard focus; loading stops when
+the catalog is exhausted. Leaving Wander disconnects the observer.
+
+The low-level visual recommendation experiment is disabled in both entrypoints:
+palette and composition similarity did not reliably imply related subject matter.
+Its source and offline index are retained for future experimentation, but the
+viewer exposes only the full-size magnifier.
+
+## Previous visual experiment (disabled)
+
+The previous main-site and prototype visual discovery experiment used
 the stacked-photo icon beside the magnifier reveals three automatically connected photographs. Color palette,
 light, coarse composition and orientation are compared offline using Pillow.
 One suggestion crosses projects; the trail avoids visited photos and detected
@@ -15,8 +30,8 @@ The ignored fingerprint cache is local. Regenerate via the preparation
 task after adding images; `--check` validates without writing/decoding.
 
 Projects covers now retain natural proportions (including full-height portraits)
-and pack into two desktop columns without row holes. At widths up to 600px,
-Projects, individual galleries, home project cards and Wander use one column.
+and pack into two desktop columns without row holes. At widths up to 900px,
+Projects, individual galleries and Wander use one column.
 Phone navigation/project labels/Shuffle are 14px; project headings 17px and prose
 14px. Desktop text sizes, page padding, viewer photo dimensions and compact
 related-project links remain unchanged.

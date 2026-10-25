@@ -75,6 +75,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .shuffle { font-size:12px; white-space:nowrap; padding:7px 0 7px 15px; }
 .photo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; align-items:start; }
 .photo-column { min-width:0; display:flex; flex-direction:column; gap:28px; }
+.wander-sentinel { height:1px; }
 .photo-card { break-inside:avoid; margin-bottom:32px; }
 .photo-card button { display:block; width:100%; padding:0; background:var(--soft); overflow:hidden; }
 .photo-card img { min-height:130px; }

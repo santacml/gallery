@@ -12,6 +12,7 @@
   };
   let projects = [], photos = [], base = '', renderedRoute = '', viewerPhotos = [], viewerIndex = 0;
   let returnFocus = null;
+  let wanderObserver = null;
   const scrollPositions = new Map();
   const state = { filter: 'all', order: [], limit: 18, projectFilter: 'all' };
   const esc = (value = '') => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -26,8 +27,21 @@
     }
     return copy;
   };
-  function saveState() {
-    try { sessionStorage.setItem('field-notes-wander', JSON.stringify(state)); } catch (_) { /* Private mode is fine. */ }
+  function freshWander() {
+    const buckets = projects.map(project => shuffle(project.images));
+    const order = [];
+    let previous = null;
+    while (buckets.some(bucket => bucket.length)) {
+      const round = shuffle(buckets.filter(bucket => bucket.length));
+      if (round.length > 1 && round[0][0].project.id === previous) round.push(round.shift());
+      round.forEach(bucket => {
+        const photo = bucket.pop();
+        order.push(photo.id);
+        previous = photo.project.id;
+      });
+    }
+    state.order = order;
+    state.limit = 18;
   }
   function imageMarkup(photo, eager = false) {
     const dimensions = photo.width && photo.height ? ` width="${photo.width}" height="${photo.height}"` : '';
@@ -99,9 +113,38 @@
       .map(column => `<div class="photo-column">${column.map(({photo,index}) => photoCard(photo,index)).join('')}</div>`).join('');
   }
   function wander() {
+    wanderObserver?.disconnect();
     const pool = wanderPhotos();
-    main.innerHTML = `<div class="page wander-page"><h1 class="sr-only">Wander</h1><div class="toolbar"><button class="shuffle" data-shuffle><span aria-hidden="true">↻</span> &nbsp; Shuffle</button></div><div class="photo-grid" id="wander-grid"></div>${pool.length > state.limit ? '<button class="load-more" data-more aria-label="Load more photographs">↓</button>' : ''}</div>`;
+    main.innerHTML = `<div class="page wander-page"><h1 class="sr-only">Wander</h1><div class="toolbar"><button class="shuffle" data-shuffle><span aria-hidden="true">↻</span> &nbsp; Shuffle</button></div><div class="photo-grid" id="wander-grid"></div><div class="wander-sentinel" aria-hidden="true"></div></div>`;
     $('#wander-grid').innerHTML = pool.length ? trailMarkup(pool) : '<p class="empty">No photos.</p>';
+    if (pool.length > state.limit) {
+      wanderObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting) && !dialog.open) appendWander();
+      }, {rootMargin:'600px 0px'});
+      wanderObserver.observe($('.wander-sentinel'));
+    }
+  }
+  function appendWander() {
+    const grid = $('#wander-grid');
+    if (!grid || dialog.open) return;
+    const pool = wanderPhotos(), before = state.limit;
+    if (before >= pool.length) return;
+    state.limit = Math.min(before + 18,pool.length);
+    const columns = grid.querySelectorAll('.photo-column');
+    const {width,gap} = galleryMetrics(grid,columns.length);
+    const heights = Array.from(columns,column => column.getBoundingClientRect().height + gap);
+    balancedPhotos(pool.slice(before,state.limit),columns.length,width,gap,heights).forEach((batch,index) => {
+      columns[index].insertAdjacentHTML('beforeend',batch.map(({photo,index:offset}) => photoCard(photo,before + offset)).join(''));
+    });
+    if (state.limit >= pool.length) wanderObserver?.disconnect();
+    else {
+      // Re-arm after moving the sentinel so fast scrolling cannot miss the
+      // next batch when no intermediate non-intersecting frame is painted.
+      const sentinel = $('.wander-sentinel');
+      wanderObserver?.unobserve(sentinel);
+      wanderObserver?.observe(sentinel);
+    }
+    $('#announcements').textContent = `${state.limit} of ${pool.length} photographs shown`;
   }
   function layoutSeries() {
     const grid = main.querySelector('.series-gallery,.gallery-page .project-grid');
@@ -135,7 +178,7 @@
     // HTML is generated from the site's own authored Markdown, never user input.
     const story = project.blurb_html || (project.blurb ? `<p>${esc(project.blurb)}</p>` : '');
     const description = project.description || story ? `<section class="project-description" aria-label="Project description">${project.description ? `<p class="project-date">${esc(project.description)}</p>` : ''}${story ? `<div class="project-prose">${story}</div>` : ''}</section>` : '';
-    main.innerHTML = `<div class="page"><header class="project-heading"><a class="breadcrumb" href="#/projects" aria-label="All projects">←</a><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
+    main.innerHTML = `<div class="page"><header class="project-heading"><a class="breadcrumb" href="#/projects" aria-label="All projects"><svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6-6 6 6 6M3 12h14"/></svg></a><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
     layoutSeries();
   }
   function notFound() {
@@ -149,21 +192,22 @@
     const {path,params} = currentRoute();
     if (renderedRoute !== path) {
       if (renderedRoute) scrollPositions.set(renderedRoute,window.scrollY);
+      wanderObserver?.disconnect();
       hideViewer(false);
       renderedRoute = path;
       document.querySelectorAll('[data-nav]').forEach(link => {
-        const active = path === '/' + link.dataset.nav || (link.dataset.nav === 'projects' && path.startsWith('/project/'));
+        const active = path === '/' + link.dataset.nav || (link.dataset.nav === 'projects' && (path === '/' || path.startsWith('/project/')));
         if (active) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
       });
       let title = '';
       if (path === '/') projectIndex();
-      else if (path === '/wander') { wander(); title = 'Wander'; }
+      else if (path === '/wander') { freshWander(); wander(); title = 'Wander'; }
       else if (path.startsWith('/project/')) {
         const id = decodeURIComponent(path.slice(9));
         projectPage(id); title = projects.find(p => p.id === id)?.title || 'Not found';
       } else notFound();
       document.title = title ? title + ' — Birds & Buildings' : 'Birds & Buildings';
-      window.scrollTo({top:scrollPositions.get(path) || 0,behavior:'instant'});
+      window.scrollTo({top:path === '/wander' ? 0 : scrollPositions.get(path) || 0,behavior:'instant'});
       main.focus({preventScroll:true});
     }
     const photo = photos.find(p => p.id === params.get('photo'));
@@ -219,25 +263,12 @@
       const isWander = button.dataset.scope === 'wander';
       if (isWander) { state.filter = button.dataset.filter; state.limit = 18; wander(); }
       else { state.projectFilter = button.dataset.filter; projectIndex(); }
-      saveState();
       main.querySelector(`[data-filter="${button.dataset.filter}"]`)?.focus({preventScroll:true});
       $('#announcements').textContent = isWander ? `${wanderPhotos().length} photographs` : 'Project filter updated';
     } else if (button.hasAttribute('data-shuffle')) {
-      state.order = shuffle(photos).map(p => p.id); state.limit = 18; saveState(); wander();
+      freshWander(); wander();
+      window.scrollTo({top:0,behavior:'instant'});
       $('[data-shuffle]').focus({preventScroll:true}); $('#announcements').textContent = 'Shuffled.';
-    } else if (button.hasAttribute('data-more')) {
-      const pool = wanderPhotos(), before = state.limit;
-      state.limit += 18; saveState();
-      const columns = $('#wander-grid').querySelectorAll('.photo-column');
-      const {width,gap} = galleryMetrics($('#wander-grid'),columns.length);
-      const heights = Array.from(columns,column => column.getBoundingClientRect().height + gap);
-      balancedPhotos(pool.slice(before,state.limit),columns.length,width,gap,heights).forEach((batch,index) => {
-        columns[index].insertAdjacentHTML('beforeend',batch.map(({photo,index:offset}) => photoCard(photo,before + offset)).join(''));
-      });
-      if (pool.length <= state.limit) button.remove();
-      else button.textContent = '↓';
-      $('#wander-grid').querySelector(`[data-photo="${CSS.escape(pool[before].id)}"]`)?.focus({preventScroll:true});
-      $('#announcements').textContent = `${Math.min(state.limit,pool.length)} of ${pool.length} photographs shown`;
     }
   });
   $('#viewer-close').addEventListener('click', () => hideViewer());
@@ -321,17 +352,10 @@
     // Recently expanded work first. Unknown future projects remain discoverable.
     projects.sort((a,b) => Number(b.updated) - Number(a.updated) || a.title.localeCompare(b.title));
     photos = projects.flatMap(project => project.images);
-    try { const saved = JSON.parse(sessionStorage.getItem('field-notes-wander')); if (saved) Object.assign(state,saved); } catch (_) { /* Start fresh. */ }
-    const known = new Set(photos.map(p => p.id));
-    state.order = Array.isArray(state.order) ? state.order.filter(id => known.has(id)) : [];
-    const existing = new Set(state.order);
-    const newcomers = shuffle(photos.filter(p => !existing.has(p.id))).map(p => p.id);
-    state.order = [...newcomers,...state.order];
     // Clear saved filters from the earlier, text-heavy prototype.
     state.filter = 'all';
     state.projectFilter = 'all';
     state.limit = Number.isFinite(state.limit) ? Math.max(18,state.limit) : 18;
-    saveState();
     if (!projects.length) throw new Error('No projects found');
     route();
   }).catch(error => {
