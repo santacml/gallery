@@ -60,10 +60,10 @@ tags_path: "/journal/tag/"
 gems: 
  - jekyll-paginate
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","prototype/preview.py","prototype/test_preview.py","prototype/requirements.txt","prototype/requirements-test.txt","prototype/README.md","prototype/__pycache__"]
-# Jekyll normally ignores leading underscores, including these film scans.
+# Jekyll's nested-directory reader matches these includes by filename.
 include:
- - projects/film-revival/_13_0922.jpg
- - projects/film-revival/_24_0933.jpg
+ - _13_0922.jpg
+ - _24_0933.jpg
 
 # SiteMap
 sitemap:

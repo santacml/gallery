@@ -1,5 +1,4 @@
-# Optional Jekyll overlay only; the existing _config.yml is unchanged.
-# Build using both config files to include underscore-prefixed film scans.
+# Legacy optional overlay; the main config already includes these scans.
 include:
-  - projects/film-revival/_13_0922.jpg
-  - projects/film-revival/_24_0933.jpg
+  - _13_0922.jpg
+  - _24_0933.jpg

@@ -90,7 +90,8 @@ class DeploymentTests(unittest.TestCase):
             if not path.is_file() or path.suffix.lower() not in preview.IMAGE_EXTENSIONS:
                 continue
             relative = path.relative_to(root).as_posix()
-            if path.name.startswith('_') and relative not in config['include']:
+            # Jekyll filters nested-directory entries by basename, not full path.
+            if path.name.startswith('_') and path.name not in config['include']:
                 continue
             static_files.append({'path': '/' + relative, 'name': path.name, 'extname': path.suffix})
         template = (root / 'prototype/data.json').read_text(encoding='utf-8').split('---', 2)[2]
