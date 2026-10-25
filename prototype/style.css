@@ -16,7 +16,7 @@ img { display:block; width:100%; height:auto; }
 figure,p,h1,h2,h3 { margin:0; }
 ::selection { background:var(--accent); color:var(--bg); }
 .site-header { padding:27px var(--pad); display:flex; align-items:center; gap:42px; border-bottom:1px solid var(--line); }
-.wordmark { font-size:23px; font-weight:650; letter-spacing:-1.1px; margin-right:auto; white-space:nowrap; }
+.wordmark { font-size:26px; font-weight:650; letter-spacing:-1.1px; margin-right:auto; white-space:nowrap; }
 .wordmark span:not(.wordmark-dot) { font-weight:400; font-family:Georgia,serif; font-style:italic; }
 .wordmark-dot { color:var(--accent); }
 nav { display:flex; gap:31px; font-size:13px; }
