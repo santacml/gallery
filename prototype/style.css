@@ -126,7 +126,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .viewer-bottom a { color:#a9b2a4; font-size:14px; }
 #viewer-counter { color:#a9b2a4; font-size:13px; }
 @media(min-width:1500px) { .home-intro { padding-top:75px; }.project-grid { gap:65px 45px; } }
-@media(max-width:900px) { .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.site-header { gap:20px; }.wordmark { font-size:21px; }nav { gap:20px; }.project-heading-row { gap:35px; }.site-footer { flex-wrap:wrap; }.about { gap:40px; }.intro-note { max-width:210px; } }
+@media(max-width:900px) { .project-grid,.series-gallery,.photo-grid { grid-template-columns:1fr; }.site-header { gap:20px; }.wordmark { font-size:21px; }nav { gap:20px; }.project-heading-row { gap:35px; }.site-footer { flex-wrap:wrap; }.about { gap:40px; }.intro-note { max-width:210px; } }
 @media(max-width:600px) {
   .site-header { padding-top:20px; padding-bottom:17px; gap:12px; flex-wrap:wrap; }.wordmark { font-size:22px; }.theme-toggle { order:1; }nav { order:2; width:100%; gap:26px; padding-top:5px; font-size:12px; }
   .home-intro { padding:36px 0 25px; display:block; }.home-intro h1 { font-size:48px; }.intro-note { max-width:300px; margin-top:22px; }.intro-note .text-link { margin-top:9px; }

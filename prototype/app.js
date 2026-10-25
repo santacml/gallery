@@ -41,13 +41,6 @@
   function photoCard(photo, index, series = false) {
     return `<figure class="photo-card"><button class="photo-open" data-photo="${esc(photo.id)}" aria-label="View ${esc(photo.caption || 'photograph ' + (index + 1))} from ${esc(photo.project.title)}">${imageMarkup(photo, series && index === 0)}</button></figure>`;
   }
-  function home() {
-    const heroProject = projects.find(p => p.id === 'postcard-one') || projects[0];
-    const hero = heroProject.images[0];
-    const featured = ['little-bords', 'film-revival', 'crows', 'aurora'].map(id => projects.find(p => p.id === id)).filter(Boolean);
-    if (!featured.length) featured.push(...projects.slice(0,4));
-    main.innerHTML = `<div class="page home-page"><h1 class="sr-only">Birds & Buildings</h1><figure class="hero"><button class="hero-photo photo-open" data-photo="${esc(hero.id)}" aria-label="View ${esc(hero.caption || heroProject.title)}">${imageMarkup(hero,true)}</button></figure><section class="home-projects" aria-label="Projects"><div class="project-grid">${featured.map(projectCard).join('')}</div><a class="text-link all-projects" href="#/projects">Projects ↗</a></section></div>`;
-  }
   function projectIndex() {
     const filtered = projects.filter(project => state.projectFilter === 'all' || project.tags.includes(state.projectFilter));
     main.innerHTML = `<div class="page gallery-page"><h1 class="sr-only">Projects</h1><div class="project-grid">${filtered.map(projectCard).join('') || '<p class="empty">No projects.</p>'}</div></div>`;
@@ -57,7 +50,7 @@
     const byID = new Map(photos.map(photo => [photo.id,photo]));
     return state.order.map(id => byID.get(id)).filter(photo => photo && (state.filter === 'all' || photo.project.tags.includes(state.filter)));
   }
-  function trailColumns() { return window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3; }
+  function trailColumns() { return window.innerWidth <= 900 ? 1 : 3; }
   function galleryMetrics(grid, count) {
     const gap = parseFloat(getComputedStyle(grid).columnGap);
     return { gap, width: (grid.clientWidth - gap * (count - 1)) / count };
@@ -113,7 +106,7 @@
   function layoutSeries() {
     const grid = main.querySelector('.series-gallery,.gallery-page .project-grid');
     if (!grid) return;
-    const count = window.innerWidth <= 600 ? 1 : 2;
+    const count = window.innerWidth <= 900 ? 1 : 2;
     const {width,gap} = galleryMetrics(grid,count);
     const heights = Array(count).fill(0);
     // DOM and viewer sequence stay unchanged; only physical placement changes.
@@ -150,7 +143,7 @@
   }
   function currentRoute() {
     const [path,query = ''] = (location.hash.slice(1) || '/').split('?');
-    return { path, params: new URLSearchParams(query) };
+    return { path: path === '/projects' ? '/' : path, params: new URLSearchParams(query) };
   }
   function route() {
     const {path,params} = currentRoute();
@@ -163,8 +156,7 @@
         if (active) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
       });
       let title = '';
-      if (path === '/') home();
-      else if (path === '/projects') { projectIndex(); title = 'Projects'; }
+      if (path === '/') projectIndex();
       else if (path === '/wander') { wander(); title = 'Wander'; }
       else if (path.startsWith('/project/')) {
         const id = decodeURIComponent(path.slice(9));
