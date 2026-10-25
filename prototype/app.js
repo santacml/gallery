@@ -246,6 +246,22 @@
     }
   });
   $('#viewer-close').addEventListener('click', () => hideViewer());
+  dialog.addEventListener('click', event => {
+    if (event.target.closest('button,a')) return;
+    const image = $('#viewer-image');
+    if (event.target === image) {
+      if (!image.naturalWidth || !image.naturalHeight) return;
+      // object-fit: contain leaves black space inside the image element too.
+      // Only the visible photograph, not that letterboxing, should stay open.
+      const box = image.getBoundingClientRect();
+      const scale = Math.min(box.width / image.naturalWidth, box.height / image.naturalHeight);
+      const width = image.naturalWidth * scale, height = image.naturalHeight * scale;
+      const left = box.left + (box.width - width) / 2;
+      const top = box.top + (box.height - height) / 2;
+      if (event.clientX >= left && event.clientX <= left + width && event.clientY >= top && event.clientY <= top + height) return;
+    }
+    hideViewer();
+  });
   dialog.addEventListener('cancel', event => { event.preventDefault(); hideViewer(); });
   $('#viewer-prev').addEventListener('click', () => step(-1));
   $('#viewer-next').addEventListener('click', () => step(1));

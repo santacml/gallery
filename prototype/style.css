@@ -49,6 +49,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .project-card { min-width:0; }
 .project-card .cover { display:block; background:var(--soft); overflow:hidden; }
 .project-card img { aspect-ratio:1.48; object-fit:cover; transition:opacity .25s; }
+.gallery-page .project-card img { object-fit:contain; }
 .project-card a:hover img { opacity:.85; }
 .project-card:nth-child(4n+2) { margin-top:0; }
 .project-card .card-info { display:flex; justify-content:space-between; gap:20px; padding:15px 0 0; align-items:baseline; }
