@@ -45,5 +45,5 @@
   <script src="{{ '/prototype/app.js' | relative_url }}?v=clean-projects-25" defer></script>
   {% endif %}
 </head>
-<body>{% if page.layout == 'project' %}{% include 'gallery-body.html' %}{% else %}<a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a>{% endif %}</body>
+<body>{% if page.layout == 'project' %}{% include gallery-body.html %}{% else %}<a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a>{% endif %}</body>
 </html>

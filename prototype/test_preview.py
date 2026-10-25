@@ -141,6 +141,9 @@ class DeploymentTests(unittest.TestCase):
     def test_project_share_metadata_has_real_urls_and_authored_covers(self):
         root = preview.ROOT
         template = (root / '_includes/gallery-redirect.html').read_text(encoding='utf-8')
+        # Jekyll accepts literal unquoted include names; python-liquid expects
+        # a quoted expression. Adapt the renderer, not the production template.
+        template = template.replace('{% include gallery-body.html %}', "{% include 'gallery-body.html' %}")
         index = preview.frontmatter(root / 'projects/index.md')
         for base in ['', '/gallery']:
             for path in sorted((root / 'projects').glob('*/index.md')):
