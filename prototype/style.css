@@ -163,21 +163,8 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .all-projects { display:block; width:fit-content; margin:45px auto 0; }
 .toolbar { border:0; margin:0 0 20px; padding:5px 0 15px; justify-content:flex-end; }
 .shuffle { padding:8px 0 8px 18px; }
-.project-heading { display:flex; align-items:center; gap:20px; padding:22px 0 30px; }
-.project-heading h1 { font-size:16px; font-weight:400; letter-spacing:0; margin:0; }
-.project-heading .breadcrumb {
-  margin:0;
-  padding:8px;
-  min-width:44px;
-  min-height:44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  font-weight:600;
-  line-height:1;
-  color:var(--ink);
-}
+.project-heading { display:flex; align-items:center; justify-content:center; text-align:center; padding:22px 0 30px; }
+.project-heading h1 { font-size:16px; font-weight:500; letter-spacing:0; margin:0; color:var(--ink); }
 .related-grid {
   margin-top:40px;
   margin-bottom:35px;

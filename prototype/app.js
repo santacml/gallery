@@ -178,7 +178,7 @@
     // HTML is generated from the site's own authored Markdown, never user input.
     const story = project.blurb_html || (project.blurb ? `<p>${esc(project.blurb)}</p>` : '');
     const description = project.description || story ? `<section class="project-description" aria-label="Project description">${project.description ? `<p class="project-date">${esc(project.description)}</p>` : ''}${story ? `<div class="project-prose">${story}</div>` : ''}</section>` : '';
-    main.innerHTML = `<div class="page"><header class="project-heading"><a class="breadcrumb" href="#/projects" aria-label="All projects"><svg width="20" height="24" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6-6 6 6 6M3 12h14"/></svg></a><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
+    main.innerHTML = `<div class="page"><header class="project-heading"><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
     layoutSeries();
   }
   function notFound() {
