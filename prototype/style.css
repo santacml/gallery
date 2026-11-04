@@ -123,6 +123,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
 .viewer-stage img { height:100%; width:100%; object-fit:contain; }
 .viewer-stage #viewer-error { position:absolute; bottom:15px; background:#131613; padding:15px; }
 .viewer-arrow { position:absolute; top:46%; width:48px; height:48px; padding:12px; display:flex; align-items:center; justify-content:center; z-index:2; }
+.viewer-arrow:disabled { opacity:1; }
 .viewer-arrow svg { display:block; width:24px; height:24px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
 .viewer-next svg { transform:scaleX(-1); }
 .viewer-prev { left:10px; }.viewer-next { right:10px; }
@@ -142,7 +143,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; }
   .toolbar { gap:10px; align-items:flex-start; }.filter { font-size:11px; padding:6px 11px; }.shuffle { font-size:11px; }.photo-grid { column-gap:16px; }.photo-card { margin-bottom:20px; }.photo-card figcaption { display:block; font-size:10px; }.photo-card figcaption a { display:block; margin-top:2px; }
   .project-heading { padding-top:25px; }.breadcrumb { margin-bottom:28px; }.project-heading-row { grid-template-columns:1fr; gap:7px; }.project-heading h1 { font-size:49px; }.project-story { font-size:13px; max-height:none; }.series-gallery { gap:16px; }
   .related-grid { gap:16px; }.about { padding-top:40px; grid-template-columns:1fr; gap:35px; }.about img { max-height:450px; }.site-footer { margin-top:45px; font-size:10px; gap:10px; }.site-footer>div { width:100%; justify-content:space-between; margin-top:10px; }
-  .viewer[open] { grid-template-rows:60px minmax(0,1fr) 100px; }.viewer-stage { padding:0 10px 30px; }.viewer-top,.viewer-bottom { padding:0 18px; gap:12px; }.viewer-arrow { top:auto; bottom:96px; background:#131613b3; }.viewer-prev { left:10px; }.viewer-next { right:10px; }#viewer-original { max-width:65px; text-align:right; }
+  .viewer[open] { grid-template-rows:60px minmax(0,1fr) 100px; }.viewer-stage { padding:0 10px 30px; }.viewer-top,.viewer-bottom { padding:0 18px; gap:12px; }.viewer-arrow { top:auto; bottom:96px; }.viewer-prev { left:10px; }.viewer-next { right:10px; }#viewer-original { max-width:65px; text-align:right; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }* { transition:none!important; animation:none!important; } }
 
