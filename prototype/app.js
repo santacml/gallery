@@ -50,7 +50,7 @@
   function projectCard(project, index) {
     const cover = project.images.find(image => image.path.toLowerCase() === project.cover.toLowerCase()) || project.images[0];
     const destination = project.destination || projectURL(project);
-    return `<article class="project-card"><a class="cover" href="${destination}" aria-label="${esc(project.title)}">${imageMarkup(cover)}</a><h3 class="project-name"><a href="${destination}">${esc(project.title)} <span aria-hidden="true">↗</span></a></h3></article>`;
+    return `<article class="project-card"><a class="cover" href="${destination}" aria-label="${esc(project.title)}">${imageMarkup(cover)}</a><h3 class="project-name"><a href="${destination}">${esc(project.title)}</a></h3></article>`;
   }
   function photoCard(photo, index, series = false) {
     return `<figure class="photo-card"><button class="photo-open" data-photo="${esc(photo.id)}" aria-label="View ${esc(photo.caption || 'photograph ' + (index + 1))} from ${esc(photo.project.title)}">${imageMarkup(photo, series && index === 0)}</button></figure>`;
@@ -182,7 +182,7 @@
     layoutSeries();
   }
   function notFound() {
-    main.innerHTML = '<div class="page"><header class="page-intro"><h1>Not found</h1><a href="#/projects">Projects ↗</a></header></div>';
+    main.innerHTML = '<div class="page"><header class="page-intro"><h1>Not found</h1><a href="#/projects">Projects</a></header></div>';
   }
   function currentRoute() {
     const project = location.pathname.slice(base.length).match(/^\/projects\/([^/]+)\/?$/);
@@ -260,7 +260,7 @@
     image.src = imageURL(photo);
     $('#viewer-project').textContent = photo.project.title;
     $('#viewer-caption').textContent = '';
-    $('#viewer-series').textContent = photo.project.title + ' ↗';
+    $('#viewer-series').textContent = photo.project.title;
     $('#viewer-series').href = projectURL(photo.project);
     $('#viewer-original').href = url(photo.xl || photo.path);
     $('#viewer-counter').textContent = '';
@@ -386,6 +386,6 @@
     route();
   }).catch(error => {
     console.error(error);
-    main.innerHTML = '<div class="page"><p class="loading" role="alert">Photos couldn’t load. <a href="">Retry ↗</a></p></div>';
+    main.innerHTML = '<div class="page"><p class="loading" role="alert">Photos couldn’t load. <a href="">Retry</a></p></div>';
   });
 })();

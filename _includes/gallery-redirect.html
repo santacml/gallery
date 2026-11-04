@@ -42,8 +42,8 @@
   {% if page.layout == 'project' %}
   <meta name="theme-color" content="#f2f0e9">
   <link rel="stylesheet" href="{{ '/prototype/style.css' | relative_url }}?v=clean-projects-25">
-  <script src="{{ '/prototype/app.js' | relative_url }}?v=clean-projects-25" defer></script>
+  <script src="{{ '/prototype/app.js' | relative_url }}?v=no-link-arrows-26" defer></script>
   {% endif %}
 </head>
-<body>{% if page.layout == 'project' %}{% include gallery-body.html %}{% else %}<a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }} ↗</a>{% endif %}</body>
+<body>{% if page.layout == 'project' %}{% include gallery-body.html %}{% else %}<a href="{{ destination | escape }}">{{ page.title | default: 'Birds & Buildings' | escape }}</a>{% endif %}</body>
 </html>
