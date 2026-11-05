@@ -13,6 +13,7 @@
   let projects = [], photos = [], base = '', renderedRoute = '', viewerPhotos = [], viewerIndex = 0;
   let returnFocus = null;
   let wanderObserver = null;
+  let projectPhotos = [];
   const scrollPositions = new Map();
   const state = { filter: 'all', order: [], limit: 18, projectFilter: 'all' };
   const esc = (value = '') => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -166,6 +167,7 @@
   function projectPage(id) {
     const project = projects.find(p => p.id === id);
     if (!project) return notFound();
+    projectPhotos = shuffle(project.images);
     // Follow the authored projects-index order, never point back into the trail.
     // New, unindexed projects follow the existing sequence alphabetically.
     const sequence = [...projects].sort((a,b) => (a.sequence ?? Number.MAX_SAFE_INTEGER) - (b.sequence ?? Number.MAX_SAFE_INTEGER) || a.title.localeCompare(b.title));
@@ -178,7 +180,7 @@
     // HTML is generated from the site's own authored Markdown, never user input.
     const story = project.blurb_html || (project.blurb ? `<p>${esc(project.blurb)}</p>` : '');
     const description = project.description || story ? `<section class="project-description" aria-label="Project description">${project.description ? `<p class="project-date">${esc(project.description)}</p>` : ''}${story ? `<div class="project-prose">${story}</div>` : ''}</section>` : '';
-    main.innerHTML = `<div class="page"><header class="project-heading"><h1>${esc(project.title)}</h1></header><div class="series-gallery">${project.images.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
+    main.innerHTML = `<div class="page"><header class="project-heading"><h1>${esc(project.title)}</h1></header><div class="series-gallery">${projectPhotos.map((p,i) => photoCard(p,i,true)).join('')}</div>${description}<div class="related-grid" aria-label="Other projects">${nextLinks.map(projectCard).join('')}</div></div>`;
     layoutSeries();
   }
   function notFound() {
@@ -245,7 +247,7 @@
   }
   function openViewer(photo, updateURL = true) {
     const {path} = currentRoute();
-    viewerPhotos = path === '/wander' ? wanderPhotos() : photo.project.images;
+    viewerPhotos = path === '/wander' ? wanderPhotos() : path.startsWith('/project/') ? projectPhotos : photo.project.images;
     viewerIndex = viewerPhotos.indexOf(photo);
     if (viewerIndex < 0) { viewerPhotos = photo.project.images; viewerIndex = viewerPhotos.indexOf(photo); }
     if (!dialog.open) { returnFocus = document.activeElement; dialog.showModal(); }
