@@ -13,6 +13,40 @@ import preview
 
 
 class CatalogTests(unittest.TestCase):
+    def test_film_titles_are_renamed_without_changing_urls(self):
+        projects = {project['id']: project for project in preview.catalog()['projects']}
+        self.assertEqual(projects['film']['title'], 'Film 2023')
+        self.assertEqual(projects['film-revival']['title'], 'Film 2025')
+
+    def test_little_bords_project_is_hidden_without_removing_photos(self):
+        data = preview.catalog()
+        self.assertNotIn('little-bords', [project['id'] for project in data['projects']])
+        self.assertNotIn('/projects/little-bords/', json.dumps(data))
+        metadata = preview.frontmatter(preview.ROOT / 'projects/little-bords/index.md')
+        self.assertEqual(metadata['layout'], 'gallery-redirect')
+        self.assertEqual(len(metadata['images']), 11)
+        for image in metadata['images']:
+            self.assertTrue((preview.ROOT / image['path'].lstrip('/')).is_file())
+            original = image.get('xl_path', image['path'].replace('/Large_', '/XL_'))
+            self.assertTrue((preview.ROOT / original.lstrip('/')).is_file())
+
+    def test_hidden_photos_and_originals_are_preserved_but_not_discovered(self):
+        data = preview.catalog()
+        hidden = []
+        for metadata in (preview.ROOT / 'projects').glob('*/index.md'):
+            hidden.extend(preview.frontmatter(metadata).get('hidden_images', []))
+        self.assertEqual(len(hidden), 28)
+        exposed = {path.lower() for project in data['projects']
+                   for image in project['images']
+                   for path in [image['path'], image['xl']]}
+        exposed.update(project['cover'].lower() for project in data['projects'])
+        for path in hidden:
+            self.assertNotIn(path.lower(), exposed)
+            self.assertTrue((preview.ROOT / path.lstrip('/')).is_file(), path)
+            original = path.replace('/Large_', '/XL_')
+            self.assertNotIn(original.lower(), exposed)
+            self.assertTrue((preview.ROOT / original.lstrip('/')).is_file(), original)
+
     def test_future_project_and_unlisted_images_are_discovered(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -53,7 +87,7 @@ class CatalogTests(unittest.TestCase):
         projects = {project['id']: project for project in preview.catalog()['projects']}
         postcard = projects['postcard-four']
         self.assertEqual(postcard['title'], 'Postcard Four')
-        self.assertEqual(len(postcard['images']), 9)
+        self.assertEqual(len(postcard['images']), 6)
         self.assertNotIn('/projects/postcard-four/Large_DSC07917.JPG', [image['path'] for image in postcard['images']])
         self.assertEqual(postcard['sequence'], projects['postcard-three']['sequence'] + 1)
         listed = preview.frontmatter(preview.ROOT / 'projects/postcard-four/index.md')['images']
@@ -148,6 +182,8 @@ class DeploymentTests(unittest.TestCase):
         for base in ['', '/gallery']:
             for path in sorted((root / 'projects').glob('*/index.md')):
                 page = preview.frontmatter(path)
+                if page.get('layout') != 'project':
+                    continue
                 page['url'] = '/projects/' + path.parent.name + '/'
                 project = next((p for p in index['images'] if p['project-folder'] == page['url']), {})
                 cover = project.get('image_path', page['images'][0]['path'])

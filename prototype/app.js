@@ -377,8 +377,8 @@
       }).map(image => ({ ...image, id: image.path, project }));
       return project;
     });
-    // Recently expanded work first. Unknown future projects remain discoverable.
-    projects.sort((a,b) => Number(b.updated) - Number(a.updated) || a.title.localeCompare(b.title));
+    // Keep Cincy at the end; otherwise recently expanded work comes first.
+    projects.sort((a,b) => Number(a.id === 'cincy-2020') - Number(b.id === 'cincy-2020') || Number(b.updated) - Number(a.updated) || a.title.localeCompare(b.title));
     photos = projects.flatMap(project => project.images);
     // Clear saved filters from the earlier, text-heavy prototype.
     state.filter = 'all';

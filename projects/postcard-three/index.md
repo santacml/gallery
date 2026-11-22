@@ -4,6 +4,17 @@ title: "Postcard Three"
 active: projects
 blurb: 
 description: ""
+# Temporarily hidden; remove entries and uncomment below to restore both versions.
+hidden_images:
+  - /projects/postcard-three/Large_DSC04439.JPG
+  - /projects/postcard-three/Large_DSC04461.JPG
+  - /projects/postcard-three/Large_DSC05155.JPG
+  - /projects/postcard-three/Large_DSC05169.JPG
+  - /projects/postcard-three/Large_DSC05186.JPG
+  - /projects/postcard-three/Large_DSC05386.JPG
+  - /projects/postcard-three/Large_DSC05519.JPG
+  - /projects/postcard-three/Large_DSC06880.JPG
+  - /projects/postcard-three/Large_DSC06884.JPG
 images:
   - path: /projects/postcard-three/Large_DSC03756.JPG
     caption: 
@@ -19,40 +30,40 @@ images:
     caption: 
   - path: /projects/postcard-three/Large_DSC04436.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC04439.JPG
-    caption: 
-  - path: /projects/postcard-three/Large_DSC04461.JPG
-    caption: 
-  - path: /projects/postcard-three/Large_DSC05155.JPG
-    caption: 
-  - path: /projects/postcard-three/Large_DSC05169.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC04439.JPG
+  #   caption:
+  # - path: /projects/postcard-three/Large_DSC04461.JPG
+  #   caption:
+  # - path: /projects/postcard-three/Large_DSC05155.JPG
+  #   caption:
+  # - path: /projects/postcard-three/Large_DSC05169.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC05181.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC05186.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC05186.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC05364.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC05386.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC05386.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC05496.JPG
     caption: 
   - path: /projects/postcard-three/Large_DSC05505.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC05519.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC05519.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC05941.JPG
     caption: 
   - path: /projects/postcard-three/Large_DSC05944.JPG
     caption: 
   - path: /projects/postcard-three/Large_DSC05955.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC06880.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC06880.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC06882.JPG
     caption: 
-  - path: /projects/postcard-three/Large_DSC06884.JPG
-    caption: 
+  # - path: /projects/postcard-three/Large_DSC06884.JPG
+  #   caption:
   - path: /projects/postcard-three/Large_DSC06890.JPG
     caption: 
 ---

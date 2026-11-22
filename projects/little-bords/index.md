@@ -1,5 +1,7 @@
 ---
-layout: project
+# Temporarily hidden: restore layout: project and its Projects index entry.
+# layout: project
+layout: gallery-redirect
 title: "Little Bords"
 description: ""
 active: projects

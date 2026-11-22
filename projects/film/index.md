@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Film"
+title: "Film 2023"
 description: ""
 active: projects
 blurb: The better I am at photography, the worse I am at film photography. In 2022-2023, I produced some of my all-time favorite photos while exploring film. Since then, I've lost the spark. Someday, I'll visit it once again!

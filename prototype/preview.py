@@ -42,13 +42,19 @@ def catalog() -> dict:
             continue
         folder = '/projects/' + metadata.parent.name + '/'
         cover = covers.get(folder, {})
-        images = list(data.get('images', []))
+        # Commented entries must not return through filesystem discovery.
+        # A hidden display path also hides its full-resolution counterpart.
+        hidden = {path.lower() for path in data.get('hidden_images', [])}
+        hidden |= {path.replace('/large_', '/xl_') for path in hidden}
+        images = [image for image in data.get('images', [])
+              if image['path'].lower() not in hidden
+              and image.get('xl_path', '').lower() not in hidden]
         listed = {image['path'].lower() for image in images}
         for path in sorted(metadata.parent.iterdir()):
             if path.suffix.lower() not in IMAGE_EXTENSIONS or path.name.lower().startswith('xl_'):
                 continue
             relative = folder + path.name
-            if relative.lower() not in listed:
+            if relative.lower() not in listed and relative.lower() not in hidden:
                 images.append({'path': relative, 'caption': '', 'unlisted': True})
                 listed.add(relative.lower())
         prepared = []

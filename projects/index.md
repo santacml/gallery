@@ -27,11 +27,11 @@ images:
     
   - image_path: /projects/film/000019560009.jpg
     project-folder: /projects/film/
-    gallery-name: Film
+    gallery-name: Film 2023
 
   - image_path: /projects/film-revival/AA033.jpg
     project-folder: /projects/film-revival/
-    gallery-name: Film Revival
+    gallery-name: Film 2025
     updated: true
 
   - image_path: /projects/golden-hour/Large_DSC00622.png
@@ -43,10 +43,11 @@ images:
     project-folder: /projects/crows/
     gallery-name: Crows
   
-  - image_path: /projects/little-bords/Large_DSC06274.JPG
-    project-folder: /projects/little-bords/
-    gallery-name: Little Bords
-    crop: .3
+  # Temporarily hidden; project metadata and all photographs are preserved.
+  # - image_path: /projects/little-bords/Large_DSC06274.JPG
+  #   project-folder: /projects/little-bords/
+  #   gallery-name: Little Bords
+  #   crop: .3
 
   - image_path:  /projects/aurora/Large_DSC01870.JPG
     project-folder: /projects/aurora/

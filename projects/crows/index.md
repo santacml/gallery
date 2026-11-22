@@ -4,6 +4,11 @@ title: "Crows"
 description: ""
 active: projects
 blurb: In 2023, I took a stab at a series of pictures focused solely on crows. At this time, I was using an odd, cheap, antique lens which results in grainy, washed-out photos. Still, this project was a  turning point in photography for me and I'm proud of the work! 
+# Temporarily hidden; remove entries and uncomment below to restore both versions.
+hidden_images:
+  - /projects/crows/Large_DSC01690.JPG
+  - /projects/crows/Large_DSC07438.JPG
+  - /projects/crows/Large_DSC08510.JPG
 images:
   - path: /projects/crows/Large_DSC07159.jpg
     xl_path: /projects/crows/XL_DSC07159.jpg # Match the original filename on case-sensitive hosting.
@@ -14,20 +19,20 @@ images:
     caption: American Crow
   - path: /projects/crows/Large_DSC07520.JPG
     caption: American Crow
-  - path: /projects/crows/Large_DSC01690.JPG
-    caption: American Crow
+  # - path: /projects/crows/Large_DSC01690.JPG
+  #   caption: American Crow
   - path: /projects/crows/Large_DSC08267.JPG
     caption: American Crow
   - path: /projects/crows/Large_DSC07340.JPG
     caption: American Crow
-  - path: /projects/crows/Large_DSC07438.JPG
-    caption: American Crow
+  # - path: /projects/crows/Large_DSC07438.JPG
+  #   caption: American Crow
   - path: /projects/crows/Large_DSC06882.JPG
     caption: American Crow
   - path: /projects/crows/Large_DSC07253.JPG
     caption: American Crow
-  - path: /projects/crows/Large_DSC08510.JPG
-    caption: American Crow
+  # - path: /projects/crows/Large_DSC08510.JPG
+  #   caption: American Crow
   - path: /projects/crows/Large_DSC07148.JPG
     caption: American Crow
   - path: /projects/crows/Large_DSC07538.JPG

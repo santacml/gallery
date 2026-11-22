@@ -4,6 +4,9 @@ title: "Golden Hour"
 description: ""
 active: projects
 blurb: 
+# Temporarily hidden; remove entry and uncomment below to restore both versions.
+hidden_images:
+  - /projects/golden-hour/Large_DSC07689.JPG
 images:
   - path: /projects/golden-hour/Large_DSC00622.png
     caption: 
@@ -27,6 +30,6 @@ images:
     caption: 
   - path: /projects/golden-hour/Large_DSC07680.JPG
     caption: 
-  - path: /projects/golden-hour/Large_DSC07689.JPG
-    caption: 
+  # - path: /projects/golden-hour/Large_DSC07689.JPG
+  #   caption:
 ---
