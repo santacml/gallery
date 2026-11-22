@@ -377,8 +377,9 @@
       }).map(image => ({ ...image, id: image.path, project }));
       return project;
     });
-    // Keep Cincy at the end; otherwise recently expanded work comes first.
-    projects.sort((a,b) => Number(a.id === 'cincy-2020') - Number(b.id === 'cincy-2020') || Number(b.updated) - Number(a.updated) || a.title.localeCompare(b.title));
+    // Keep Cincy last and Postcard Two ahead of One; otherwise retain ordering.
+    const projectSortTitle = project => project.id === 'postcard-two' ? 'Postcard 0' : project.title;
+    projects.sort((a,b) => Number(a.id === 'cincy-2020') - Number(b.id === 'cincy-2020') || Number(b.updated) - Number(a.updated) || projectSortTitle(a).localeCompare(projectSortTitle(b)));
     photos = projects.flatMap(project => project.images);
     // Clear saved filters from the earlier, text-heavy prototype.
     state.filter = 'all';
